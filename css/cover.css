@@ -27,13 +27,11 @@ a:hover {
 html,
 body {
   height: 100%;
-    background: url('./../../images/wall_b.jpeg');
-	   background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-    font-family: 'Ubuntu', sans-serif;
-
-	overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  font-family: 'Ubuntu', sans-serif;
+  overflow-x: hidden;
 }
 body {
   text-align: center;
@@ -152,7 +150,7 @@ body {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
   iframe {
-	  z-index: 0;
+    z-index: 0;
   }
 }
 
