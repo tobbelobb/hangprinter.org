@@ -13,15 +13,15 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="Hangprinter v3 Assembly Manual" />
   <meta name="author" content="tobben and the Hangprinter Community" />
-  <link rel="icon" href="https://hangprinter.org/favicon.ico" />
+  <link rel="icon" href="../../favicon.ico" />
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
   <title>Hangprinter Assembly</title>
   <!-- Bootstrap core CSS -->
-  <link href="https://hangprinter.org/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../css/bootstrap.min.css" rel="stylesheet" />
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="https://hangprinter.org/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+  <link href="../../css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="https://hangprinter.org/css/cover.css" rel="stylesheet" />
+  <link href="../../css/cover.css" rel="stylesheet" />
   <link href="manual_style.css" rel="stylesheet" />
   <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
   <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -40,7 +40,6 @@
   </style>
 
   <meta name="keywords" content="Reprap, Manual, Hangprinter" />
-  <link href="https://hangprinter.org/doc/v3/feed.xml" rel="alternate" type="application/rss+xml" title="Hangprinter v3 Manual" />
   <xsl:choose>
     <xsl:when test="page/@mathjax">
       <script type="text/javascript"
@@ -58,7 +57,7 @@
           <div class="inner">
             <h3 class="masthead-brand">
               <a href="../../" style="text-decoration: none; color: #000;">
-                <img src="https://hangprinter.org/images/logo1.png" style="height: 50px; width: 50px; margin-top: -15px; margin-right: 10px;" />Hangprinter
+                <img src="../../images/logo1.png" style="height: 50px; width: 50px; margin-top: -15px; margin-right: 10px;" />Hangprinter
               </a>
             </h3>
             <nav>
