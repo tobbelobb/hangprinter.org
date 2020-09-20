@@ -1,12 +1,23 @@
-<!DOCTYPE html>
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="Hangprinter homepage">
-  <meta name="author" content="tobben">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Torbjorn Ludvigsen">
+    <meta name="keywords" content="Hangprinter, open source, hardware, technology, software, Reprap, development">
+    <meta name="description" content="Hangprinter">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hangprinter">
+    <meta property="og:url" content="https://hangprinter.org">
+    <meta property="og:description" content="Hangprinter">
+    <meta property="og:image" content="./images/logo1.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@tobbelobb">
+    <meta name="twitter:creator" content="@tobbelobb">
+    <link rel="preload" href="./OpenSansRegular.woff" as="font" type="font/woff" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css?v=0" type="text/css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -14,67 +25,98 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#00aba9">
   <meta name="theme-color" content="#ffffff">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
   <title>Hangprinter</title>
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="css/cover.css" rel="stylesheet">
-  <script src="js/ie-emulation-modes-warning.js"></script>
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <style>
-    body{
-        overflow: hidden;
-    }
-    div#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: #333 url('images/loading.gif') no-repeat center center; }
-  </style>
-</head>
-<body>
-<div id="preloader"></div>
-<div class="hero__image">
-  <div class="site-wrapper">
-    <div class="site-wrapper-inner">
-      <div class="cover-container">
-        <div class="masthead clearfix">
-          <div class="inner">
-            <h3 class="masthead-brand">
-              <a href="../" style="text-decoration: none; color: #000;">
-                <img src="images/logo1.png" style="height: 50px; width: 50px; margin-top: -15px; margin-right: 10px;" />Hangprinter
-              </a>
-            </h3>
-            <nav>
-              <ul class="nav masthead-nav">
-                <li id="nav_documentation"><a href="./doc/v3">Documentation</a></li>
-                <li id="nav_contribute"><a href="./contribute">Contribute</a></li>
-                <li id="nav_contact"><a href="./contact">Contact</a></li>
-                <li id="nav_about"><a href="./about">About</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div id = "threejs"></div>
-      </div>
+  </head>
+  <body style="height: calc(100vh - 16px);width:100%;">
+    <div class="masthead">
+      <h3 class="masthead-brand">
+        <a href="../" style="text-decoration: none; color: #000;">
+          <img src="./images/logo1.png" style="height: 50px; width: 50px; margin-top: -15px; margin-right: 10px;" />
+        </a>
+      </h3>
+      <nav>
+        <ul class="nav masthead-nav">
+          <li id="nav_documentation"><a href="./doc/v3">Documentation</a></li>
+          <li id="nav_contribute"><a href="./contribute">Contribute</a></li>
+          <li id="nav_contact"><a href="./contact">Contact</a></li>
+          <li id="nav_about"><a href="./about">About</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</div>
-<script src="js/three.js"></script>
-<script src="js/STLLoader.js"></script>
-<script src="js/OrbitControls.js"></script>
-<script src="js/Detector.js"></script>
-<script src="js/hangprinter_loader.js"></script>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
-</body>
+    <div id="FrontPageMain">
+      <img class="front-image" src="./hangprinter2_small.jpeg" onclick="fun()" />
+      <h1>Hangprinter</h1>
+      <h2>A Cable Driven Reprap</h2>
+      <h3>
+        Print big at low cost.
+        Simple hardware. Advanced software.
+      </h3>
+    </div>
+    <div id="there-you-go" style="position:fixed;"></div>
+    <!--script data-goatcounter="https://hangprinter.goatcounter.com/count"
+            async="true" src="//gc.zgo.at/count.js"></script-->
+    <script>
+      var img = document.getElementById('FrontPageMain');
+      var dx = Math.random()*8 - 4.0;
+      var dy = Math.random()*8 - 4.0;
+      var offsetY = window.innerHeight > 760 ? 150 : 60;
+      if (window.innerWidth < 387 ) {
+        offsetY -= 60;
+      }
+      function fun() {
+        var bodyRect = document.body.getBoundingClientRect();
+        var elemRect = img.getBoundingClientRect();
+        img.style.position = "fixed";
+        var left = elemRect.left;
+        var top = elemRect.top - offsetY;
+        offsetY = 0;
+        counter = 1000;
+        interval = 20; // ms
+        countDown = document.getElementById('there-you-go');
+        countDown.style.width = "100%";
+        countDown.style.textAlign = "center";
+        countDown.style.top = bodyRect.bottom/2;
+        countDown.innerHTML = "<h1>progress 0%...</h1>";
+        document.body.appendChild(countDown);
+        window.setTimeout(wanderAround, interval);
+        var leftOffset = window.innerWidth > 430 ? -400 : -300;
+        var rightOffset = window.innerWidth > 430 ? -200 : -100;
+        var topOffset = window.innerHeight > 760 ? -180 : -60;
+        var bottomOffset = window.innerHeight > 760 ? -375 : -235;
+        function wanderAround() {
+          countDown.innerHTML = "<h1>progress " + Math.floor((1.0 - counter/1001)*100) + "%...</h1>";
+          img.style.left = left + "px";
+          img.style.top = top + "px";
+          --counter;
+          if (counter < 0)
+          {
+            countDown.innerHTML = "<h1>There you go.</h1>";
+            return;
+          }
+          else
+          {
+            // Animate a bit more
+            left += dx;
+            if (left > bodyRect.right + leftOffset || left < rightOffset)
+            {
+              dx = -dx;
+            }
+
+            top  += dy;
+            if (top < topOffset || top > bodyRect.bottom + bottomOffset)
+            {
+              dy = -dy;
+            }
+            img.style.left = left + "px";
+            img.style.top  = top  + "px";
+
+            // Re-trigger ourselves
+            window.setTimeout(wanderAround, interval);
+          }
+        }
+        wanderAround();
+      }
+    </script>
+  </body>
 </html>
