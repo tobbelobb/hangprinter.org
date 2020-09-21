@@ -1,117 +1,82 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Torbjorn Ludvigsen">
+    <meta name="keywords" content="Hangprinter, open source, hardware, technology, software, Reprap, development">
+    <meta name="description" content="Hangprinter">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hangprinter">
+    <meta property="og:url" content="https://hangprinter.org/about">
+    <meta property="og:description" content="Hangprinter">
+    <meta property="og:image" content="../images/logo1.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@tobbelobb">
+    <meta name="twitter:creator" content="@tobbelobb">
+    <link rel="preload" href="../OpenSansRegular.woff" as="font" type="font/woff" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css?v=0" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-  <link rel="manifest" href="../site.webmanifest">
-  <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#00aba9">
-  <meta name="theme-color" content="#ffffff">
-
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <title>Hangprinter</title>
-  <!-- Bootstrap core CSS -->
-  <link href="../css/bootstrap.min.css" rel="stylesheet">
-  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="../css/cover.css" rel="stylesheet">
-  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-  <!--[if lt IE 9]><script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-  <script src="../js/ie-emulation-modes-warning.js"></script>
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <style>
-    hr{
-      border-top: 1px solid #111 !important;
-    }
-    address{
-      font-size: 18px;
-    }
-  </style>
-</head>
-<body>
-<div class="hero__image">
-  <div class="site-wrapper">
-    <div class="site-wrapper-inner">
-      <div class="cover-container">
-        <div class="masthead clearfix">
-          <div class="inner">
-            <h3 class="masthead-brand">
-              <a href="../" style="text-decoration: none; color: #000;">
-                <img src="../images/logo1.png" style="height: 50px; width: 50px; margin-top: -15px; margin-right: 10px;" />Hangprinter
-              </a>
-            </h3>
-            <nav>
-              <ul class="nav masthead-nav">
-                <li id="nav_documentation"><a href="../doc/v3">Documentation</a></li>
-                <li id="nav_contribute"><a href="">Contribute</a></li>
-                <li id="nav_contact"><a href="../contact">Contact</a></li>
-                <li id="nav_about"><a href="../about">About</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="container" style="max-width: 600px; width: 90%">
-          <h3>Thanks</h3>
-          <p>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <title>Hangprinter|About</title>
+  </head>
+  <body style="height: calc(100vh - 16px);width:100%;">
+    <div class="masthead">
+      <h3 class="masthead-brand">
+        <a href="../" style="text-decoration:none;color:#000;">
+          <img src="../safari-pinned-tab.svg" style="height:50px;width:50px;" />
+        </a>
+      </h3>
+      <nav>
+        <ul>
+          <li><a href="../doc/v3">Documentation</a></li>
+          <li><a href="." class="active">Contribute</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="../resources">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="SiteName" style="text-align:center;font-size:20px;">
+      Thanks
+    </div>
+    <div id="MainContent">
+      <p>
             ... for considering to contribute directly!
             By building, using, posting, and talking about Hangprinter, you're already doing what the Hangprinter Project is all about.
-          </p>
-          <h3>Contributing Improvements</h3>
-          <p>
+      </p>
+      <h3>Contributing Improvements</h3>
+      <p>
             The maintainers are super grateful if you make a pull request (in Gitlab called merge request), and submit it to the repo.
             See for example <a href="https://docs.gitlab.com/ee/gitlab-basics/add-merge-request.html">here</a> for help with doing that.
-          </p>
-          <p>
-            If your improvement can't be structured into a pull request, the second best options are <a href="https://gitlab.com/tobben/hangprinter/issues">GitLab issues</a>, and the
+      </p>
+      <p>
+            If your improvement can't be structured into a pull request, the second best options are <a href="https://gitlab.com/tobben/hangprinter/issues">Gitlab issues</a>, and the
             <a href="https://reprap.org/forum/list.php?423">forum</a>.
-          </p>
-          <h3>Supporting This Project With Money</h3>
-          <p>
+      </p>
+      <h3>Supporting This Project With Money</h3>
+      <p>
             Monthly donations can be set up via the <a href="https://salt.bountysource.com/teams/hangprinter">Bountysource Salt Campaign</a>.
-          </p>
-          <p>
-            Merchandise can be bought here: <a href="https://shop.spreadshirt.se/hangprinter-merchandise/">Mechadise Sweden</a>.
-            And here: <a href="https://shop.spreadshirt.com/hangprinter-merchandise/">Mechadise US</a>.
-          </p>
-          <p>
+      </p>
+      <p>
+            Merchandise can be bought here: <a href="https://shop.spreadshirt.se/hangprinter-merchandise/">Mechadise Sweden</a>,
+            and here: <a href="https://shop.spreadshirt.com/hangprinter-merchandise/">Mechadise US</a>.
+      </p>
+      <p>
             All kinds of donations via Brave Browser are enabled.
             If you get Brave Browser via <a href="https://brave.com/yfy102">this link</a>, then tobben will receive a small kickback.
-          </p>
-          <p>
+      </p>
+      <p>
             Bitcoin donations are accepted on: 1BwobkC5Tb7psWkzCugtcH21ufj6Lc9mgY
-          </p>
-        </div>
-      </div>
+      </p>
     </div>
-  </div>
-</div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://blockchain.info/Resources/js/pay-now-button.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
-<script src="js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="js/ie10-viewport-bug-workaround.js"></script>
-</body>
-<script>
-$(document).ready(function(){
-  $('#nav_contribute').addClass('active');
-});
-</script>
+  </body>
 </html>
