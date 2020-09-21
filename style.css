@@ -291,3 +291,6 @@ nav a.active {
     float: right;
   }
 }
+#MainContent ul li a {
+  text-decoration:none;
+}
