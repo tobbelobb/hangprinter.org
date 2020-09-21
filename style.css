@@ -84,6 +84,7 @@ h4 {
 	font-size:15px;
 	line-height:150%;
 	color:#30424c;
+  margin-bottom:1cm;
 }
 
 @media screen and (max-height: 760px) {
