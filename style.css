@@ -247,7 +247,6 @@ nav a.active {
 	justify-content:space-between;
 }
 
-
 .masthead {
   padding: 30px 0px;
   position:relative;
@@ -290,5 +289,8 @@ nav a.active {
   }
 }
 #MainContent ul li a {
+  text-decoration:none;
+}
+#MainContent p a {
   text-decoration:none;
 }
