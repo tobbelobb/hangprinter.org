@@ -247,12 +247,15 @@ nav a.active {
 	justify-content:space-between;
 }
 
-/* Padding for spacing */
+
 .masthead {
+  width:600px;
+  padding: 30px 0px;
   position:relative;
   margin: 0 auto;
-  padding: 30px;
   width: 600px;
+  height:auto;
+  line-height:1;
   max-width:93%;
   text-align:center;
 }
@@ -278,12 +281,6 @@ nav a.active {
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
-  opacity: 0.5;
-}
-.masthead-nav > .active > a,
-.masthead-nav > .active > a:hover,
-.masthead-nav > .active > a:focus {
-  color: #fff;
 }
 
 @media (min-width: 768px) {
