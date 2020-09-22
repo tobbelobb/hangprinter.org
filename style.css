@@ -269,3 +269,7 @@ nav a.active {
 #MainContent a {
   text-decoration:none;
 }
+figcaption {
+  width:500px;
+  max-width:100%;
+}
