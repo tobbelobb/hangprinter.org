@@ -266,3 +266,6 @@ nav a.active {
 #MainContent p a {
   text-decoration:none;
 }
+#MainContent a {
+  text-decoration:none;
+}
