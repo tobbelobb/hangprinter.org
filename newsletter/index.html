@@ -44,10 +44,97 @@
         </ul>
       </nav>
     </div>
-    <div id="SiteName" style="text-align:center;">
+    <div id="SiteName" style="text-align:center;margin-bottom:1cm;">
       Hangprinter Supporters' Newsletter
     </div>
     <div id="MainContent">
+      <h1 id="post_27">October 2020</h1>
+      <div class="date">1-10-2020</div>
+      <h3>Hello Hangprinter Supporters!</h3>
+      <p>It's been over a year since my last newsletter.
+        Life happened and my Hangprinter work had to be paused.
+        I always intended to return to the Hangprinter office, and now I'm back full-time. ✨✨😀✨✨</p>
+      <p>Keeping the office and the gear through 2019 was possible because of your donations.
+        A big warm thank you to all who have given.💞
+        Without you, my developments described in this newsletter probably wouldn't have happened.
+        It really helps.</p>
+      <p>Commits per day was 2.8 (all-time high 🔥) in August, and 4.2 (new all-time high again 🔥🔥) in September.</p>
+      <h3>State of the Hangprinter 4 Prototype One</h3>
+      <p>It works, but it has had some hiccups and lacks safety features.
+        See <a href="https://twitter.com/tobbelobb/status/1176102758056890369">tweet 1</a>, <a href="https://twitter.com/tobbelobb/status/1186315282018721792">tweet 2</a>, and <a href="https://twitter.com/tobbelobb/status/1186215813302439938">tweet 3</a>
+        for more on how a bad print failure might look like.🤦‍♂️</p>
+      <p>The HP4 also doesn't have a correct wiring diagram published.
+        It turns out we needed some ODrive Firmware changes upstream.
+        Follow pull request <a href="https://github.com/madcowswe/ODrive/pull/492">here</a>.</p>
+      <h3>Stool Project</h3>
+      <p>Hangprinter wants to be relevant, and I've always wanted to print something nice enough that I would want it in my own living room.
+        So I made a stool. Repo <a href="https://gitlab.com/tobben/kark">here</a>.</p>
+      <p>Apart from failures linked above, the process looked like this: <a href="https://twitter.com/tobbelobb/status/1173659358317678593">tweet 4</a>, and the finished stool looked like this: <a href="https://twitter.com/tobbelobb/status/1235466289377873920">tweet 5</a>.</p>
+      <h3>Line Collision Detector</h3>
+      <p>I've made a program called <a href="https://gitlab.com/hangprinter/line-collision-detector">Line Collision Detector</a>.
+        It solves a big problem.
+        Before, when we wanted to print big objects, we had no way to know if they would fit the print volume or not.
+        We could not know if the lines would collide with the object mid-print, we had to guess.</p>
+      <p>With Line Collision Detector, users can check if there will be a collision or not.
+        If a collision is detected, the user can check how and where it would occur.
+        Knowing that, the user can adjust the model's shape/placement and avoid line collision without wasting time or plastic.</p>
+      <p>Line Collision Detector is a big win for the Hangprinter Project.
+        The potential for line collisions were, in my opinion, the most fundamental problem that Hangprinter had.🦈🦈🦈
+        With Line Collision Detector, the problem has gotten a lot more manageable.🐬🐬🐬</p>
+      <p>There's a blog post about Line Collision Detector: <a href="https://torbjornludvigsen.com/blog/2020/#hangprinter_project_63">here</a>,
+and some tweets about the progress: <a href="https://twitter.com/tobbelobb/status/1279837489033871360">tweet 6</a>, <a href="https://twitter.com/tobbelobb/status/1280787224519417856">tweet 7</a>, <a href="https://twitter.com/tobbelobb/status/1282051019921412096">tweet 8</a>, <a href="https://twitter.com/tobbelobb/status/1282668791042908161">tweet 9</a>, <a href="https://twitter.com/tobbelobb/status/1282801692757696513">tweet 10</a>.</p>
+      <h3>Web Work, Web Presence</h3>
+      <p>I've worked full-time on Hangprinter since this summer, and written some thoughts about internet based work in another <a href="https://torbjornludvigsen.com/blog/2020/#personal_1">personal blog post</a>.
+        These thoughts led me to understand that both I and the Hangprinter Project need better web presence.</p>
+      <h4>Hangprinter.org</h4>
+      <p>On <a href="https://hangprinter.org">hangprinter.org</a> I'm concentrating more and better info.</p>
+      <ul>
+        <li>The <a href="https://hangprinter.org/doc/v3/">HP3 documentation</a> has gotten a small facelift.</li>
+        <li>The new <a href="https://hangprinter.org/about/">about page</a> now describes the background of the Hangprinter Project.</li>
+        <li>The new <a href="https://hangprinter.org/resources/">resources page</a> links to important external resources.</li>
+        <li>The new <a href="https://hangprinter.org/newsletter/">newsletter page</a> contains this update, and all the previous ones.</li>
+        <li>There's also a hidden treasure, for you who read the newsletter only: <a href="https://hangprinter.goatcounter.com/">publicly viewable analytics</a>.
+          It's a very rough and privacy respecting data collection.
+          It's valuable because it gives an indication of the size of, and level of activity in, our community.</li>
+      </ul>
+      <p>I've also moved my dev blog to <a href="https://torbjornludvigsen.com/blog">torbjornludvigsen.com/blog</a>.</p>
+      <h4>New Campaign</h4>
+      <p>A <a href="https://github.com/sponsors/tobbelobb">Github Sponsors campaign</a> for me, tobben, has been created.
+        It is the new preferred channel for donations, since it has no transaction fees, and Github matches donations 1/1. 💸🤝🏼💸</p>
+      <p>The Bountysource campaign continues without changes.</p>
+      <h4>Synced Repos</h4>
+      <p>In 2018 I moved the Hangprinter source code from Github to Gitlab.
+        I've now set up automatic synchronization, so the latest and relevant code exists in both Github and Gitlab always.
+        This way, people who click an old Github link will still get the correct code.</p>
+      <p>I will still prefer using Gitlab for managing issues and such.</p>
+      <h3>HP Mark 📸</h3>
+      <p>I've just started a project that will measure Hangprinter's position and pose externally, that is with cameras or similar sensors.
+        It's called HP Mark, and can be found <a href="https://gitlab.com/tobben/hp-mark">here</a>.</p>
+      <p>Hangprinter wants to be relevant, so it needs to become reliable, dependable, and easy to use.
+        The way to get there is to observe the print volume externally.
+        They collect very rich data, that in theory allows fully automatic calibration, guarantees regarding accuracy/precision,
+        as well as robust error detection safety features.</p>
+      <p>This is also in line with the long term goal of a <a href="https://torbjornludvigsen.com/blog/2018/#hangprinter_project_59">Universal Manufacturing Machine 🚀</a> described in July 2018.</p>
+      <p>HP Mark is still in the very early stages, some status tweets can be found here: <a href="https://twitter.com/tobbelobb/status/1309108246850961409">tweet 11</a>, <a href="https://twitter.com/tobbelobb/status/1310594915710181377">tweet 12</a>.</p>
+      <p>For now, I've mostly worked on reading up on the subject.
+        My notes can be found <a href="https://gitlab.com/tobben/hp-mark/-/tree/9f837358a054b9194094764b427c2705a191d50b#reading-list">here 📝💦</a>.</p>
+      <h3>Next Month</h3>
+      <p>I will work on HP Mark, although I currently find it quite overwhelming to make meaningful progress within computer vision.
+        I will chop the work up in smaller pieces and hopefully get something publishable along the way.
+        I will focus on C++ programming and build upon what I learned during the development of Line Collision Detector.</p>
+      <p>If HP Mark gets too tough, maybe I'll print a stool.</p>
+      <h3>Community News</h3>
+      <p>Check out Bloft Design's very innovative <a href="https://twitter.com/BloftLab/status/1304142875379335168">Hangprinter-like 3d printer design called Bloft MK2</a>.
+        Blof Design are the same people that made <a href="https://twitter.com/velmukelmu/status/1165345314297057281">the amazing Hangprinted shoe</a>.</p>
+      <p>During my HP Mark reading, I stumbled upon two good articles that develop Hangprinter designs.
+        One that tests, analyzes, and evaluates the spring-as-d-axis idea, <a href="https://www.sciencedirect.com/science/article/abs/pii/S0094114X18315568">here</a>.
+        Another one adapts Hangprinter for large scale manufacturing, <a href="https://www.osti.gov/biblio/1471897">here</a>.</p>
+      <p>It's interesting that we hadn't even seen these builds before.
+        Now that I have the hangprinter.org analytics installed, I realize that there are quite a few Hangprinter builders that we never hear about.
+        The documentation has more than 200 visits per month, which makes the page much more important for the community than I previously thought.</p>
+      <p>Until next time, thanks for supporting the Hangprinter Project!</p>
+      <p>-- tobben 👷</p><br><br><br>
+
 
       <h1 id="post_26">Summer 2019</h1>
       <div class="date">19-8-2019</div>
