@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Torbjorn Ludvigsen">
+    <meta name="keywords" content="Hangprinter, open source, hardware, technology, software, Reprap, development">
+    <meta name="description" content="Hangprinter">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hangprinter">
+    <meta property="og:url" content="https://hangprinter.org/doc/v4">
+    <meta property="og:description" content="Cable Driven RepRap">
+    <meta property="og:image" content="https://hangprinter.org/hangprinter4_small.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@tobbelobb">
+    <meta name="twitter:creator" content="@tobbelobb">
+    <link rel="stylesheet" href="../../style.css?v=0" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <link rel="mask-icon" href="../../safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    <title>Hangprinter|HP3 Manual</title>
+  </head>
+  <body style=width:100%;">
+    <div class="masthead">
+      <h3 class="masthead-brand">
+        <a href="../../" style="text-decoration:none;color:#000;">
+          <img src="../../safari-pinned-tab.svg" style="height:50px;width:50px;" />
+        </a>
+      </h3>
+      <nav>
+        <ul>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn"><div class="active">Documentation</a></button>
+              <div class="dropdown-content">
+                <a href="../../doc/v3">Hangprinter version 3</a>
+                <a href="." class="active">Hangprinter version 4</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="../../contribute">Contribute</a></li>
+          <li><a href="../../about">About</a></li>
+          <li><a href="../../resources">Resources</a></li>
+          <li><a href="../../newsletter">Newsletter</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="SiteName" style="text-align:left">
+      Hangprinter v4 Manual
+    </div>
+    <div id="MainContent">
+      <a href="https://gitlab.com/tobben/hangprinter-org/edit/master/doc/v4/index.html">📝Edit on Gitlab</a>
+    <h3>Status Of This Document</h3>
+      <p>
+        The Hangprinter v4 is still being developed, so this documentation might still have gaping holes here and there.
+        If you're building a v4, say hi and connect with other builders in the <a href="https://discord.gg/83G3XnPFXh">discord channel</a>.
+      </p>
+    <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#Sourcing">Sourcing</a></li>
+        <li><a href="#Hardware_assembly">Hardware Assembly</a></li>
+        <li><a href="#Wiring">Wiring</a></li>
+        <li><a href="#Mounting">Mounting</a></li>
+        <li><a href="#Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</a></li>
+        <li><a href="#Slicing_and_Usage">Slicing and Usage</a></li>
+        <li><a href="#Final_Words">Final Words</a></li>
+      </ul>
+    <h3 id="Sourcing">Sourcing and Preparing Wiring Loom</h3>
+      <figure>
+        <a href="https://docs.google.com/spreadsheets/d/1_mMTEF9ZFapn_3FrBvEydh70IPTaQG9gKZ7IVj9G2uM/edit?usp=sharing" target="_blank">
+          <img src="./media/check-list.png" alt="" width="500" height="333">
+        </a>
+        <figcaption>
+          Please see the <a href="https://docs.google.com/spreadsheets/d/1_mMTEF9ZFapn_3FrBvEydh70IPTaQG9gKZ7IVj9G2uM/edit?usp=sharing" target="_blank">bill of materials</a> (a Google Docs spreadsheet).
+        </figcaption>
+      </figure>
+      </p>
+    <h3 id="Hardware_assembly">Hardware Assembly</h3>
+      <p>
+        In the <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4_dev/">repo</a>, there's an Openscad file called <code>layout.scad</code>.
+        Open that file with Openscad.
+        It shows all the parts, including where and how they're supposed to be mounted.
+      </p>
+      <p>
+        To help positioning parts on the ceiling unit, 2d print out the <a href="https://gitlab.com/tobben/hangprinter/-/raw/version_4_dev/layout_a4.pdf?inline=false">layout_a4.pdf</a>
+        and use it as a template.
+      </p>
+      <p>
+        As for the PCBs, place them out like <a href="https://twitter.com/tobbelobb/status/1393246056272510981">this</a>.
+      </p>
+    <h3 id="Wiring">Wiring</h3>
+      <p>
+        See <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3">Duet 3 docs</a>, <a href="https://duet3d.dozuki.com/Wiki/Duet_3_Expansion_1XD">1XD expansion board docs</a>, <a href="https://docs.odriverobotics.com/">ODrive docs</a>.
+      </p>
+    <h3 id="Mounting">Mounting</h3>
+      <p>
+        This part hasn't changed between HP3 and HP4.
+      </p>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=iOwjbu2UMlQ&feature=youtu.be&t=3h54m43s">HP3 Build With tobben & Thomas Sanladerer (link directly into mounting)</a></li>
+      </ul>
+      <p>
+        Make sure anchors are rigid. Also, make sure your lines form nice <a href="https://en.wikipedia.org/wiki/Parallelogram">Parallelograms</a> (two pairs of parallel sides).
+      </p>
+    <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</h3>
+      <p>
+        This has changed a lot between HP3 and HP4.
+        A computer vision system called hp-mark has been deveoped to assist, and largely automate, the calibration process.
+        The system has been built and proved, see <a href="https://www.youtube.com/watch?v=As3Y5J2NTGA">this video</a>.
+      </p>
+      <p>
+        The process of installing hp-mark on the Raspberry Pi 4, is quite involved.
+        See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>, and in particular the <code>README.md</code> and the <code>doc</code> directory for some guidance.
+      </p>
+      <p>
+        As the time of writing, some gcodes have yet to be included in stock ReprapFirmware.
+      </p>
+      <p>
+        Therefore, there will be a few weeks before the auto calibration process can be replicated again.
+        For anyone who have reached this far: I salute you.
+        Reach me via Discord and tell me you need the auto calibration stuff, and I'll prioritize it higher if it's not done already.
+      </p>
+    <h3 id="Slicing_and_Usage">Slicing and Usage</h3>
+      <p>
+        Use any standard slicer you like. Set the correct nozzle size, and configure a circular print bed with the origin in the middle.
+        A quite high travel speed, like 300 mm/s or higher, should be possible and beneficial if your effector is fairly light.
+        Be aware that max speeds configured in ReprapFirmware and in the ODrives also limit the max speed.
+      </p>
+      <p>
+        Before you start a large print, it's recommended to check if your model fits the print volume or not.
+        This is done with <a href="https://gitlab.com/hangprinter/line-collision-detector">line-collision-detector</a>, a tool that is developed specifically for Hangprinter build volume verification.
+      </p>
+      <p>
+        Please note that many slicers will auto center the model before slicing it.
+        line-collision-detector will not do that.
+        Since you probably want to check if the centered version of your model collides with lines or not, it's recommended to first import your model in the slicer, and then export it from the slicer as an stl, and then run it in the line-collision-detector.
+      </p>
+      <br /><br /><br />
+    <h3 id="Final_Words">Final Words</h3>
+      <p>
+        Building, mounting, calibrating, and running a HP4 is a big undertaking, and many of the steps are sparsely documented, but you are not alone.
+        Be sure to check out the <a href="../../resources">resources</a>, there are some quite good ones.
+      </p>
+      <p>
+        If you spot an error or a missing link in the documentation, then I wholeheartedly recommend that you fix it and contribute the fix back to the repo.
+        That is how this project is supposed to work.
+        But also, do come by the Discord and say hi, or have a chat via Gitlab merge request or issue.
+      </p>
+      <p>
+        Hangprinter wants to make you feel included and empowered, that's why the project exists.
+        If it doesn't, then something in the project is wrong, and we will fix that together.
+      </p>
+      <p>
+        - tobben 👷
+      </p>
+        <br /><br /><br /><br /><br /><br /><br />
+      </p>
+      <p>
+        The raw text source of this manual is published under the <a href="https://github.com/tobbelobb/hangprinter/blob/Openscad_version_3/LICENSE" target="_blank">GPL-2.0 license</a>, and is being maintained in the <a href="https://gitlab.com/tobben/hangprinter-org" target="_blank">hangprinter-org repo</a>. All images and videos are also published under the GPL-2.0, except the wiring diagram, which is published under the GPLv3
+        license.
+      </p>
+    </div>
+    <script data-goatcounter="https://hangprinter.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
