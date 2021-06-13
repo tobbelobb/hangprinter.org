@@ -10,6 +10,9 @@
     <loc>https://hangprinter.org/doc/v3</loc>
   </url>
   <url>
+    <loc>https://hangprinter.org/doc/v4</loc>
+  </url>
+  <url>
     <loc>https://hangprinter.org/contribute</loc>
   </url>
   <url>
@@ -17,5 +20,8 @@
   </url>
   <url>
     <loc>https://hangprinter.org/resources</loc>
+  </url>
+  <url>
+    <loc>https://hangprinter.org/newsletter</loc>
   </url>
 </urlset>
