@@ -173,7 +173,7 @@
       A special tool, <a href="https://gitlab.com/hangprinter/line-collision-detector">line-collision-detector</a> has been developed to
       perform such checks.</li>
     <li><b>Unknown Line Tension</b>. Hangprinter currently doesn't measure tension in the lines.</li>
-    <li><b>No Line Flex Compensation</b>. The firmware assumes lines and plastic parts to be perfectly stiff, which is obviously not the case in reality.
+    <li><b>No Line Flex Compensation</b>. The firmware assumes the whole drive train to be perfectly stiff, which is obviously not the case in reality.
     Consequences are observable when some lines are very tight, like when heavy tool heads are used and when the tool is far from the origin.</li>
     <li><b>Risk of Cable Salad</b>. There are currently no standard way to adjust the length of cables between electronics and effector.</li>
     <li><b>Small Dev Team</b>. The lion's share of development is done by a single person. This puts a rather low max cap on dev velocity. </li>
@@ -181,7 +181,7 @@
     Use the Project's social channels actively, and ask your questions explicitly, as the doc-situation gradually improves. </li>
     <li><b>A Rather Involved Calibration Process</b>. Can be fully automated with hp-mark. That work is ongoing.</li>
   </ul>
-  Needless to say, I'm constantly working on, and prioritizing between the various limitations.
+  Needless to say, I'm constantly working on, and prioritizing between, the various weak spots of the Project.
 </p>
 
 
@@ -199,16 +199,16 @@
 </p>
 
 <p>
-  <b>Q:</b> How can I contact you<br />
+  <b>Q:</b> How can I contact you?<br />
   <b>A:</b> See the <a href="https://hangprinter.org/resources/">resources page</a>.
   Personal and private contact details are hard to find on purpose.
-  I most often don't enjoy being contacted through mail and direct messages.
+  I enjoy being hard to find.
 </p>
 
 
 <p>
   <b>Q:</b> How do you slice for Hangprinter? <br />
-  <b>A:</b> As for other 3d printers. Default slicing settings are not yet developed. Check for line collisions before you slice. </p>
+  <b>A:</b> Similar to other 3d printers. Default slicing settings are not yet developed. Export stl and check for line collisions before you slice. </p>
 
 <p>
   <b>Q:</b> Does the print head rotate? <br />
@@ -222,10 +222,10 @@
 
 <p>
   <b>Q:</b> How should I configure RepRapFirmware for Hangprinter v4? <br />
-  <b>A:</b> Check out the example config.g in the repo. It should be somewhere under <code>firmware/RepRapFirmware/Duet3</code> or similar. </p>
+  <b>A:</b> Check out the example config.g in the repo. It should be somewhere under firmware/RepRapFirmware/Duet3 or similar. </p>
 
 <p>
-  <b>Q:</b> How do I find correct bulidup factor (<code>M666 Q</code>-parameter)? <br />
+  <b>Q:</b> How do I find correct bulidup factor (M666 Q-parameter)? <br />
   <b>A:</b>
 The buildup factor determines how much firmware should try to compensate for line buildup on the spools.
 Theoretical, but a bit naive buildup factor calculation (assumes cylindrical, straight line):
@@ -245,6 +245,12 @@ I'm planned and hoping that auto-calibration-simulation-for-hangprinter becomes 
 
 
 <h3>Common ideas</h3>
+<p>
+  Cable driven robotics is a field with low hanging fruit.
+  Many good ideas have not yet been tested or built.
+  Few people have relevant practical experience, so I thought I might offer some of mine below.
+  Apply my advice at your own risk.
+</p>
 
 <p>
   <b>Q:</b> Having three high anchors and no low anchors. <br />
