@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <meta name="author" content="Torbjorn Ludvigsen">
+    <meta name="keywords" content="Hangprinter, open source, hardware, technology, software, Reprap, development">
+    <meta name="description" content="Hangprinter">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hangprinter">
+    <meta property="og:url" content="https://hangprinter.org/FAQ">
+    <meta property="og:description" content="Cable Driven RepRap">
+    <meta property="og:image" content="https://hangprinter.org/hangprinter4_small.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@tobbelobb">
+    <meta name="twitter:creator" content="@tobbelobb">
+    <link rel="stylesheet" href="../style.css?v=0" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    <title>Hangprinter|FAQ</title>
+  </head>
+  <body style="width:100%;">
+    <div class="masthead">
+      <h3 class="masthead-brand">
+        <a href="../" style="text-decoration:none;color:#000;">
+          <img src="../safari-pinned-tab.svg" style="height:50px;width:50px;" />
+        </a>
+      </h3>
+      <nav>
+        <ul>
+          <li>
+            <div class="dropdown">
+              <button class="dropbtn">Documentation</button>
+              <div class="dropdown-content">
+                <a href="../doc/v3">Hangprinter version 3</a>
+                <a href="../doc/v4">Hangprinter version 4</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="../contribute">Contribute</a></li>
+          <li><a href="../about">About</a></li>
+          <li><a href="." class="active">Resources</a></li>
+          <li><a href="../newsletter">Newsletter</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="SiteName" style="text-align:center;font-size:20px;">
+      Frequently Asked Questions About Hangprinter
+    </div>
+    <div id="MainContent">
+<p>
+  <b>Q:</b> What is Hangprinter?<br />
+  <b>A:</b> A cable driven RepRap 3d printer.
+</p>
+
+<p>
+  <b>Q:</b> What is the Hangprinter Project? <br />
+  <b>A:</b> The Hangprinter Project develops and spreads the unique motion system.
+</p>
+
+<p>
+  <b>Q:</b> What can a Hangprinter do? <br />
+  <b>A:</b> It can use existing structures, like walls and ceilings, as its frame.
+  Framelessness makes Hangprinter relatively a cheap, and relatively small/compact.
+  It also enables potentially very large prints.
+</p>
+
+<p>
+  <b>Q:</b> How do I get one? <br />
+  <b>A:</b> Currently, the only option is to source and build oneself.
+  The <a href="https://hangprinter.org/doc/v4">documentation</a> contains some guidance, but you'll probably need
+  ask questions in the project's <a href="https://hangprinter.org/resources">channels</a>.
+</p>
+
+<p>
+  <b>Q:</b> What does it cost? <br />
+  <b>A:</b> Parts for a v4 is estimated to cost around $1500.
+</p>
+
+<p>
+  <b>Q:</b> Will kits be available? <br />
+  <b>A:</b> No plans for kit supplying are currently known.
+</p>
+
+<p>
+  <b>Q:</b> Should I build v3 or v4? <br />
+  <b>A:</b> I (tobben) recommend the v4.
+  It is a more practical and useable machine overall.
+</p>
+
+<p>
+  <b>Q:</b> How can I contribute? <br />
+  <b>A:</b> See the <a href="https://hangprinter.org/contribute">contribute page</a>.
+</p>
+
+<p>
+  <b>Q:</b> How large can it print? <br />
+  <b>A:</b> It depends.
+  Check out <a href="https://torbjornludvigsen.com/blog/2020/#hangprinter_project_63">this blog post</a> for more details.
+</p>
+
+<p>
+  <b>Q:</b> What materials can it print? <br />
+  <b>A:</b> Hangprinter is compatible with most tool heads on the market.
+  This includes thermoplastics, but also ceramics and paste tool heads.
+</p>
+
+<p>
+  <b>Q:</b> Can you put a 3d scanner on it? <br />
+  <b>A:</b> Probably yes.
+  Has never been tried because as of now I don't now of any practical ways to use Hangprinter as a 3d scanner.
+  My main concern is about lines touching the unknown object.
+</p>
+
+<p>
+  <b>Q:</b> What's the precision? <br />
+  <b>A:</b> The proper answer is very complex, so I'll skip it here.
+  You should expect similar print surface quality as you get from other 3d printers.
+</p>
+
+<p>
+  <b>Q:</b> What's the accuracy? <br />
+  <b>A:</b> The proper answer requires direct measurement on each machine, and it will be different in different parts of the build volume.
+  A computer vision system called <a href="https://gitlab.com/tobben/hp-mark">hp-mark</a> has been developed.
+  It wants to bring good accuracy measurements, as well as other good things, to every Hangprinter.
+</p>
+
+<p>
+  <b>Q:</b> What are Hangprinter's strengths? <br />
+  <b>A:</b>
+  <ul>
+    <li>Big print volume. </li>
+    <li>Low price. </li>
+    <li>High print speeds. </li>
+    <li>Relatively low energy usage of 600W compared to other robots of similar size, eg robot arms.</li>
+    <li>Light. Does not require a truck to move to a new location. </li>
+    <li>Compact. Parks in the ceiling while not in use, freeing up the floor space below it. </li>
+    <li>Compatibility. Runs stock firmwares, tool heads, and slicer settings. </li>
+    <li>Silent operation. </li>
+    <li>Powerful. Uses very strong motors compared to what small 3d printers use. </li>
+    <li>Self-replicates. Can print many of its own parts. </li>
+    <li>Low alignment requirements. Uses computer vision to measure actual angles rather than assume perfect angles. </li>
+    <li>Open source. All of it's development files, as well as their history, are freely available. This includes hardware and software. </li>
+    <li>Actively maintained. </li>
+    <li>Known accuracy, once hp-mark is installed.</li>
+  </ul>
+</p>
+
+
+<p>
+  <b>Q:</b> What are the known limitations? <br />
+  <b>A:</b>
+  <ul>
+    <li><b>Unknown Accuracy</b>. Unless hp-mark or another measurement system is installed and used, that is. </li>
+    <li><b>Line Buildup</b>. Spools are constructed in a way that lets line build up in several layers on the spool, often called "spool buildup".
+      The simple spool design keeps price and part count low, but the spool buildup brings some challenges.
+      Spool buildup is compensated quite well, but not perfectly.
+      The compensation needs to be calibrated.
+      Automating this calibration (with help of hp-mark) is currently under development.
+    </li>
+    <li><b>The Tilt Problem</b>. Small uncontrollable rotations of effector occur due to line buildup and other things.
+        hp-mark measures correct nozzle positions even when effector is tilted, so this can be detected and compensated.</li>
+    <li><b>Line Collisions</b>. Downwards pointing lines (A, B, and C) can collide with half finished prints during print.
+      To avoid this, check before print if it will occur.
+      A special tool, <a href="https://gitlab.com/hangprinter/line-collision-detector">line-collision-detector</a> has been developed to
+      perform such checks.</li>
+    <li><b>Unknown Line Tension</b>. Hangprinter currently doesn't measure tension in the lines.</li>
+    <li><b>No Line Flex Compensation</b>. The firmware assumes lines and plastic parts to be perfectly stiff, which is obviously not the case in reality.
+    Consequences are observable when some lines are very tight, like when heavy tool heads are used and when the tool is far from the origin.</li>
+    <li><b>Risk of Cable Salad</b>. There are currently no standard way to adjust the length of cables between electronics and effector.</li>
+    <li><b>Small Dev Team</b>. The lion's share of development is done by a single person. This puts a rather low max cap on dev velocity. </li>
+    <li><b>Limited Documentation</b>. Hangprinter v4 has been under heavy development for over a year (as of July 2021), and documentation is consequently behind.
+    Use the Project's social channels actively, and ask your questions explicitly, as the doc-situation gradually improves. </li>
+    <li><b>A Rather Involved Calibration Process</b>. Can be fully automated with hp-mark. That work is ongoing.</li>
+  </ul>
+  Needless to say, I'm constantly working on, and prioritizing between the various limitations.
+</p>
+
+
+
+<p>
+  <b>Q:</b> How is the project funded? <br />
+  <b>A:</b> Ca 10% via donations. The rest via my (tobben's) private money.</p>
+
+<p>
+  <b>Q:</b> Why is this not patented? <br />
+  <b>A:</b> Hangprinter is designed to be self-replicating, and to be flexible.
+  As much as I want to make money and to privatize my ideas,
+  the current patent system would limit users too much.
+  As everyone else in open source hardware, I'm looking for alternative ways forwards.
+</p>
+
+<p>
+  <b>Q:</b> How can I contact you<br />
+  <b>A:</b> See the <a href="https://hangprinter.org/resources/">resources page</a>.
+  Personal and private contact details are hard to find on purpose.
+  I most often don't enjoy being contacted through mail and direct messages.
+</p>
+
+
+<p>
+  <b>Q:</b> How do you slice for Hangprinter? <br />
+  <b>A:</b> As for other 3d printers. Default slicing settings are not yet developed. Check for line collisions before you slice. </p>
+
+<p>
+  <b>Q:</b> Does the print head rotate? <br />
+  <b>A:</b> In general, no. See "tilt problem" above, for one exception.
+</p>
+
+<p>
+  <b>Q:</b> How are rotations avoided? <br />
+  <b>A:</b> By keepings pairs/triples of lines parallel and equally long. See <a href="https://youtu.be/QUyifkpk6KY">this Youtube video</a> for a visual explanation.
+</p>
+
+<p>
+  <b>Q:</b> How should I configure RepRapFirmware for Hangprinter v4? <br />
+  <b>A:</b> Check out the example config.g in the repo. It should be somewhere under <code>firmware/RepRapFirmware/Duet3</code> or similar. </p>
+
+<p>
+  <b>Q:</b> How do I find correct bulidup factor (<code>M666 Q</code>-parameter)? <br />
+  <b>A:</b>
+The buildup factor determines how much firmware should try to compensate for line buildup on the spools.
+Theoretical, but a bit naive buildup factor calculation (assumes cylindrical, straight line):
+<ul>
+  <li>Assume line diameter: 0.5 mm</li>
+  <li>Assume spool height: 8.0 mm</li>
+</ul>
+
+Buildup factor is equal to (line_cross_section_area)/(height * pi):<br />
+((0.5/2) * (0.5/2) * pi)/(8.0 * pi) = 0.0078 mm<br />
+
+In practice, you might want a bit more or a bit less than the naive theoretical calculation gives you.
+I don't have a good procedure to fine tune it though, and it doesn't make too big of a difference.
+
+I'm planned and hoping that auto-calibration-simulation-for-hangprinter becomes the default way to do anchor calibration. It will spit out the buildup factor, and hopefully the user shouldn't need to know what it is or how it was calculated.
+</p>
+
+
+<h3>Common ideas</h3>
+
+<p>
+  <b>Q:</b> Having three high anchors and no low anchors. <br />
+  <b>A:</b> </p>
+
+<p>
+  <b>Q:</b> Swap one motor with passive elements, like springs, balloons, or counter weights. <br />
+  <b>A:</b> </p>
+
+<p>
+  <b>Q:</b> Making print head very heavy, for stability. <br />
+  <b>A:</b> </p>
+
+<p>
+  <b>Q:</b> Other kinds of wires. Steel, nylon, fishing lines, etc. <br />
+  <b>A:</b> </p>
+
+<p>
+  <b>Q:</b> Force sensors along lines. <br />
+  <b>A:</b> </p>
+
+<p>
+  <b>Q:</b> Low anchors that move upwards during print. <br />
+  <b>A:</b> </p>
+
+<p>
+  <b>Q:</b> Having one motor in each anchor. <br />
+  <b>A:</b> </p>
+
+    </div>
+    <script data-goatcounter="https://hangprinter.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
