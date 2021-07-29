@@ -74,6 +74,25 @@
 </p>
 
 <p>
+  <b>Q:</b> What's the purpose? <br />
+  <b>A:</b> Hangprinter is the sort of project that tries to make the world a little better.
+  It wants to helping middle class people stay relevant in an increasingly robot-driven economy by turning workers into robot owners.
+  More on this in <a href="https://torbjornludvigsen.com/blog/2021/#personal_2">this blog post</a>.
+
+</p>
+<p>
+  Some design goals I've stuck to for the last three years are outlined in <a href="https://torbjornludvigsen.com/blog/2018/#hangprinter_project_59">this blog post</a>.
+</p>
+<p>
+  An explanation of the connection with democracy is outlined in <a href="https://torbjornludvigsen.com/blog/2017/#hangprinter_project_50">this blog post</a>.
+</p>
+<p>
+  Other formulations of my personal motivation for working with RepRap are found in my thesis work. See <a href="https://torbjornludvigsen.com/blog/2016/#masters_2">this blog post</a>
+  and <a href="https://torbjornludvigsen.com/blog/2016/#masters_1">this blog post</a>.
+</p>
+
+
+<p>
   <b>Q:</b> How do I get one? <br />
   <b>A:</b> Currently, the only option is to source and build oneself.
   The <a href="https://hangprinter.org/doc/v4">documentation</a> contains some guidance, but you'll probably need
@@ -114,13 +133,6 @@
 </p>
 
 <p>
-  <b>Q:</b> Can you put a 3d scanner on it? <br />
-  <b>A:</b> Probably yes.
-  Has never been tried because as of now I don't now of any practical ways to use Hangprinter as a 3d scanner.
-  My main concern is about lines touching the unknown object.
-</p>
-
-<p>
   <b>Q:</b> What's the precision? <br />
   <b>A:</b> The proper answer is very complex, so I'll skip it here.
   You should expect similar print surface quality as you get from other 3d printers.
@@ -131,6 +143,13 @@
   <b>A:</b> The proper answer requires direct measurement on each machine, and it will be different in different parts of the build volume.
   A computer vision system called <a href="https://gitlab.com/tobben/hp-mark">hp-mark</a> has been developed.
   It wants to bring good accuracy measurements, as well as other good things, to every Hangprinter.
+</p>
+
+<p>
+  <b>Q:</b> Can you put a 3d scanner on it? <br />
+  <b>A:</b> Probably yes.
+  I haven't tried because I don't now of practical ways to use Hangprinter as a 3d scanner.
+  My main concern is about lines touching the unknown object.
 </p>
 
 <p>
@@ -147,17 +166,16 @@
     <li>Silent operation. </li>
     <li>Powerful. Uses very strong motors compared to what small 3d printers use. </li>
     <li>Self-replicates. Can print many of its own parts. </li>
-    <li>Low alignment requirements. Uses computer vision to measure actual angles rather than assume perfect angles. </li>
+    <li>Low alignment requirements. Uses computer vision to measure actual angles rather than assume perfect angles, if hp-mark is installed and used, that is. </li>
     <li>Open source. All of it's development files, as well as their history, are freely available. This includes hardware and software. </li>
     <li>Actively maintained. </li>
     <li>Known accuracy, once hp-mark is installed.</li>
   </ul>
 </p>
 
-
 <p>
   <b>Q:</b> What are the known limitations? <br />
-  <b>A:</b>
+  <b>A:</b> None. Ok, just kidding.
   <ul>
     <li><b>Unknown Accuracy</b>. Unless hp-mark or another measurement system is installed and used, that is. </li>
     <li><b>Line Buildup</b>. Spools are constructed in a way that lets line build up in several layers on the spool, often called "spool buildup".
@@ -184,8 +202,6 @@
   Needless to say, I'm constantly working on, and prioritizing between, the various weak spots of the Project.
 </p>
 
-
-
 <p>
   <b>Q:</b> How is the project funded? <br />
   <b>A:</b> Ca 10% via donations. The rest via my (tobben's) private money.</p>
@@ -199,16 +215,21 @@
 </p>
 
 <p>
+  <b>Q:</b> How do you slice for Hangprinter? <br />
+  <b>A:</b> Similar to other 3d printers. Default slicing settings are not yet developed. Export stl and check for line collisions before you slice.
+</p>
+
+<p>
   <b>Q:</b> How can I contact you?<br />
   <b>A:</b> See the <a href="https://hangprinter.org/resources/">resources page</a>.
   Personal and private contact details are hard to find on purpose.
   I enjoy being hard to find.
 </p>
 
-
 <p>
-  <b>Q:</b> How do you slice for Hangprinter? <br />
-  <b>A:</b> Similar to other 3d printers. Default slicing settings are not yet developed. Export stl and check for line collisions before you slice. </p>
+  <b>Q:</b> What is the Project's history? <br />
+  <b>A:</b> See the <a href="https://hangprinter.org/about/">about page</a>. For a deeper dive, check out the <a href="https://torbjornludvigsen.com/blog/#Links">dev blog arvhives</a>.
+</p>
 
 <p>
   <b>Q:</b> Does the print head rotate? <br />
