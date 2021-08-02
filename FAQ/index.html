@@ -47,7 +47,8 @@
           </li>
           <li><a href="../contribute">Contribute</a></li>
           <li><a href="../about">About</a></li>
-          <li><a href="." class="active">Resources</a></li>
+          <li><a href="." class="active">FAQ</a></li>
+          <li><a href="../resources">Resources</a></li>
           <li><a href="../newsletter">Newsletter</a></li>
         </ul>
       </nav>
@@ -70,14 +71,14 @@
   <b>Q:</b> What can a Hangprinter do? <br />
   <b>A:</b> It can use existing structures, like walls and ceilings, as its frame.
   Framelessness makes Hangprinter relatively a cheap, and relatively small/compact.
-  It also enables potentially very large prints.
+  It also enables very large prints.
 </p>
 
 <p>
-  <b>Q:</b> What's the purpose? <br />
+  <b>Q:</b> What's the goal and purpose with Hangprinter? <br />
   <b>A:</b>
   The Hangprinter Project wants to design and spread a robot that makes its owners free and independent.
-  More on this in <a href="https://torbjornludvigsen.com/blog/2021/#personal_2">this blog post</a>.
+  More in <a href="https://torbjornludvigsen.com/blog/2021/#personal_2">this blog post</a>.
 </p>
 <p>
   Some design goals I've stuck to for the last three years are outlined in <a href="https://torbjornludvigsen.com/blog/2018/#hangprinter_project_59">this blog post</a>.
@@ -227,7 +228,7 @@
 
 <p>
   <b>Q:</b> What is the Project's history? <br />
-  <b>A:</b> See the <a href="https://hangprinter.org/about/">about page</a>. For a deeper dive, check out the <a href="https://torbjornludvigsen.com/blog/#Links">dev blog arvhives</a>.
+  <b>A:</b> See the <a href="https://hangprinter.org/about/">about page</a>. For a deeper dive, check out the <a href="https://torbjornludvigsen.com/blog/#Links">dev blog archives</a>.
 </p>
 
 <p>
@@ -260,11 +261,40 @@ Buildup factor is equal to (line_cross_section_area)/(height * pi):<br />
 In practice, you might want a bit more or a bit less than the naive theoretical calculation gives you.
 I don't have a good procedure to fine tune it though, and it doesn't make too big of a difference.
 
-I'm planned and hoping that auto-calibration-simulation-for-hangprinter becomes the default way to do anchor calibration. It will spit out the buildup factor, and hopefully the user shouldn't need to know what it is or how it was calculated.
+I'm planning and hoping that auto-calibration-simulation-for-hangprinter becomes the default way to do anchor calibration. It will spit out the buildup factor, and hopefully the user shouldn't need to know what it is or how it was calculated.
+</p>
+
+<p>
+  <b>Q:</b> Should I use steppers or BLDC motors? <br />
+  <b>A:</b> Short answer:
+            The default for HP4 is BLDCs.
+            As of August 2021, they ones I'm using is expected to show up in the <a href="https://odriverobotics.com/shopfolder">odriverobotics web shop</a> very soon.
+</p>
+<p>
+Longer answer:
+Four really beefy steppers with SmartStepper would do as good a job as the four BLDCs at a slightly lower price tag, for a small and light Hangprinter.
+The Hangprinter application lies right between the sweet spot for steppers and the sweet spot for BLDC application.
+The bigger and heavier your Hangprinter is, the more BLDC starts to make sense.
+</p>
+<p>
+I often hear the importance of travel speed being plaid down.
+Personally, after some long prints, and tens of kilometres of travel moves, I'm willing to pay for fast travels.
+It shortens print time, but also improves print quality a lot, since it limits ooze problems.
+</p>
+
+<p>
+  <b>Q:</b> I want to manually calibrate my anchor locations. How do I do that? <br />
+  <b>A:</b> Just a warning: it's hard to get right. After releasing the HP3,
+  got so many questions about this that I decided to develop auto calibration as fast as possible.
+  Auto calibration now works far better than I've ever managed to hand calibrate.
+</p>
+<p>
+  But back to the question: Check out <a href="https://gitlab.com/tobben/hangprinter/-/issues/35">this discussion</a>.
+  Also see <a href="https://reprap.org/wiki/Links_Into_Hangprinter_v3_Build_Video#Now_going_into_an_hour_of_measuring_this">these comments and timestamps of a live streamed HP3 calibration</a>.
 </p>
 
 
-<h3>Common ideas</h3>
+<!--h3>Common ideas</h3>
 <p>
   Cable driven robotics is a field with low hanging fruit.
   Many good ideas have not yet been tested or built.
@@ -274,7 +304,17 @@ I'm planned and hoping that auto-calibration-simulation-for-hangprinter becomes 
 
 <p>
   <b>Q:</b> Having three high anchors and no low anchors. <br />
-  <b>A:</b> </p>
+  <b>A:</b> Pros:
+  <ul>
+    <li>Reaches a large build volume, without risk of line colliding with print</li>
+    <li>Nothing except print surface needs to be installed on the floor. The rest can all reside in the ceiling.</li>
+  </ul>
+  Cons:
+  <ul>
+    <li>Limits acceleration severly. The machine will be very slow compared to Hangprinter.</li>
+    <li>Doesn't constrain upwards motion. The print head will be pushed around by various tiny forces during print, and will not be able to maintain good accuracy or precision.</li>
+  </ul>
+</p>
 
 <p>
   <b>Q:</b> Swap one motor with passive elements, like springs, balloons, or counter weights. <br />
@@ -298,7 +338,7 @@ I'm planned and hoping that auto-calibration-simulation-for-hangprinter becomes 
 
 <p>
   <b>Q:</b> Having one motor in each anchor. <br />
-  <b>A:</b> </p>
+  <b>A:</b> </p-->
 
     </div>
     <script data-goatcounter="https://hangprinter.goatcounter.com/count"
