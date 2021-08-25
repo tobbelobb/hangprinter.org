@@ -59,7 +59,7 @@
       <a href="https://gitlab.com/tobben/hangprinter-org/edit/master/doc/v4/index.html">📝Edit on Gitlab</a>
     <h3>Status Of This Document</h3>
       <p>
-        The Hangprinter v4 is still being developed, so this documentation might still have gaping holes here and there.
+        This documentation might still have gaping holes here and there.
         If you're building a v4, say hi and connect with other builders in the <a href="https://discord.gg/83G3XnPFXh">discord channel</a>.
       </p>
     <h3>Table of Contents</h3>
@@ -84,24 +84,128 @@
       </p>
     <h3 id="Hardware_assembly">Hardware Assembly</h3>
       <p>
-        In the <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4_dev/">repo</a>, there's an Openscad file called <code>layout.scad</code>.
+        In the <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/">repo</a>, there's an Openscad file called <code>layout.scad</code>.
         Open that file with Openscad.
         It shows all the parts, including where and how they're supposed to be mounted.
       </p>
+      <figure>
+        <a href="./media/layout.png" target="_blank">
+          <img src="./media/layout_small.png" alt="" width="500" height="429">
+        </a>
+        <figcaption>
+          This view of the ceiling unit greets you when you open the layout.scad file with Openscad.
+          Rotate the view (inside Openscad) by clicking and dragging with your mouse.
+          Zoom by scrolling your scroll wheel.
+        </figcaption>
+      </figure>
       <p>
-        To help positioning parts on the ceiling unit, 2d print out the <a href="https://gitlab.com/tobben/hangprinter/-/raw/version_4_dev/layout_a4.pdf?inline=false">layout_a4.pdf</a>
+        To help positioning parts on the ceiling unit,
+        2d print out the <a href="https://gitlab.com/tobben/hangprinter/-/raw/version_4/layout_a4.pdf?inline=false">layout_a4.pdf</a>
         and use it as a template.
       </p>
       <p>
-        As for the PCBs, place them out like <a href="https://twitter.com/tobbelobb/status/1393246056272510981">this</a>.
+        As for the circuit boards and the power supply, place them out in a configuration similar to this:
+        <figure>
+          <a href="./media/pcb_and_psu_placement.jpeg" target="_blank">
+            <img src="./media/pcb_and_psu_placement_small.jpeg" alt="" width="500" height="343">
+          </a>
+          <figcaption>
+            Please click the image to open a larger version.
+            Works for all images in this manual.
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="./media/believe.jpeg" target="_blank">
+            <img src="./media/believe_small.jpeg" alt="" width="500" height="507">
+          </a>
+          <figcaption>
+            Please click the image to open a larger version.
+            Works for all images in this manual.
+          </figcaption>
+        </figure>
+      </p>
+      <p>
+        Hot tips for circuit board placement:
+        <ul>
+          <li>Use the spacers shipped with the ODrives also for the Duet3.</li>
+          <li>The Raspberry Pi uses spacers that are twice as long, which may be 3d printed (see <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/stl/pi_mount.stl">pi_mount</a> stl in the repo).</li>
+          <li>Make sure that the Duet3's USB port and SD slot are not covered by a 1XD card.</li>
+          <li>Make sure the Pi's HDMI1 port is not covered by the Duet3.</li>
+        </ul>
       </p>
     <h3 id="Wiring">Wiring</h3>
       <p>
-        See <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3">Duet 3 docs</a>, <a href="https://duet3d.dozuki.com/Wiki/Duet_3_Expansion_1XD">1XD expansion board docs</a>, <a href="https://docs.odriverobotics.com/">ODrive docs</a>.
+        See
+        <ul>
+          <li><a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3">Duet 3 docs</a>,</li>
+          <li><a href="https://duet3d.dozuki.com/Wiki/Duet_3_Expansion_1XD">1XD expansion board docs</a>,</li>
+          <li><a href="https://docs.odriverobotics.com/">ODrive docs</a>.</li>
+        </ul>
       </p>
+    <h4>The Two CAN Busses</h4>
+      <p>
+        The Duet3 has two CAN busses coming out of its RJ11 (6P4C) contact.
+        These two CAN busses live separately, in two different pairs of wires.
+      </p>
+      <p>
+        The two centermost conductors in the 6P4C contact carry the main CAN bus.
+        It transfers step/dir signals from the Duet3 to the 1XDs.
+      </p>
+      <p>
+        <figure>
+          <a href="./media/1XD_addresses.jpeg" target="_blank">
+            <img src="./media/1XD_addresses_small.jpeg" alt="" width="500" height="281">
+          </a>
+          <figcaption>
+            The main CAN bus goes inside the white wire, from the Duet3 to board 43, to board 42, to board 41, to board 40.
+            Board 40 should have termination jumpers on. The other 1XD boards should not.
+          </figcaption>
+        </figure>
+        <figure>
+          <a href="./media/easier_to_see2.jpeg" target="_blank">
+            <img src="./media/easier_to_see2_small.jpeg" alt="" width="500" height="889">
+          </a>
+          <figcaption>
+            The main CAN bus goes inside the white wire, from the Duet3 to board 43, to board 42, to board 41, to board 40.
+            Board 40 should have termination jumpers on. The other 1XD boards should not.
+          </figcaption>
+        </figure>
+      </p>
+      <p>
+        The rightmost and leftmost pins are not in use in 6P4C contacts.
+        So we have two remaining conductors that are not used by the main CAN bus.
+        The two remaining conductors carry the ODrives' CAN bus.
+      </p>
+      <p>
+        <figure>
+          <a href="./media/signal_wire_guy2.jpeg" target="_blank">
+            <img src="./media/signal_wire_guy2_small.jpeg" alt="" width="500" height="281">
+          </a>
+          <figcaption>
+            The jumper wires carry the ODrives' CAN signal from the telephone cable into the ODrive.
+          </figcaption>
+        </figure>
+      </p>
+      <p>
+        The ODrives' CAN bus also goes inside the white wire, at least on my machine.
+        It goes from the Duet3, through board 43, branches off into one ODrive, the other branch continues through board 42, through board 41, and ends in the second ODrive (left one on the image below).
+      </p>
+      <p>
+        With the ODrive CAN bus wired up, make sure you set the termination resistors correctly:
+        <figure>
+          <a href="./media/term_R_ODrives.jpeg" target="_blank">
+            <img src="./media/term_R_ODrives_small.jpeg" alt="" width="500" height="281">
+          </a>
+          <figcaption>
+            There are little switches inside the red circles, that flip CAN termination resistors on and off.
+          </figcaption>
+        </figure>
+      </p>
+
+
     <h3 id="Mounting">Mounting</h3>
       <p>
-        This part hasn't changed between HP3 and HP4.
+        This part hasn't changed between HP3 and HP4, so I'm linking to old HP3 documentation for now:
       </p>
       <ul>
         <li><a href="https://www.youtube.com/watch?v=iOwjbu2UMlQ&feature=youtu.be&t=3h54m43s">HP3 Build With tobben & Thomas Sanladerer (link directly into mounting)</a></li>
@@ -109,28 +213,122 @@
       <p>
         Make sure anchors are rigid. Also, make sure your lines form nice <a href="https://en.wikipedia.org/wiki/Parallelogram">Parallelograms</a> (two pairs of parallel sides).
       </p>
+    <h4>Optional Hoisting System</h4>
+      <p>
+        Screwing the ceiling unit onto the ceiling can be a bit challenging.
+        I therefore added a hoisting system to my own HP4.
+        See it in <a href="https://twitter.com/tobbelobb/status/1428025129406238723">this tweet</a> and <a href="https://youtu.be/coI8I0QsQFI">this video</a>.
+        The little CAD models I used are shared <a href="https://gitlab.com/tobben/hoistit/">here</a>.
+      </p>
+      <figure>
+        <a href="./media/hoistit.png" target="_blank">
+          <img src="./media/hoistit_small.png" alt="" width="500" height="343">
+        </a>
+        <figcaption>
+          The optional hoisting system. On my own machine I've routed the line back down
+          to the ceiling unit one more time compared to what I had on this image.
+        </figcaption>
+      </figure>
+    <h3>Firmwares and Configuration</h3>
+    <p>
+      Stock RepRapFirmware will work in the future, but for now, I publish the RepRapFirmware I use here:
+      <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/Duet3Firmware_MB6HC.bin">link</a>.
+      Stock ODrivefirmware works for us out of the box.
+    </p>
+    <p>
+      Please look closely at my config files:
+      <ul>
+        <li><a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">config.g for RepRapFirmware</a></li>
+        <li><a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/firmware/ODrive">configure_odrive.py for ODrivefirmware</a></li>
+      </ul>
+    </p>
+
     <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</h3>
       <p>
         This has changed a lot between HP3 and HP4.
         A computer vision system called hp-mark has been deveoped to assist, and largely automate, the calibration process.
         The system has been built and proved, see <a href="https://www.youtube.com/watch?v=As3Y5J2NTGA">this video</a>.
       </p>
+    <h4>Replicating What's Going On In That Video</h4>
       <p>
-        The process of installing hp-mark on the Raspberry Pi 4, is quite involved.
-        See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>, and in particular the <code>README.md</code> and the <code>doc</code> directory for some guidance.
+        Ok, this will be a bit messy.
+        hp-mark is still very much in beta, and requires the user to be comfortable doing a few things via the Unix terminal.
+        Our main goal is to be able to run the script called <a href="https://gitlab.com/tobben/hp-mark/-/blob/master/use/get_auto_calibration_data_automatically.sh">get_auto_calibration_data_automatically.sh</a>.
       </p>
       <p>
-        As the time of writing, some gcodes have yet to be included in stock ReprapFirmware.
+        Build hp-mark (hpm) on your main computer.
+        See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>,
+        and in particular the <code>README.md</code> and the <code>doc</code> directory for some guidance.
       </p>
       <p>
-        Therefore, there will be a few weeks before the auto calibration process can be replicated again.
+        The get_auto_calibration_data_automatically.sh script expects your camera connected Raspberry to be available
+        at the ip called <code>rpi</code> in your <code>/etc/hosts</code> file.
+        It's also assuming your Duet3 connected Raspberry to be called <code>duet3</code> in your <code>/etc/hosts</code>.
+      </p>
+      <p>
+        The Raspberry Pi needs the camera to be connected, and it needs ssh to be enabled.
+        It also needs a version of raspistill that matches your lens, or else your images' colors won't look pretty.
+        To get the one I use (mathing my Arducam lo-distortion 45 deg lens), do
+      </p>
+      <p>
+        <code>
+          $ ssh pi@rpi<br />
+          $ mkdir repos<br />
+          $ cd repos<br />
+          $ git clone https://github.com/ArduCAM/NativePiCamera.git<br />
+        </code>
+      </p>
+      <p>
+        We also have some LED rings around the lens.
+        Since I didn't have the duet3 Rpi yet while developing hp-mark, I used a separate Raspberry.
+        To light up the leds, I used GPIO pins o the separate Raspberry that are not available on the duet3 Raspberry.
+        So the following method for making the LEDs light up won't work if you plan to use only the duet3 Raspberry.
+      </p>
+      <p>
+        Here's how you get code that lights up the LEDs:
+      </p>
+      <p>
+        <code>
+          $ ssh pi@rpi<br />
+          $ mkdir repos<br />
+          $ cd repos<br />
+          $ git clone https://gitlab.com/tobben/rpi_ws281x.git<br />
+        </code>
+      </p>
+      <p>
+        The script also assumes the
+        <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Torque_mode">Torque_mode macro</a>
+        has been installed into your macro folder on the Duet3.
+      </p>
+      <p>
+        With all those things in place, if all the stars align, it should be possible for you to collect the calibration data like this:
+      </p>
+      <p>
+        <code>$ cd path/to/hp-mark/use<br />
+          $ ./get_auto_calibration_data_automatically.sh --show result</code>
+      </p>
+      <p>
+        The <code>--show result</code> option will make hpm stop and show you each measurement when it's done, and wait for you to press
+        Enter before it continues.
+      </p>
+      <p>
+        After collecting 18 data points (don't worry if a few we unsuccessful or had a warning), it prints out the data it has collected
+        in a format that copy/paste friendly for the next script we're going to use: <a href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/hp_mark_adjusted/simulation.py">simulation.py</a>.
+      </p>
+      <p>
+        The output of simulation.py needs to be adjusted by yet another script, called just <a href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/hp_mark_adjusted/harmonize/script.m">script.m</a>.
+      </p>
+      <p>
+        If again, all stars align, you can re-run simulation.py as described inside script.m, and you'll end up with a perfect set of M669 and M666 commands, to copy/paste into your <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">config.g</a>.
+      </p>
+      <p>
         For anyone who have reached this far: I salute you.
-        Reach me via Discord and tell me you need the auto calibration stuff, and I'll prioritize it higher if it's not done already.
+        Reach me via Discord and tell me you need the auto calibration stuff, and I'll up-prioritize automating further and documenting better.
       </p>
     <h3 id="Slicing_and_Usage">Slicing and Usage</h3>
       <p>
         Use any standard slicer you like. Set the correct nozzle size, and configure a circular print bed with the origin in the middle.
-        A quite high travel speed, like 300 mm/s or higher, should be possible and beneficial if your effector is fairly light.
+        A quite high travel speed, like 600 mm/s or higher, should be possible and beneficial if your effector is fairly light.
         Be aware that max speeds configured in ReprapFirmware and in the ODrives also limit the max speed.
       </p>
       <p>
