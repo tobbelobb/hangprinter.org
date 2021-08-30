@@ -256,18 +256,27 @@
         Our main goal is to be able to run the script called <a href="https://gitlab.com/tobben/hp-mark/-/blob/master/use/get_auto_calibration_data_automatically.sh">get_auto_calibration_data_automatically.sh</a>.
       </p>
       <p>
-        Build hp-mark (hpm) on your main computer.
+        The computer vision system is called hp-mark.
+        It consists of
+        <ul>
+          <li>A camera with LED lights around it,</li>
+          <li>A Raspberry Pi who controlls the camera and the LEDs,</li>
+          <li>Six retro-reflective markers,</li>
+          <li>A computer program called hpm</li>
+          <li>A main computer who gets images from the Raspberry Pi, and executes hpm on the images.</li>
+        </ul>
         See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>,
-        and in particular the <code>README.md</code> and the <code>doc</code> directory for some guidance.
+        and in particular the <code>README.md</code> and the <code>doc</code> directory for more guidance on how to set up hp-mark.
       </p>
       <p>
-        The get_auto_calibration_data_automatically.sh script expects your camera connected Raspberry to be available
+        The get_auto_calibration_data_automatically.sh script is executed on the main computer.
+        It expects your camera-connected Raspberry to be available
         at the ip called <code>rpi</code> in your <code>/etc/hosts</code> file.
         It's also assuming your Duet3 connected Raspberry to be called <code>duet3</code> in your <code>/etc/hosts</code>.
       </p>
       <p>
-        The Raspberry Pi needs the camera to be connected, and it needs ssh to be enabled.
-        It also needs a version of raspistill that matches your lens, or else your images' colors won't look pretty.
+        The Raspberry Pi needs the camera to be connected and calibrated, and it needs ssh to be enabled.
+        It also needs a version of raspistill that matches your lens, or else your images' colors will be tinted.
         To get the one I use (mathing my Arducam lo-distortion 45 deg lens), do
       </p>
       <p>
@@ -280,8 +289,8 @@
       </p>
       <p>
         We also have some LED rings around the lens.
-        Since I didn't have the duet3 Rpi yet while developing hp-mark, I used a separate Raspberry.
-        To light up the leds, I used GPIO pins o the separate Raspberry that are not available on the duet3 Raspberry.
+        Since I didn't have my duet3-connected Raspberry Pi yet while I was developing hp-mark, I used a separate Raspberry board for hp-mark.
+        To light up the leds, I used GPIO pins on the separate Raspberry that are not available on the duet3 Raspberry.
         So the following method for making the LEDs light up won't work if you plan to use only the duet3 Raspberry.
       </p>
       <p>
@@ -294,6 +303,10 @@
           $ cd repos<br />
           $ git clone https://gitlab.com/tobben/rpi_ws281x.git<br />
         </code>
+      </p>
+      <p>
+        The get_auto_calibration_data_automatically.sh script will expect that the LED cotrolling code will be
+        cloned and placed exactly like that on your hp-mark Raspberry.
       </p>
       <p>
         The script also assumes the
