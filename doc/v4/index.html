@@ -110,6 +110,9 @@
             <img src="./media/pcb_and_psu_placement_small.jpeg" alt="" width="500" height="343">
           </a>
           <figcaption>
+            Note the order of motor wires: Black, red, blue from left to right.
+            Because of a limitation in RepRapFirmware for the time being (Sep 2021), we must
+            connect the motor wires in exactly that order.
             Please click the image to open a larger version.
             Works for all images in this manual.
           </figcaption>
@@ -135,17 +138,22 @@
       </p>
     <h3 id="Wiring">Wiring</h3>
       <p>
-        See
+        Warning: The motor wires must be connected in the exact order shown above.
+        Otherwise torque mode will run backwards and create chaos.
+        Also, auto-calibration won't work because signs will be reversed.
+      </p>
+      <p>
+        For all other wiring see
         <ul>
           <li><a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3">Duet 3 docs</a>,</li>
           <li><a href="https://duet3d.dozuki.com/Wiki/Duet_3_Expansion_1XD">1XD expansion board docs</a>,</li>
           <li><a href="https://docs.odriverobotics.com/">ODrive docs</a>.</li>
         </ul>
       </p>
-    <h4>The Two CAN Busses</h4>
+    <h4>The Two CAN Buses</h4>
       <p>
-        The Duet3 has two CAN busses coming out of its RJ11 (6P4C) contact.
-        These two CAN busses live separately, in two different pairs of wires.
+        The Duet3 has two CAN buses coming out of its RJ11 (6P4C) contact.
+        These two CAN buses live separately, in two different pairs of wires.
       </p>
       <p>
         The two centermost conductors in the 6P4C contact carry the main CAN bus.
@@ -189,6 +197,7 @@
       <p>
         The ODrives' CAN bus also goes inside the white wire, at least on my machine.
         It goes from the Duet3, through board 43, branches off into one ODrive, the other branch continues through board 42, through board 41, and ends in the second ODrive (left one on the image below).
+        The 1XD boards does not and can not read the ODrives' CAN bus. It just passes straight through the 1XD boards.
       </p>
       <p>
         With the ODrive CAN bus wired up, make sure you set the termination resistors correctly:
@@ -246,9 +255,18 @@
     <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</h3>
       <p>
         This has changed a lot between HP3 and HP4.
-        A computer vision system called hp-mark has been deveoped to assist, and largely automate, the calibration process.
-        The system has been built and proved, see <a href="https://www.youtube.com/watch?v=As3Y5J2NTGA">this video</a>.
+        A computer vision system called hp-mark has been developed to assist, and largely automate, the calibration process.
+        The system has been built and proved, see this video:
       </p>
+      <figure>
+        <div class='embed-container'>
+          <iframe src='https://www.youtube.com/embed/As3Y5J2NTGA'
+            frameborder='0'
+            allowfullscreen='true'>
+          </iframe>
+        </div>
+      </figure>
+
     <h4>Replicating What's Going On In That Video</h4>
       <p>
         Ok, this will be a bit messy.
@@ -260,10 +278,10 @@
         It consists of
         <ul>
           <li>A camera with LED lights around it,</li>
-          <li>A Raspberry Pi who controlls the camera and the LEDs,</li>
+          <li>A Raspberry Pi who controls the camera and the LEDs,</li>
           <li>Six retro-reflective markers,</li>
           <li>A computer program called hpm</li>
-          <li>A main computer who gets images from the Raspberry Pi, and executes hpm on the images.</li>
+          <li>A main computer who gets images from the Raspberry Pi, and uses hpm to analyze the images.</li>
         </ul>
         See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>,
         and in particular the <code>README.md</code> and the <code>doc</code> directory for more guidance on how to set up hp-mark.
@@ -275,9 +293,13 @@
         It's also assuming your Duet3 connected Raspberry to be called <code>duet3</code> in your <code>/etc/hosts</code>.
       </p>
       <p>
-        The Raspberry Pi needs the camera to be connected and calibrated, and it needs ssh to be enabled.
-        It also needs a version of raspistill that matches your lens, or else your images' colors will be tinted.
-        To get the one I use (mathing my Arducam lo-distortion 45 deg lens), do
+        It should be fine if <code>duet3</code> and <code>rpi</code> are actually the same Raspberry Pi board.
+        Just configure them to the same ip address.
+      </p>
+      <p>
+        The Raspberry Pi needs the camera to be connected and calibrated (as described in the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>), and it needs ssh to be enabled.
+        It also needs a version of raspistill that matches your lens, or else your images' colors will be <a href="https://www.arducam.com/docs/cameras-for-raspberry-pi/native-raspberry-pi-cameras/lens-shading-calibration/">tinted</a>.
+        To get the one I use (matching my Arducam lo-distortion 45 deg lens), do
       </p>
       <p>
         <code>
@@ -288,11 +310,36 @@
         </code>
       </p>
       <p>
-        We also have some LED rings around the lens.
-        Since I didn't have my duet3-connected Raspberry Pi yet while I was developing hp-mark, I used a separate Raspberry board for hp-mark.
-        To light up the leds, I used GPIO pins on the separate Raspberry that are not available on the duet3 Raspberry.
-        So the following method for making the LEDs light up won't work if you plan to use only the duet3 Raspberry.
+        We also have some LED rings around the lens (I have 20. Don's use more than 20, since the Rpi's 5V pin can't output much current).
+        To light up the LEDs, I used these pins on the camera-connected Raspberry:
       </p>
+      <figure>
+        <a href="./media/LED_pinout.png" target="_blank">
+          <img src="./media/LED_pinout.png" alt="" width="497" height="494">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <h4>If <code>rpi</code> and <code>duet3</code> Are One And the Same Board In Your Setup</h4>
+      <p>
+        The Duet3 doesn't use any of pins 4, 6, or 12, although its connector covers them up.
+        You would need to alter the Duet's standard connector to be able to reach those pins.
+      </p>
+      <p>
+        The Duet3 needs pins 17, 19, 20, 21, 22, 23, and 24 (not pin 18) to be connected in order to work with the Raspberry:
+      </p>
+      <figure>
+        <a href="./media/Duetpins.png" target="_blank">
+          <img src="./media/Duetpins.png" alt="" width="495" height="96">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+        I'm not entirely sure how much current we can get out of the 5V pin (pin 4) in this setup.
+        I've never built a single Rpi HP4 myself.
+      </p>
+      <h4>Anyways...</h4>
       <p>
         Here's how you get code that lights up the LEDs:
       </p>
@@ -305,8 +352,8 @@
         </code>
       </p>
       <p>
-        The get_auto_calibration_data_automatically.sh script will expect that the LED cotrolling code will be
-        cloned and placed exactly like that on your hp-mark Raspberry.
+        The get_auto_calibration_data_automatically.sh script will expect that the LED controlling code will be
+        cloned and placed exactly like that on your camera-connected Raspberry.
       </p>
       <p>
         The script also assumes the
@@ -324,8 +371,16 @@
         The <code>--show result</code> option will make hpm stop and show you each measurement when it's done, and wait for you to press
         Enter before it continues.
       </p>
+      <figure>
+        <a href="./media/result_hp_mark.png" target="_blank">
+          <img src="./media/result_hp_mark_small.png" alt="" width="500" height="376">
+        </a>
+        <figcaption>
+          Example of a successful data point collection with the <code>--show result</code> option enabled.
+        </figcaption>
+      </figure>
       <p>
-        After collecting 18 data points (don't worry if a few we unsuccessful or had a warning), it prints out the data it has collected
+        After collecting 18 data points (don't worry if a few were unsuccessful or printed a warning), it prints out the data it has collected
         in a format that copy/paste friendly for the next script we're going to use: <a href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/hp_mark_adjusted/simulation.py">simulation.py</a>.
       </p>
       <p>
@@ -340,18 +395,25 @@
       </p>
     <h3 id="Slicing_and_Usage">Slicing and Usage</h3>
       <p>
-        Use any standard slicer you like. Set the correct nozzle size, and configure a circular print bed with the origin in the middle.
-        A quite high travel speed, like 600 mm/s or higher, should be possible and beneficial if your effector is fairly light.
-        Be aware that max speeds configured in ReprapFirmware and in the ODrives also limit the max speed.
+        I've published the Prusa Slicer configs that I use at <a href="https://gitlab.com/tobben/prusaslicer-configs">gitlab.com/tobben/prusaslicer-configs</a>.
       </p>
+    <h4>Avoid Line Collisions</h4>
       <p>
         Before you start a large print, it's recommended to check if your model fits the print volume or not.
         This is done with <a href="https://gitlab.com/hangprinter/line-collision-detector">line-collision-detector</a>, a tool that is developed specifically for Hangprinter build volume verification.
       </p>
+      <figure>
+        <a href="./media/debug_stl.png" target="_blank">
+          <img src="./media/debug_stl_small.png" alt="" width="500" height="395">
+        </a>
+        <figcaption>
+          line-collision-detector spits out a debug stl like this one upon detecting collision (if you asked for it).
+        </figcaption>
+      </figure>
       <p>
         Please note that many slicers will auto center the model before slicing it.
         line-collision-detector will not do that.
-        Since you probably want to check if the centered version of your model collides with lines or not, it's recommended to first import your model in the slicer, and then export it from the slicer as an stl, and then run it in the line-collision-detector.
+        Since you probably want to check if the centered version of your model collides with lines or not, it's recommended to first import your model in the slicer, and then export it from the slicer as an stl, and then run it through the line-collision-detector.
       </p>
       <br /><br /><br />
     <h3 id="Final_Words">Final Words</h3>
@@ -360,13 +422,8 @@
         Be sure to check out the <a href="../../resources">resources</a>, there are some quite good ones.
       </p>
       <p>
-        If you spot an error or a missing link in the documentation, then I wholeheartedly recommend that you fix it and contribute the fix back to the repo.
-        That is how this project is supposed to work.
+        If you spot an error or a missing link in the documentation, then please fix it and contribute the fix back to the repo.
         But also, do come by the Discord and say hi, or have a chat via Gitlab merge request or issue.
-      </p>
-      <p>
-        Hangprinter wants to make you feel included and empowered, that's why the project exists.
-        If it doesn't, then something in the project is wrong, and we will fix that together.
       </p>
       <p>
         - tobben 👷
@@ -374,8 +431,7 @@
         <br /><br /><br /><br /><br /><br /><br />
       </p>
       <p>
-        The raw text source of this manual is published under the <a href="https://github.com/tobbelobb/hangprinter/blob/Openscad_version_3/LICENSE" target="_blank">GPL-2.0 license</a>, and is being maintained in the <a href="https://gitlab.com/tobben/hangprinter-org" target="_blank">hangprinter-org repo</a>. All images and videos are also published under the GPL-2.0, except the wiring diagram, which is published under the GPLv3
-        license.
+        The raw text source of this manual is published under the <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/LICENSE" target="_blank">GPL-2.0 license</a>, and is being maintained in the <a href="https://gitlab.com/tobben/hangprinter-org" target="_blank">hangprinter-org repo</a>. All images and videos are also published under the GPL-2.0.
       </p>
     </div>
     <script data-goatcounter="https://hangprinter.goatcounter.com/count"
