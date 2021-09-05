@@ -214,17 +214,6 @@ nav ul li:hover a {
 	color:rgb(244, 151, 108);
 }
 
-/* Change the color and weight of links on hover
-nav ul li .dropdown.dropbtn:hover a {
-	color:rgb(119, 125, 143);
-}
-
-/* Add an active class to highlight the current page
-nav a .dropdown.dropbtn.active {
-	color:rgb(244, 151, 108);
-}
-*/
-
 .links-container {
 	margin:0px 32px 0px 32px;
 	display:flex;
@@ -310,6 +299,7 @@ figcaption {
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
+  background: white;
   position: absolute;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
