@@ -285,6 +285,7 @@
         </ul>
         See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>,
         and in particular the <code>README.md</code> and the <code>doc</code> directory for more guidance on how to set up hp-mark.
+        The rest of this section will describe how to use hp-mark correctly with Hangprinter v4.
       </p>
       <p>
         The get_auto_calibration_data_automatically.sh script is executed on the main computer.
@@ -293,7 +294,7 @@
         It's also assuming your Duet3 connected Raspberry to be called <code>duet3</code> in your <code>/etc/hosts</code>.
       </p>
       <p>
-        It should be fine if <code>duet3</code> and <code>rpi</code> are actually the same Raspberry Pi board.
+        It's fine if <code>duet3</code> and <code>rpi</code> are actually the same Raspberry Pi board.
         Just configure them to the same ip address.
       </p>
       <p>
@@ -307,6 +308,10 @@
           $ mkdir -p repos<br />
           $ cd repos<br />
           $ git clone https://github.com/ArduCAM/NativePiCamera.git<br />
+          $ cd NativePiCamera/bin<br />
+          $ chmod u+x raspistill_CS_lens<br />
+          $ sudo raspi-config<br />
+          $ [Interface Options] -&gt; [Camera] -&gt; [Enable] -&gt; [Reboot yes]
         </code>
       </p>
       <p>
@@ -323,21 +328,28 @@
       <h4>If <code>rpi</code> and <code>duet3</code> Are One And the Same Board In Your Setup</h4>
       <p>
         The Duet3 doesn't use any of pins 4, 6, or 12, although its connector covers them up.
-        You would need to alter the Duet's standard connector to be able to reach those pins.
-      </p>
-      <p>
-        The Duet3 needs pins 17, 19, 20, 21, 22, 23, and 24 (not pin 18) to be connected in order to work with the Raspberry:
+        To work around the connector, you can created a distance between Rpi and the connector with nine short jumper wires like this:
       </p>
       <figure>
-        <a href="./media/Duetpins.png" target="_blank">
-          <img src="./media/Duetpins.png" alt="" width="495" height="96">
+        <a href="./media/Bypass_connector_3.JPG" target="_blank">
+          <img src="./media/Bypass_connector_3_small.JPG" alt="" width="500" height="281">
         </a>
         <figcaption>
         </figcaption>
       </figure>
       <p>
-        I'm not entirely sure how much current we can get out of the 5V pin (pin 4) in this setup.
-        I've never built a single Rpi HP4 myself.
+      </p>
+      <figure>
+        <a href="./media/Duetpins2.png" target="_blank">
+          <img src="./media/Duetpins2.png" alt="" width="498" height="123">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+          Connect the Raspberry's pins 17-25 with the Duet, as they would have been connected through the standard connector.
+          Power the Raspberry Pi with a separate wallplug power supply.
+          The official Raspberry Pi Power supply is recommended.
       </p>
       <h4>Anyways...</h4>
       <p>
@@ -349,19 +361,70 @@
           $ mkdir -p repos<br />
           $ cd repos<br />
           $ git clone https://gitlab.com/tobben/rpi_ws281x.git<br />
+          $ sudo apt install python3-pip<br />
+          $ sudo pip3 install rpi_ws281x<br />
+        </code>
+      </p>
+      <h4>Test If Camera Usage Works</h4>
+      <p>
+        On your main computer, try to take an image and analyze it:
+      </p>
+      <p>
+        <code>
+          $ cd &lt;path-to&gt;/hp-mark/use<br />
+          $ ./use_ssh.sh --show result
         </code>
       </p>
       <p>
-        The get_auto_calibration_data_automatically.sh script will expect that the LED controlling code will be
-        cloned and placed exactly like that on your camera-connected Raspberry.
+        If everything worked, the LEDs should have flashed, an image should be taken, downloaded, analyzed by your hpm program,
+        and the result (an image) should be shown on the screen, like this:
+      </p>
+      <figure>
+        <a href="./media/result.png" target="_blank">
+          <img src="./media/result_small.png" alt="" width="500" height="376">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+        The console output should be similar to this:
       </p>
       <p>
-        The script also assumes the
+        <code>
+          $ ./use_ssh.sh --show result<br />
+/home/pi/repos/hp-mark/use<br />
+Captured image remotely: /home/pi/repos/hp-mark/use/images/DiUBh.jpg.<br />
+Copies home:<br />
+DiUBh.jpg 100% 4512KB   4.9MB/s   00:00<br />
+/home/tobben/repos/hp-mark/use<br />
+Will execute:<br />
+../hpm/hpm/hpm ../hpm/hpm/example-cam-params/loDistCamParams2.xml ../hpm/hpm/example-marker-params/my-marker-params.xml ./images/DiUBh.jpg --show result<br />
+[5.22761, -28.5536, 6.5542];<br />
+        </code>
+      </p>
+      <h4>Double Check Torque Mode</h4>
+      <p>
+        The get_auto_calibration_data_automatically.sh script will not only use your camera.
+        It will also put your motors in torque mode.
+        It assumes the
         <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Torque_mode">Torque_mode macro</a>
         has been installed into your macro folder on the Duet3.
       </p>
       <p>
-        With all those things in place, if all the stars align, it should be possible for you to collect the calibration data like this:
+        Play with the torque mode script in the web interface before running the full calibration script.
+        For example, in the web interface, go to the console and to
+        set motor A in torque mode, with 0.02 Nm of torque.
+        Feel the spool gently with your and and confirm that the motor tries to pull line inwards onto the spool
+      </p>
+      <code>
+        M98 P"/macros/Torque_mode" A0.02
+      </code>
+      <p>
+        Repeat for all motors ABCD.
+      </p>
+      <h4>Getting To The Actual Calibration</h4>
+      <p>
+        With camera and torque mode macro in place, if all the stars align, it should be possible for you to collect the calibration data like this:
       </p>
       <p>
         <code>$ cd path/to/hp-mark/use<br />
