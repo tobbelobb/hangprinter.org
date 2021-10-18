@@ -101,7 +101,29 @@
 
 <p>
   <b>Q:</b> What does it cost? <br />
-  <b>A:</b> Parts for a v4 is estimated to cost around $1500.
+  <b>A:</b> Parts for a v4 is estimated to cost around $1750.
+</p>
+
+<p>
+  <b>Q:</b> Can I cut cost by... <br />
+  <b>Sub Q:</b> ... using cheaper lines? <br />
+  <b>A:</b> Definitely. We need stiff and light lines, but if your machine is small, and has a light tool head, and if reliability is of lower importance to you then you might not need all the performance the Garda lines give.
+  HP3 used Fireline 0.5 mm, which worked ok.
+  If you want to help update the BOM for everyone, then order some Garda and compare your line to its stiffness.
+  Cheaper lines for everyone would be awesome.
+  For reference, <a href="https://youtu.be/K_fQpvZ3oeA">here</a> is how the current Garda lines were compared to Fireline 0.5.<br />
+  <b>Sub Q:</b>  ... skipping the ODrives? <br />
+  <b>A:</b> Sure, you can use any motor and driver setup. The ODrives are connected to the Duet via a CAN bus which gives torque mode and encoder readings, which gives a lot of everyday convenience as well as auto calibration of anchor locations.
+  They also have many nice features like anti-cogging and input filtering that might get important depending on your use case. <br />
+  <b>Sub Q:</b>  ... using some other board than the Duet3? <br />
+  <b>A:</b> Yes. Reprapfirmware has up to date Hangprinter support for all Duet boards. There's also an unsupported ReprapFirmware version that let's you use Duet2 Wifi and UART to talk with old ODrivefirmware versions.
+  At the time of writing only Duet3 has the CAN support, but a cheaper Duet with CAN is in the pipeline.
+  Marlin also has Hangprinter support which was in active use up until 2018.
+  Marlin's current state is a bit unknown to me (tobben, Oct, 2021).<br />
+  <b>Sub Q:</b>  ... skipping the Raspberry Pi 4? <br />
+  <b>A:</b> Yes. You'll miss the web interface and the ability to use hp-mark in a standard way.
+  <b>Sub Q:</b>  ... Using a cheaper BLDC motor/encoder pair? <br />
+  <b>A:</b> Absolutely. This shouldn't affect any functionality except motor performance.
 </p>
 
 <p>
@@ -223,6 +245,7 @@
   As much as I want to make money and to privatize my ideas,
   the current patent system would limit users too much.
   As everyone else in open source hardware, I'm looking for alternative ways forwards.
+  I'm occasionally writing about this on my personal blog. See for example <a href="https://torbjornludvigsen.com/blog/2021/#hangprinter_project_75">here</a> and <a href="https://torbjornludvigsen.com/blog/2021/#hangprinter_project_76">here</a>.
 </p>
 
 <p>
@@ -302,6 +325,14 @@ It shortens print time, but also improves print quality a lot, since it limits o
 <p>
   But back to the question: Check out <a href="https://gitlab.com/tobben/hangprinter/-/issues/35">this discussion</a>.
   Also see <a href="https://reprap.org/wiki/Links_Into_Hangprinter_v3_Build_Video#Now_going_into_an_hour_of_measuring_this">these comments and timestamps of a live streamed HP3 calibration</a>.
+</p>
+
+<p>
+  <b>Q:</b> Is torque mode neccesary? <br />
+  <b>A:</b> Torque mode saves in 50% or more of the manual effort during daily use of the Hangprinter.
+  With that said, it's totally possible to tighten lines with the <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Individual_motor_control">Individual_motor_control</a> macro.
+  Advanced: If you want a new position to be calculated after the individual motor move, you could also use G1 H2-moves directly.
+  Look in the macro or <a href="https://duet3d.dozuki.com/Wiki/G1">ReprapFirmware's gcode docs</a> for details about how G1 H2 is used.
 </p>
 
 
