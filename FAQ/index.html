@@ -81,6 +81,9 @@
   More in <a href="https://torbjornludvigsen.com/blog/2021/#personal_2">this blog post</a>.
 </p>
 <p>
+  I write a lot about this on my personal blog. See recent bloggy masterpieces such as <a href="https://torbjornludvigsen.com/blog/2021/#hangprinter_project_76">Where Should Open Source Go?</a>,  <a href="https://torbjornludvigsen.com/blog/2021/#hangprinter_project_75">Hopes, Dreams, and Agendas</a>, and <a href="https://torbjornludvigsen.com/blog/2021/#personal_2">Philosophy of Hangprinter</a>.
+</p>
+<p>
   Some design goals I've stuck to for the last three years are outlined in <a href="https://torbjornludvigsen.com/blog/2018/#hangprinter_project_59">this blog post</a>.
 </p>
 <p>
@@ -162,7 +165,8 @@
 <p>
   <b>Q:</b> What materials can it print? <br />
   <b>A:</b> Hangprinter is compatible with most tool heads on the market.
-  This includes thermoplastics, but also ceramics and paste tool heads.
+  This includes thermoplastics, but also ceramics and other paste tool heads.
+  There's also a pen holder tool head in the repo.
 </p>
 
 <p>
@@ -194,7 +198,7 @@
     <li>High print speeds. </li>
     <li>Relatively low energy usage of 600W compared to other robots of similar size, eg robot arms.</li>
     <li>Light. Does not require a truck to move to a new location. </li>
-    <li>Compact. Parks in the ceiling while not in use, freeing up the floor space below it. </li>
+    <li>Compact when idle. Parks in the ceiling while not in use, freeing up the floor space below it. </li>
     <li>Compatibility. Runs stock firmwares, tool heads, and slicer settings. </li>
     <li>Silent operation. </li>
     <li>Powerful. Uses very strong motors compared to what small 3d printers use. </li>
@@ -210,30 +214,41 @@
   <b>Q:</b> What are the known limitations? <br />
   <b>A:</b> None. Ok, just kidding.
   <ul>
-    <li><b>Unknown Accuracy</b>. Unless hp-mark or another measurement system is installed and used, that is. </li>
+    <li><b>Space Usage During Operation</b>. The Hangprinter is not box shaped. It takes up a large tetrahedron shaped volume during operation.
+      That's the main trade-off the Hangprinter makes. It can become better than boxed in machines in every other metric, but it will never be as compact during operation as a robot arm or a
+      cartesian gantry style machine is.</li>
     <li><b>Line Buildup</b>. Spools are constructed in a way that lets line build up in several layers on the spool, often called "spool buildup".
-      The simple spool design keeps price and part count low, but the spool buildup brings some challenges.
-      Spool buildup is compensated quite well, but not perfectly.
-      The compensation needs to be calibrated.
-      Automating this calibration (with help of hp-mark) is currently under development.
+      The simple spool design keeps price and part count low, and reliability high.
+      However, the spool buildup is currently not perfectly measured and compensated.
     </li>
-    <li><b>The Tilt Problem</b>. Small uncontrollable rotations of effector occur due to line buildup and other things.
-        hp-mark measures correct nozzle positions even when effector is tilted, so this can be detected and compensated.</li>
-    <li><b>Line Collisions</b>. Downwards pointing lines (A, B, and C) can collide with half finished prints during print.
-      To avoid this, check before print if it will occur.
-      A special tool, <a href="https://gitlab.com/hangprinter/line-collision-detector">line-collision-detector</a> has been developed to
-      perform such checks.</li>
-    <li><b>Unknown Line Tension</b>. Hangprinter currently doesn't measure tension in the lines.</li>
     <li><b>No Line Flex Compensation</b>. The firmware assumes the whole drive train to be perfectly stiff, which is obviously not the case in reality.
     Consequences are observable when some lines are very tight, like when heavy tool heads are used and when the tool is far from the origin.</li>
+    <li><b>Unknown Line Tension</b>. Hangprinter currently doesn't measure tension in the lines. This data is required to make a perfect flex compensation model, and to make more reliable motor config tuning and fault detection.</li>
     <li><b>Small Dev Team</b>. The lion's share of development is done by a single person. This puts a rather low max cap on dev velocity. </li>
     <li><b>Limited Documentation</b>. Hangprinter v4 has been under heavy development for over a year (as of July 2021), and documentation is consequently behind.
     Use the Project's social channels actively, and ask your questions explicitly, as the doc-situation gradually improves. </li>
-    <li><b>A Rather Involved Calibration Process</b>. Can be fully automated with hp-mark. That work is ongoing.</li>
   </ul>
   Needless to say, I'm constantly working on, and prioritizing between, the various weak spots of the Project.
 </p>
-
+<p>
+  <b>Q:</b> What problems does the computer vision system (hp-mark) solve? <br />
+  <b>A:</b> Here are some previous limitations that are currently melting away due to hp-mark getting better.
+  <ul>
+    <li><b>A Rather Involved Calibration Process</b>. Can be fully automated with hp-mark. Currently requires some human assistance.</li>
+    <li><b>Unknown Accuracy</b>. Unless hp-mark or another measurement system is installed and used, that is. </li>
+    <li><b>The Tilt Problem</b>. Small uncontrollable rotations of effector occur due to line buildup and other things.
+        hp-mark measures correct nozzle positions even when effector is tilted, so this can be detected and compensated.</li>
+  </ul>
+</p>
+<p>
+  <b>Q:</b> What problem does the line-collision-detector solve? <br />
+    The Hangprinters' downwards pointing lines (A, B, and C) can collide with half finished prints during print.
+    However, with a specially developed tool called <a href="https://gitlab.com/hangprinter/line-collision-detector">line-collision-detector</a>
+    it's quick and easy to run a simulation and see if a collision will occur or not.
+    A full simulation typically takes 10 seconds or less to execute.
+    It allows you to specify a safety margin, and can output an stl that shows exactly where on your model
+    an eventual collision would happen.
+</p>
 <p>
   <b>Q:</b> How is the project funded? <br />
   <b>A:</b> Ca 10% via donations. The rest via my (tobben's) private money.</p>
@@ -249,7 +264,7 @@
 
 <p>
   <b>Q:</b> How do you slice for Hangprinter? <br />
-  <b>A:</b> Similar to other 3d printers. Default slicing settings are not yet developed. Export stl and check for line collisions before you slice.
+  <b>A:</b> Similar to other 3d printers. For some slicing config suggestions, look at <a href="https://gitlab.com/tobben/prusaslicer-configs">tobbens PrusaSlicer configs</a>.
 </p>
 
 <p>
@@ -261,7 +276,7 @@
 
 <p>
   <b>Q:</b> What is the Project's history? <br />
-  <b>A:</b> See the <a href="https://hangprinter.org/about/">about page</a>. For a deeper dive, check out the <a href="https://torbjornludvigsen.com/blog/#Links">dev blog archives</a>.
+  <b>A:</b> See the <a href="https://hangprinter.org/about/">about page</a>. For a deeper dive, check out my personal <a href="https://torbjornludvigsen.com/blog/#Links">dev blog archives</a>, and the past <a href="../newsletter">newsletters</a>.
 </p>
 
 <p>
@@ -301,7 +316,7 @@ I'm planning and hoping that auto-calibration-simulation-for-hangprinter becomes
   <b>Q:</b> Should I use steppers or BLDC motors? <br />
   <b>A:</b> Short answer:
             The default for HP4 is BLDCs.
-            As of August 2021, they ones I'm using is expected to show up in the <a href="https://odriverobotics.com/shopfolder">odriverobotics web shop</a> very soon.
+            See the <a href="https://docs.google.com/spreadsheets/d/1_mMTEF9ZFapn_3FrBvEydh70IPTaQG9gKZ7IVj9G2uM/edit#gid=0">BOM</a> for the exact model.
 </p>
 <p>
 Longer answer:
@@ -328,7 +343,7 @@ It shortens print time, but also improves print quality a lot, since it limits o
 
 <p>
   <b>Q:</b> Is torque mode neccesary? <br />
-  <b>A:</b> Torque mode saves in 50% or more of the manual effort during daily use of the Hangprinter.
+  <b>A:</b> Torque mode saves in a lot of manual effort during daily use of the Hangprinter.
   With that said, it's totally possible to tighten lines with the <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Individual_motor_control">Individual_motor_control</a> macro.
   Advanced: If you want a new position to be calculated after the individual motor move, you could also use G1 H2-moves directly.
   Look in the macro or <a href="https://duet3d.dozuki.com/Wiki/G1">ReprapFirmware's gcode docs</a> for details about how G1 H2 is used.
