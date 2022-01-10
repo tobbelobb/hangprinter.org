@@ -57,6 +57,155 @@
       Hangprinter Supporters' Newsletter
     </div>
     <div id="MainContent">
+      <h1 id="post_33">January 2022</h1>
+      <div class="date">10-1-2022</div>
+        <h3>Hello Hangprinter Supporters!</h3>
+
+        <p>A full year of Hangprinter development has gone by.
+        What have I done?</p>
+
+        <h4>Birds Eye Perspective</h4>
+
+        <p>The HP4 can now both
+        <a href="https://twitter.com/tobbelobb/status/1472947513191768065">measure its own squares</a>,
+        and follow its own bed, like this:</p>
+
+        <figure>
+          <a href="./images/Follow_its_own_bed.png">
+            <img src="./images/Follow_its_own_bed_small.png" alt="Almost flat bed" width="500" height="281" />
+          </a>
+          <figcaption>
+            Screendump from Duet Web Interface.
+            Blue 0.5 mm depression around screws that bolt the print bed to the floor.
+          </figcaption>
+        </figure>
+
+        <p>More than 300 little tasks have been formulated on little sticky notes and then executed.
+        Many more have been formulated and then thrown in the bin.</p>
+
+        <h4>hp-mark. The Measurement System.</h4>
+
+        <p>I spent about half of 2021 getting <a href="https://gitlab.com/tobben/hp-mark">hp-mark</a>, the computer vision position tracking system, working.
+        And it does work.
+        As far as I know it's the only open source program that delivers
+        such high precision position and rotation measurements with a single camera.</p>
+
+        <p>There are equations and bugfixes in there you won't find in OpenCV
+        and possibly not elsewhere on the Internet at all.
+        At least I couldn't find those equations anywhere (which also explains why this system took so long to develop).</p>
+
+        <p>I believe many other projects could make good use of hp-mark for measuring all sorts of things,
+        but I will wind down my hp-mark efforts personally.
+        For Hangprinter, the hp-mark system is only a means to an end, and I'll improve it only when Hangprinter needs it.</p>
+
+        <p>If you know someone who has use for high precision open source pose measurements, please find a way to contact me.</p>
+
+        <h4>HP4 Prototype 2. The Machine.</h4>
+
+        <p>The other half of 2021 was spent designing and testing Hangprinter v4 prototype 2.
+        And it also works.</p>
+
+        <p>I found a <a href="https://torbjornludvigsen.com/blog/2018/#hangprinter_project_61">blog post from 2018</a> to give me some perspective of where we are with Hangprinter v4.
+        It mentions three "important improvements":</p>
+
+        <ul>
+        <li>Flex compensation</li>
+        <li>Better calibration</li>
+        <li>Automatic homing</li>
+        </ul>
+
+        <p>With flex compensation, we've gotten somewhere, but we're not there.
+        The HP4pt2 machine uses much thicker, stiffer lines than previous machines, so it requires less compensation.</p>
+
+        <p>The remaining flex can be measured with hp-mark.
+        Implementing an actual compensation algorithm is left for 2022.</p>
+
+        <p>As for better calibration, we've also gotten a long way.
+        Calibration was made harder because the thicker lines build more on the spools.</p>
+
+        <p>Accepting partial defeat, and hand measuring line lengths at the origin let us get very good calibration, still
+        without too much work, and without strictly requiring hp-mark.
+        Details are <a href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/ff166f5c03de507e7e8486c71dee273fe99da2a8/README.md#how-to-collect-data-points">here</a>.</p>
+
+        <p>Automatic homing is still not done, although hp-mark, plus a bed sensor for more accurate z-measurement, are in place.
+        Putting the pieces together is left for 2022.</p>
+
+        <h4>What's a Good Goal?</h4>
+
+        <p>Since Hangprinter's beginnings in 2014 I've made similar feature lists as the one above.
+        They have stayed more or quite consistent.
+        It seems like I always want more or less the same things,
+        and I achieve them down one by one over long periods of time.</p>
+
+        <p>Isn't that nice?</p>
+
+        <p>I think feature lists are necessary, but not sufficient for progress.
+        In another old <a href="https://torbjornludvigsen.com/blog/2018/#hangprinter_project_59">blog post from 2018</a>,
+        I mention a higher but down to earth goal:</p>
+
+        <ul>
+        <li>A reliable workhorse</li>
+        <li>that people will enjoy using</li>
+        <li>and spreading</li>
+        <li>for profit.</li>
+        </ul>
+
+        <p>In 2021 I've gradually allowed this goal to take more space.
+        I'm decreasingly just proving ideas and theory.
+        I'm instead increasingly building a machine I'm able to honestly enjoy using.</p>
+
+        <p>I love the known, hp-mark measured, accuracy.
+        I love the better calibration.
+        I love being able to use upstream ReprapFirmware with all its features.
+        I love how the thicker lines and spool covers avoid most spaghetti-salad situations.
+        And the first layer consistency.❤️❤️❤️  Hangprinter never had that before.</p>
+
+        <p>
+          After such a long time developing features, I'm glad to have a
+          usable machine in my office.
+        </p>
+
+        <h4>What's Up For 2022?</h4>
+
+        <p>I think I'll never have a pure feature building year like 2021 was, again.
+        2022 will be spent using the HP4, mainly for creating art.</p>
+
+        <p>Many features should be built and tested in 2022:</p>
+
+        <ul>
+        <li>Flex compensation</li>
+        <li>A spool design with no buildup</li>
+        <li>Line tension measurement data</li>
+        </ul>
+
+        <p>With those in place, we would compete with gantry style machines on accuracy.
+        Until then we're about one millimeter away.</p>
+
+        <p>I won't develop these features though.
+        At least not fast, or head-first.
+        I will prioritize art and community, as well as small iterative improvements
+        of what we already have.</p>
+
+        <p>In 2022 some more full scale demos will hopefully attract more builders.</p>
+
+        <p>Throughout 2021 I met and talked about Hangprinter with some extremely talented individuals,
+        on Discord and elsewhere.
+        Some have posted great original work, mainly in the Discord channel.
+        You're unusual, awesome, and so hard to find. I hope you know that. 🌷🌷🌷
+        </p>
+
+
+        <p>
+          Thanks for supporting the Hangprinter Project through 2021 and into 2022!
+          I also want to thank Duet3d and ODrive Robotics who have solved so many little problems for Hangprinter in the previous year.
+          The prototype 2 also says thank you, with this little square: <a href="https://twitter.com/tobbelobb/status/1473344630842445832">twitter</a>.
+        </p>
+        <p>
+          Looking forward to see you, as well as many old and new Hangprinter builders in the year ahead!
+        </p>
+
+        <p>-- tobben 👷</p><br><br><br>
+
       <h1 id="post_32">October 2021</h1>
       <div class="date">25-10-2021</div>
       <h3>Hello Hangprinter Supporters!</h3>
