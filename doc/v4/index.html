@@ -115,16 +115,6 @@
           </figcaption>
         </figure>
         <figure>
-          <a href="./media/motor_directions.png" target="_blank">
-            <img src="./media/motor_directions_small.png" alt="" width="500" height="343">
-          </a>
-          <figcaption>
-            Note the order of motor wires.
-            Because of a limitation in RepRapFirmware for the time being (Jan 2022), we must
-            connect the motor wires in exactly this order.
-          </figcaption>
-        </figure>
-        <figure>
           <a href="./media/believe.jpeg" target="_blank">
             <img src="./media/believe_small.jpeg" alt="" width="500" height="507">
           </a>
@@ -161,12 +151,97 @@
           <figcaption>
           </figcaption>
         </figure>
+
+      <h4 id="sand_edge">Areas That Must Be Smooth</h4>
+      <p>
+        The line is easy to fray, and 3d-printing sometimes leaves sharp and pointy edges.
+        It's therefore recommended to sand down the inside of the spool disc, like this:
+      </p>
+      <figure>
+        <a href="./media/sand_edge.JPG" target="_blank">
+          <img src="./media/sand_edge_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+        Also sand the GT2 spool gear's inside, since it will also rub against the line.
+      </p>
+
+      <h4 id="rotate_straight">Make Sure Spools Rotate Without Wobble</h4>
+      <p>
+        First of all, press a bearing into each spool, and rotate each spool separately on your 8mm spool core rod.
+      </p>
+      <figure>
+         <video width="500" height="890" controls="controls">
+            <source src="./media/MOV_1449.mp4" type="video/mp4"></source>
+            <!--source src="movie.ogg" type="video/ogg"-->
+                     Your browser does not support the video tag.
+         </video>
+         <figcaption>
+           This one is straight enough.
+         </figcaption>
+      </figure>
+      <p>
+        If a spool has warped, it's useless.
+        Otherwise, if it rotates straight enough, move on to the next step: snapping on the GT2 spool gear.
+      </p>
+      <p>
+        The spool and the GT2 spool gear snap together with a very tight tolerance.
+        When you press fit them together, you can usually hear a sharp "tick" each time the two parts' layer lines mesh in place.
+      </p>
+      <p>
+        A common problem is that the GT2 spool gear is so tight, that it warps the whole spool, and/or doesn't mesh with the same layer line all around the spool.
+        Check this with a similar test as before.
+      </p>
+      <figure>
+         <video width="500" height="890" controls="controls">
+            <source src="./media/MOV_1450.mp4" type="video/mp4"></source>
+            <!--source src="movie.ogg" type="video/ogg"-->
+                     Your browser does not support the video tag.
+         </video>
+         <figcaption>
+           This one wobbles too much.
+         </figcaption>
+      </figure>
+      <p>
+        If you see wobbly rotation like in the video above, you must take off your GT2 gear from your spool and file/sand down sharp edges and layer lines.
+      </p>
+      <p>
+        Take off any squeezed out edge from top/bottom layers on both GT2 spool gear, and on the spool itself.
+        In some cases, I also widen the pocket on the top of the spool, where the inner tooth of the GT2 spool gear sinks into.
+      </p>
+      <figure>
+        <a href="./media/widen_pocket.JPG" target="_blank">
+          <img src="./media/widen_pocket_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+        Getting all spools to rotate straight will help your machine become more silent, because it won't rub into the inner walls of the spool cover.
+        It will also make your machine more safe, because it will help the spool cover casettes fully enclose your spools so that line can't escape and get tangled into the motor.
+      </p>
+
+
+
     <h3 id="Wiring">Wiring</h3>
       <p>
-        Warning: The motor wires must be connected in the exact order shown above.
+        Warning: The motor wires must be connected in the exact order shown below.
         Otherwise torque mode will run backwards and create chaos.
         Also, auto-calibration won't work because signs will be reversed.
       </p>
+      <figure>
+        <a href="./media/motor_directions.png" target="_blank">
+          <img src="./media/motor_directions_small.png" alt="" width="500" height="343">
+        </a>
+        <figcaption>
+          Note the order of motor wires.
+          Because of a limitation in RepRapFirmware for the time being (Jan 2022), we must
+          connect the motor wires in exactly this order.
+        </figcaption>
+      </figure>
+
       <p>
         For all other wiring see
         <ul>
@@ -293,7 +368,6 @@
         <figcaption>
         </figcaption>
       </figure>
-
 
     <h4>Optional Hoisting System</h4>
       <p>
