@@ -110,7 +110,7 @@
             <img src="./media/pcb_and_psu_placement_small.jpeg" alt="" width="500" height="343">
           </a>
           <figcaption>
-            Please click the image to open a larger version.
+            Click the image to open a larger version.
             Works for all images in this manual.
           </figcaption>
         </figure>
@@ -131,7 +131,19 @@
           <li>Make sure the Pi's HDMI1 port is not covered by the Duet3.</li>
         </ul>
       </p>
-      <h4>Motor Brackets</h4>
+      <h4 id="motor_brackets">Motor Brackets</h4>
+      <p>
+        The motor only fits in the bracket if inserted in one exact rotational position.
+        Moreover, A and D motors fit in a different position than B and C motors, like this:
+      </p>
+      <figure>
+        <a href="./media/motor_wire_directions.JPG" target="_blank">
+          <img src="./media/motor_wire_directions_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+          Notice that the electrical wires from the A and D motors point downwards in the image, while those from the B and C motors point upwards.
+        </figcaption>
+      </figure>
       <p>
         It can be tricky to get the nuts into the right places on the motor brackets.
         For each bracket,
@@ -222,9 +234,6 @@
         Getting all spools to rotate straight will help your machine become more silent, because it won't rub into the inner walls of the spool cover.
         It will also make your machine more safe, because it will help the spool cover casettes fully enclose your spools so that line can't escape and get tangled into the motor.
       </p>
-
-
-
     <h3 id="Wiring">Wiring</h3>
       <p>
         Warning: The motor wires must be connected in the exact order shown below.
@@ -232,8 +241,8 @@
         Also, auto-calibration won't work because signs will be reversed.
       </p>
       <figure>
-        <a href="./media/motor_directions.png" target="_blank">
-          <img src="./media/motor_directions_small.png" alt="" width="500" height="343">
+        <a href="./media/motor_wire_order.png" target="_blank">
+          <img src="./media/motor_wire_order_small.png" alt="" width="500" height="343">
         </a>
         <figcaption>
           Note the order of motor wires.
@@ -390,6 +399,8 @@
       Stock RepRapFirmware will work in the future, but for now, I publish the RepRapFirmware I use here:
       <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/Duet3Firmware_MB6HC.bin">link</a>.
       Stock ODrivefirmware works for us out of the box.
+      However, I'm stuck at the 0.5.1 version of ODrivefirmware, because the anti-cogging feature is broken in later releases.
+      Anti-cogging is used to make torque mode more smooth.
     </p>
     <p>
       Please look closely at my config files:
