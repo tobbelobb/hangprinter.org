@@ -234,6 +234,25 @@
         Getting all spools to rotate straight will help your machine become more silent, because it won't rub into the inner walls of the spool cover.
         It will also make your machine more safe, because it will help the spool cover casettes fully enclose your spools so that line can't escape and get tangled into the motor.
       </p>
+      <h3>Getting Encoders To Rotate Without Rubbing</h3>
+      <p>
+        The encoders must be mounted perfectly straight onto the motor shaft, so that the motor can rotate freely.
+        If you hear a rubbing sound from the encoder when you rotate the motor, then you need to adjust the encoder's placement.
+      </p>
+      <p>
+        The motor bracket tries to help you fixate the encoder perfectly.
+        But sometimes the encoder ends up with a degree or so of rotation that the bracket won't let you adjust easily.
+        In those cases, I adjust the rotational position of the encoder like this:
+      </p>
+      <figure>
+        <a href="./media/trick_for_encoder_tilt.JPG" target="_blank">
+          <img src="./media/trick_for_encoder_tilt_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+          A nose wire strip or zip tie or similar may be used to increase the thickness of one of the encoder holders' arms in one spot.
+          Its placement along the vertical holder arm adjusts the encoder's rotational position.
+        </figcaption>
+      </figure>
     <h3 id="Wiring">Wiring</h3>
       <p>
         Warning: The motor wires must be connected in the exact order shown below.
@@ -396,18 +415,93 @@
       </figure>
     <h3>Firmwares and Configuration</h3>
     <p>
-      Stock RepRapFirmware will work in the future, but for now, I publish the RepRapFirmware I use here:
+      There is Hangprinter v4 support in official RepRapFirmware <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.3</a> and onwards.
+    </p>
+    <p>
+      However, at the time of writing this (Feb 17, 2022), it's recommended to use the latest release candidate:
+      <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.4.0rc1</a> because it brings some important improvements.
+      Use the most recent 3.4 release on the list if 3.4.0rc1 isn't the most recent one anymore.
+    </p>
+    <p>
+      Whenever a release candidate or beta release is used, the Raspberry Pi needs to be configured to use
+      <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Software_Installation">the unstable software repository</a>.
+    </p>
+    <p>
+      Just in case upsream Reprapfirmware ever fails to work, I (tobben) always publish my latest RepRapFirmware build here:
       <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/Duet3Firmware_MB6HC.bin">link</a>.
+      It's only meant for debugging or other exceptional circumstances.
+    </p>
+    <p>
       Stock ODrivefirmware works for us out of the box.
       However, I'm stuck at the 0.5.1 version of ODrivefirmware, because the anti-cogging feature is broken in later releases.
       Anti-cogging is used to make torque mode more smooth.
     </p>
     <p>
-      Please look closely at my config files:
-      <ul>
-        <li><a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">config.g for RepRapFirmware</a></li>
-        <li><a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/firmware/ODrive">configure_odrive.py for ODrivefirmware</a></li>
-      </ul>
+      Download the 0.5.1 hex file for your ODrive board <a href="https://github.com/odriverobotics/ODrive/releases/tag/fw-v0.5.1">here</a>.
+    </p>
+    <p>
+      How to flash the hex-file to the ODrive board is copied from the
+      <a href="https://docs.odriverobotics.com/v/latest/odrivetool.html#flashing-custom-firmware">ODrive docs</a>.
+      If the following doesn't work, take a look at the official ODrive docs instead.
+    </p>
+    <p>
+      Flash the hex file to your ODrive board with the following command in the terminal:
+    </p>
+    <p>
+      <code>$ odrivetool dfu &lt;path/to/your/&gt;ODriveFirmware_vX.X-XXV.hex</code>
+    </p>
+    <p>
+      If it gets stuck at "<code>Putting device XXXXXXXXXXXX into DFU mode...</code>",
+      pull the power plug, flip the switch from RUN to DFU, and try again.
+    </p>
+    <p>
+      If successful, power down, flip back to RUN, and do a config restore
+    </p>
+    <p>
+      <code>$ odrivetool restore-config ~/repos/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
+    </p>
+    <p>
+      This will set most configuration values about right.
+      However, there are a few you need to change.
+    </p>
+    <p>
+      You must measure the correct value with a multimeter over your break resistor.
+      Open up <code>odrivetool</code> and set <code>odrv0.config.brake_resistance = your_measured_value</code>.
+    </p>
+    <p>
+      Also, you need to do a full calibration sequence of both axes. Copy these lines into odrivetool one-by-one
+      and hit Enter in between each.
+    </p>
+    <p>
+      <code>
+        odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
+        odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
+        odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL<br />
+        odrv0.axis1.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL<br />
+        odrv0.axis0.requested_state = AXIS_STATE_ENCODER_INDEX_SEARCH<br />
+        odrv0.axis1.requested_state = AXIS_STATE_ENCODER_INDEX_SEARCH<br />
+        odrv0.axis0.requested_state = AXIS_STATE_ENCODER_OFFSET_CALIBRATION<br />
+        odrv0.axis1.requested_state = AXIS_STATE_ENCODER_OFFSET_CALIBRATION<br />
+        odrv0.axis0.encoder.config.pre_calibrated = True<br />
+        odrv0.axis1.encoder.config.pre_calibrated = True<br />
+        odrv0.save_configuration()<br />
+        odrv0.reboot()<br />
+      </code>
+    </p>
+    <p>
+      If everything went well and your motors woke up with a silent rotation before entering closed loop position mode,
+      then you're ready to do the (optional) anticogging calibration.
+    </p>
+    <p>
+      The anticogging feature makes your torque mode feel smoother if it's enabled and working.
+      It's not critical for the functioning of the Hangprinter.
+    </p>
+    <h4>Example Config Files</h4>
+    <p>
+      Please refer to the bottom part of my <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/firmware/ODrive">configure_odrive.py ODrivefirmware configuration file</a> for details on how I do anticogging calibration.
+    </p>
+    <p>
+      PS, there's a similar <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">example config.g for RepRapFirmware</a> also in the repo for your config pleasure.
     </p>
 
     <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</h3>
