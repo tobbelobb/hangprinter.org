@@ -453,9 +453,9 @@
       <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Software_Installation">the unstable software repository</a>.
     </p>
     <p>
-      Just in case upsream Reprapfirmware ever fails to work, I (tobben) always publish my latest RepRapFirmware build here:
+      In addition, I (tobben) always publish my latest RepRapFirmware build here:
       <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/Duet3Firmware_MB6HC.bin">link</a>.
-      It's only meant for debugging or other exceptional circumstances.
+      My personal builds are only meant to be used during debugging or other exceptional circumstances.
     </p>
     <p>
       Stock ODrivefirmware works for us out of the box.
@@ -577,7 +577,11 @@
       </p>
       <p>
         The Raspberry Pi needs the camera to be connected and calibrated (as described in the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>), and it needs ssh to be enabled.
-        It also needs a version of raspistill that matches your lens, or else your images' colors will be <a href="https://www.arducam.com/docs/cameras-for-raspberry-pi/native-raspberry-pi-cameras/lens-shading-calibration/">tinted</a>.
+        Enabling ssh on a Raspberry pi might involve having to connect it to a display, and seek out Preferences -&gt; Raspberry Pi Configuration in a graphical user interface.
+      </p>
+      <p>
+        The get_auto_calibration_data_automatically.sh script also
+        needs a version of raspistill that matches your lens, or else your images' colors will be <a href="https://www.arducam.com/docs/cameras-for-raspberry-pi/native-raspberry-pi-cameras/lens-shading-calibration/">tinted</a>.
         To get the one I use (matching my Arducam lo-distortion 45 deg lens), do
       </p>
       <p>
