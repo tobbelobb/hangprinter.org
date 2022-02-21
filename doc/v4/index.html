@@ -269,7 +269,33 @@
           connect the motor wires in exactly this order.
         </figcaption>
       </figure>
-
+      <h4 id="risk_of_step_dir_noise">Risk of Signal Noise On Step/Dir</h4>
+      <p>
+        Another Warning: The step/dir inputs of the ODrives are not opto-decoupled.
+        This means we will have some signal noise in the all-important step/dir signal wires.
+      </p>
+      <p>
+        The amount of signal noise depends on the area of the loop described below:
+      </p>
+      <figure>
+        <a href="./media/step_dir_ground_loop.JPG" target="_blank">
+          <img src="./media/step_dir_ground_loop_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+          A loop of conductive material is marked in red.
+          It follows the GND wire between the 1XD board and the ODrive board, crosses over the ODrive board into one of the step/dir wires,
+          enters the 1XD board, and crosses over the 1XD board to the 1XD's GND connection.
+        </figcaption>
+      </figure>
+      <p>
+        Because both the ODrive and the 1XD boards are connected to GND, there will exist ground loops like the one described above.
+        Try to make them as small as possible in terms of area.
+        This is best done by connecting the ODrive's GND and the 1XD's GND together, like shown in the image above.
+      </p>
+      <p>
+        The risk of step/dir signal noise is inherent in the ODrive v3 design.
+        I have never had problems with this in practice but I always connect the two GNDs together just in case.
+      </p>
       <p>
         For all other wiring see
         <ul>
