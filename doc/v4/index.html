@@ -297,6 +297,15 @@
         I have never had problems with this in practice but I always connect the two GNDs together just in case.
       </p>
       <p>
+        The step/dir wires themselves are connected to ODrives 7/8 and 1/2 GPIO pairs (see your ODrive config file) in on end.
+        In the other end, they connect to the 1XD board's D0_STEP(+) and D0_DIR(+) logic pins. (See <a href="https://duet3d.dozuki.com/Wiki/Duet_3_Expansion_1XD#Section_Wiring_Diagram">1XD wiring diagram</a>.)
+      </p>
+      <h4>1XD Termination Jumpers</h4>
+      <p>
+        Check 1XD's termination jumpers, that are shown in the 1XD wiring diagram. Only 1XD nr 40 (the A-motor's 1XD board, at the farthest physical end of the CAN bus) should have it's termination jumpers in place.
+        The three other 1XD boards should not have termination jumpers.
+      </p>
+      <p>
         For all other wiring see
         <ul>
           <li><a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3">Duet 3 docs</a>,</li>
@@ -440,31 +449,112 @@
         </figcaption>
       </figure>
     <h3>Firmwares and Configuration</h3>
+    <h4>The Duet3 Board</h4>
+    <p>
+      Note: Most users will not have to think about versions of ReprapFirmware, or installing ReprapFirmware directly.
+      All that is handled by the DuetPi operating system on the Raspberry Pi.
+      Here follows some details anyways, just for your information.
+    </p>
     <p>
       There is Hangprinter v4 support in official RepRapFirmware <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.3</a> and onwards.
     </p>
     <p>
       However, at the time of writing this (Feb 17, 2022), it's recommended to use the latest release candidate:
       <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.4.0rc1</a> because it brings some important improvements.
-      Use the most recent 3.4 release on the list if 3.4.0rc1 isn't the most recent one anymore.
-    </p>
-    <p>
-      Whenever a release candidate or beta release is used, the Raspberry Pi needs to be configured to use
-      the unstable software repository.
-      In case you already have the DuetPi operating system on your Raspberry, and want to change from the stable to the unstable repository,
-      use <a href="https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#unstable-package-feed">these commands</a>.
-      If your Raspberry Pi have the Raspberry Pi OS (previously Raspbian), then follow <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Raspbian_Setup_Guide"></a>
-      to get the DuetPi operating system, and see the <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Software_Installation">Software Installation Section</a>
-      on how you enable the unstable instead of the stable software repository.
     </p>
     <p>
       In addition, I (tobben) always publish my latest RepRapFirmware build here:
       <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/Duet3Firmware_MB6HC.bin">link</a>.
       My personal builds are only meant to be used during debugging or other exceptional circumstances.
     </p>
+    <h4>The Raspberry Pi Board</h4>
+    <p>
+      The SD card shipped with the Duet3 MB6HC boards already have DuetPi on them.
+    </p>
+    <h5>How Connect To Wifi</h5>
+    <p>
+      Insert the SD card into your laptop. Create a new file in the <code>boot</code> partition called <code>wpa_supplicant.conf</code>.
+      Fill the file with your network details, similar to this:
+    </p>
+    <p>
+      <code>
+          update_config=1<br />
+          ctrl_interface=/var/run/wpa_supplicant<br />
+<br />
+          network={<br />
+            ssid="YOUR_NETWORKS_SSID"<br />
+            psk="YOUR_NETWORKS_PASSPHRASE"<br />
+          }
+      </code>
+    </p>
+    <h5>How Enable SSH and Camera on the Raspberry</h5>
+    <p>
+      Insert your SD card into your Raspberry Pi.
+      Connect a display, a keyboard, and a mouse to your Raspberry Pi, and power it up.
+    </p>
+    <p>
+      Press F11 to get rid of the DuetWebControl interface.
+      Find the <code>Preferences</code> -&gt; <code>Raspberry Pi Configuration</code>
+      in the topleft system menu.
+      One of the tabs there lets you enable both SSH and Camera.
+    </p>
+    <p>
+      You can now shut down your Rapsberry Pi.
+      Disconnect the display, keyboard, and mouse.
+      Connect your Raspberry Pi to the Duet3 MB6HC board with the ribbon cable that is included in the Duet3 MB6HC package.
+    </p>
+    <h5>How Update Duet3 and Rpi Software</h5>
+    <p>
+      Power up your Raspberry Pi (probably with a separate USB-C power supply) and your Duet3 MB6HC board  (probably with a 24V power supply).
+    </p>
+    <p>
+      Ssh into your Raspberry Pi, like this
+    </p>
+    <p>
+      <code>$ ssh pi@duet3.local</code>
+    </p>
+    <p>
+      We're waiting for the ReprapFirmware 3.4 official release (not rc, not beta).
+      Check <a href="https://github.com/Duet3D/RepRapFirmware/tags">here</a> to see if it has arrived yet.
+    </p>
+    <p>
+      If 3.4 (not rc, not beta) hasn't arrived yet, it's recommended to be configure your Raspberry Pi to use
+      the <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Software_Installation">unstable software repository</a>.
+      <!--In case you already have the DuetPi operating system on your Raspberry, and want to change from the stable to the unstable repository,
+      use these commands</a>.
+       https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#unstable-package-feed
+      If your Raspberry Pi have the Raspberry Pi OS (previously Raspbian), then follow <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Raspbian_Setup_Guide"></a>
+      to get the DuetPi operating system, and see the <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Software_Installation">Software Installation Section</a>
+      on how you enable the unstable instead of the stable software repository.-->
+    </p>
+    <p>
+      Whether you enabled the unstable software repository or not, you can now upgrade the software on the Raspberry Pi and the Duet3 board simultaneously, like this
+    </p>
+    <p>
+      <code>$ sudo apt update &amp;&amp; sudo apt upgrade</code>
+    </p>
+    <p>
+      Congrats, your Raspberry Pi is good to go.
+      Type <code>exit</code> in your ssh window and hit enter to close the ssh connection.
+      If you're going to set up the computer vision system (hp-mark), there will be some more Raspberry Pi related things to set up later.
+    </p>
+    <p>
+      Use a web browser and type <code>duet3.local</code> in the address bar.
+      The Duet Web Interface should show up.
+    </p>
+    <p>
+      Your machine will not work as a Hangprinter yet.
+      It needs to be configured first, with a proper <code>confing.g</code> file in your System Directory.
+      You can have a look at my <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">example config.g for RepRapFirmware</a> for reference.
+    </p>
+    <p>
+      The config.g file includes calibration values (M669) that are tricky to get right.
+      We'll get back to the M669 calibration values later in this manual.
+    </p>
+    <h4>The ODrive (v3) Boards</h4>
     <p>
       Stock ODrivefirmware works for us out of the box.
-      However, I'm stuck at the 0.5.1 version of ODrivefirmware, because the anti-cogging feature is broken in later releases.
+      However, I'm stuck at the 0.5.1 version of ODrivefirmware, because the (optional) anti-cogging feature is broken in later releases.
       Anti-cogging is used to make torque mode more smooth.
     </p>
     <p>
@@ -497,14 +587,17 @@
     </p>
     <p>
       You must measure the correct value with a multimeter over your break resistor.
-      Open up <code>odrivetool</code> and set <code>odrv0.config.brake_resistance = your_measured_value</code>.
+      Open up <code>odrivetool</code> and set
+    </p>
+    <p>
+      <code>odrv0.config.brake_resistance = your_measured_value</code>
     </p>
     <p>
       Also, you need to do a full calibration sequence of both axes. Copy these lines into odrivetool one-by-one
       and hit Enter in between each.
     </p>
     <p>
-      <code>
+      <code style="font-size:13px">
         odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
         odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
         odrv0.axis0.requested_state = AXIS_STATE_CLOSED_LOOP_CONTROL<br />
@@ -527,15 +620,11 @@
       The anticogging feature makes your torque mode feel smoother if it's enabled and working.
       It's not critical for the functioning of the Hangprinter.
     </p>
-    <h4>Example Config Files</h4>
     <p>
       Please refer to the bottom part of my <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/firmware/ODrive">configure_odrive.py ODrivefirmware configuration file</a> for details on how I do anticogging calibration.
     </p>
-    <p>
-      PS, there's a similar <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">example config.g for RepRapFirmware</a> also in the repo for your config pleasure.
-    </p>
 
-    <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</h3>
+    <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup (M669)</h3>
       <p>
         This has changed a lot between HP3 and HP4.
         A computer vision system called hp-mark has been developed to assist, and largely automate, the calibration process.
