@@ -67,6 +67,7 @@
         <li><a href="#Sourcing">Sourcing</a></li>
         <li><a href="#Hardware_assembly">Hardware Assembly</a></li>
         <li><a href="#Wiring">Wiring</a></li>
+        <li><a href="#Firmwares_and_Software_Configuration">Firmwares and Software Configuration</a></li>
         <li><a href="#Mounting">Mounting</a></li>
         <li><a href="#Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</a></li>
         <li><a href="#Slicing_and_Usage">Slicing and Usage</a></li>
@@ -373,82 +374,7 @@
           </figcaption>
         </figure>
       </p>
-
-
-    <h3 id="Mounting">Mounting</h3>
-      <p>
-        This part hasn't changed between HP3 and HP4, so I'm linking to old HP3 documentation for now:
-      </p>
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=iOwjbu2UMlQ&feature=youtu.be&t=3h54m43s">HP3 Build With tobben & Thomas Sanladerer (link directly into mounting)</a></li>
-      </ul>
-      <p>
-        Make sure anchors are rigid. Also, make sure your lines form nice <a href="https://en.wikipedia.org/wiki/Parallelogram">Parallelograms</a> (two pairs of parallel sides).
-      </p>
-    <h4 id="line_termination">Line Termination</h4>
-      <p>
-        I use the <a href="https://en.wikipedia.org/wiki/Figure-eight_knot">eight shaped stop knot</a> to attach the line to the spool, like this:
-      </p>
-      <!--figure>
-        <a href="./media/eight_shaped_stop_knot.JPG" target="_blank">
-          <img src="./media/eight_shaped_stop_knot_small.JPG" alt="" width="500" height="281">
-        </a>
-        <figcaption>
-        </figcaption>
-      </figure-->
-      <figure>
-        <a href="./media/eight_shaped_stop_knot2.JPG" target="_blank">
-          <img src="./media/eight_shaped_stop_knot2_small.JPG" alt="" width="500" height="281">
-        </a>
-        <figcaption>
-        </figcaption>
-      </figure>
-      <p>
-        The ABC-lines are all terminated in the clamp at the top of the snaily snail:
-      </p>
-      <figure>
-        <a href="./media/line_attachment_snaily_snail.JPG" target="_blank">
-          <img src="./media/line_attachment_snaily_snail_small.JPG" alt="" width="500" height="281">
-        </a>
-        <figcaption>
-        </figcaption>
-      </figure>
-      <p>
-        The clamp is a safety mechanism.
-        In case of a sudden high force in the line (if someone trips in a line), the clamp is supposed to release the line.
-        It's therefore important that the line protruding on the back side of the clamp is short.
-        It's also important that all braiding is combed out near the end of the line so that the line can be clamped down flat,
-        and no knot or tangle can form on the back side of the clamp, and prevent the safety mechanism from releasing the line.
-      </p>
-      <p>
-        The D-lines are terminated in the ceiling unit.
-        I terminate them with a wood screw, like this:
-      </p>
-      <figure>
-        <a href="./media/D_line_termination.JPG" target="_blank">
-          <img src="./media/D_line_termination_small.JPG" alt="" width="500" height="281">
-        </a>
-        <figcaption>
-        </figcaption>
-      </figure>
-
-    <h4>Optional Hoisting System</h4>
-      <p>
-        Screwing the ceiling unit onto the ceiling can be a bit challenging.
-        I therefore added a hoisting system to my own HP4.
-        See it in <a href="https://twitter.com/tobbelobb/status/1428025129406238723">this tweet</a> and <a href="https://youtu.be/coI8I0QsQFI">this video</a>.
-        The little CAD models I used are shared <a href="https://gitlab.com/tobben/hoistit/">here</a>.
-      </p>
-      <figure>
-        <a href="./media/hoistit.JPG" target="_blank">
-          <img src="./media/hoistit_small.JPG" alt="" width="500" height="281">
-        </a>
-        <figcaption>
-          The optional hoisting system. Note that the top bearings here are U-groove M4 core bearings (sry, just what I had lying around).
-          The bearings on the ceiling plate is 623 vgroove bearings, like are used in other places in the Hangprinter v4 design.
-        </figcaption>
-      </figure>
-    <h3>Firmwares and Configuration</h3>
+    <h3 id="Firmwares_and_Software_Configuration">Firmwares and Software Configuration</h3>
     <h4>The Duet3 Board</h4>
     <p>
       Note: Most users will not have to think about versions of ReprapFirmware, or installing ReprapFirmware directly.
@@ -623,7 +549,79 @@
     <p>
       Please refer to the bottom part of my <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/firmware/ODrive">configure_odrive.py ODrivefirmware configuration file</a> for details on how I do anticogging calibration.
     </p>
+    <h3 id="Mounting">Mounting</h3>
+      <p>
+        This part hasn't changed between HP3 and HP4, so I'm linking to old HP3 documentation for now:
+      </p>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=iOwjbu2UMlQ&feature=youtu.be&t=3h54m43s">HP3 Build With tobben & Thomas Sanladerer (link directly into mounting)</a></li>
+      </ul>
+      <p>
+        Make sure anchors are rigid. Also, make sure your lines form nice <a href="https://en.wikipedia.org/wiki/Parallelogram">Parallelograms</a> (two pairs of parallel sides).
+      </p>
+    <h4 id="line_termination">Line Termination</h4>
+      <p>
+        I use the <a href="https://en.wikipedia.org/wiki/Figure-eight_knot">eight shaped stop knot</a> to attach the line to the spool, like this:
+      </p>
+      <!--figure>
+        <a href="./media/eight_shaped_stop_knot.JPG" target="_blank">
+          <img src="./media/eight_shaped_stop_knot_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure-->
+      <figure>
+        <a href="./media/eight_shaped_stop_knot2.JPG" target="_blank">
+          <img src="./media/eight_shaped_stop_knot2_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+        The ABC-lines are all terminated in the clamp at the top of the snaily snail:
+      </p>
+      <figure>
+        <a href="./media/line_attachment_snaily_snail.JPG" target="_blank">
+          <img src="./media/line_attachment_snaily_snail_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <p>
+        The clamp is a safety mechanism.
+        In case of a sudden high force in the line (if someone trips in a line), the clamp is supposed to release the line.
+        It's therefore important that the line protruding on the back side of the clamp is short.
+        It's also important that all braiding is combed out near the end of the line so that the line can be clamped down flat,
+        and no knot or tangle can form on the back side of the clamp, and prevent the safety mechanism from releasing the line.
+      </p>
+      <p>
+        The D-lines are terminated in the ceiling unit.
+        I terminate them with a wood screw, like this:
+      </p>
+      <figure>
+        <a href="./media/D_line_termination.JPG" target="_blank">
+          <img src="./media/D_line_termination_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
 
+    <h4>Optional Hoisting System</h4>
+      <p>
+        Screwing the ceiling unit onto the ceiling can be a bit challenging.
+        I therefore added a hoisting system to my own HP4.
+        See it in <a href="https://twitter.com/tobbelobb/status/1428025129406238723">this tweet</a> and <a href="https://youtu.be/coI8I0QsQFI">this video</a>.
+        The little CAD models I used are shared <a href="https://gitlab.com/tobben/hoistit/">here</a>.
+      </p>
+      <figure>
+        <a href="./media/hoistit.JPG" target="_blank">
+          <img src="./media/hoistit_small.JPG" alt="" width="500" height="281">
+        </a>
+        <figcaption>
+          The optional hoisting system. Note that the top bearings here are U-groove M4 core bearings (sry, just what I had lying around).
+          The bearings on the ceiling plate is 623 vgroove bearings, like are used in other places in the Hangprinter v4 design.
+        </figcaption>
+      </figure>
     <h3 id="Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup (M669)</h3>
       <p>
         This has changed a lot between HP3 and HP4.
