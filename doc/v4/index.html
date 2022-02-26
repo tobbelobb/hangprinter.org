@@ -68,6 +68,7 @@
         <li><a href="#Hardware_assembly">Hardware Assembly</a></li>
         <li><a href="#Wiring">Wiring</a></li>
         <li><a href="#Firmwares_and_Software_Configuration">Firmwares and Software Configuration</a></li>
+        <li><a href="#Planning_Line_Lengths">Planning Line Lengths</a></li>
         <li><a href="#Mounting">Mounting</a></li>
         <li><a href="#Calibrating_anchors_and_spool_buildup">Calibrating Anchors and Spool Buildup</a></li>
         <li><a href="#Slicing_and_Usage">Slicing and Usage</a></li>
@@ -549,6 +550,115 @@
     <p>
       Please refer to the bottom part of my <a href="https://gitlab.com/tobben/hangprinter/-/tree/version_4/firmware/ODrive">configure_odrive.py ODrivefirmware configuration file</a> for details on how I do anticogging calibration.
     </p>
+    <h3 id="Planning_Line_Lengths">Planning Line Lengths</h3>
+      <p>
+        There are nine different lines in a Hangprinter v4.
+        Please refer to the <a href="#Line_Routing">line routing video below</a> if you're unsure about
+        how these lines are mounted.
+      </p>
+      <p>
+        Before winding lines onto each spool, we need to cut them to length.
+        Finding the right lengths is a bit complicated.
+      </p>
+    <h4>Why Not Just Fill The Spools Up With Lots Of Line?</h4>
+      <p>
+        The lines build up in unpredictable layers on the spools.
+        So to maximize precision and accuracy of your machine, you want as little lines on the spools as possible.
+      </p>
+    <h4>Why Not Use Minimal Line Lengths?</h4>
+      <p>
+        If too little line is mounted, then the effector's reachable volume is limited.
+        If the effector moves too far from the origin, so that there's no line left on the spool,
+        then we get a spool exhaustion event, which would be very bad news.
+        Lines would get wound onto the spool when they were supposed to be wound off,
+        the machine would loose positional control, all motors would work against each other, and parts would quickly start to break.
+      </p>
+      <p>
+        There's no software safety mechanisms that prevent spool exhaustion events from getting hairy.
+      </p>
+    <h4>Backing Line, A Possible Safety For Very Large Hangprinters</h4>
+      <p>
+        Some very large Hangprinters can not zero out the risk of spool exhaustion by simply adding more thick line to the spool.
+        That's because their anchors are so far apart, the spools would overflow by all the thick line required.
+      </p>
+      <p>
+        A possible way to get the best of both worlds is to use "backing line", like fly fishers use on their reels.
+      </p>
+      <p>
+        The backing line is a thinner line, wound onto the spools before the "main line" (in our case 1.1 mm RobeLine) is wound on.
+        The backing is connected to the main line with a knot that is small enough to travel easily through line guiding mechanisms such as
+        rod rings, or in Hangprinter's case ceramic eyelets and line deflectors.
+      </p>
+      <p>
+        Fly fishers use the Albright knot to connect main line and backing line.
+        It should match our Hangprinter needs quite good as well:
+      </p>
+      <figure>
+        <div class='embed-container'>
+          <iframe src='https://www.youtube.com/embed/Po9K8qCrQ7I'
+            frameborder='0'
+            allowfullscreen='true'>
+          </iframe>
+        </div>
+      </figure>
+    <h4>Required Length For D-lines</h4>
+      <p>
+        There are three D-lines.
+        They have the same length.
+      </p>
+      <p>
+        To guarantee no spool exhaustion event occurs, you need to know which of the ABC-anchors that has
+        the largest distance to the D-anchor. Call this distance <i>D_max</i>.
+      </p>
+      <p>
+        The D-lines are quadrupled, so you need 4 x <i>D_max</i>.
+      </p>
+      <p>
+        Also, add 40 cm for line internal to the ceiling unit, wrappings around bearings, and for termination knots.
+        So we get:
+      </p>
+      <p>
+        D lines length = 4 x <i>D_max</i> + 40 cm.
+      </p>
+      <p>
+        If you plan on using backing, try tying an Albright knot first, and make sure your knot gets easily through
+        the eyelets of your line verticalizer.
+        If it does, I recommend you make the innermost <i>D_max</i> length or less of your line into a backing line.
+      </p>
+    <h4>Required Length For ABC-lines</h4>
+      <p>
+        For each of the three ABC-anchors there are two lines of equal length.
+        For the rest of this section, I'll use the A-lines as a driving example.
+        The procedure is analogous for the B-lines and C-lines.
+      </p>
+      <p>
+        To guarantee no spool exhaustion event occurs, you need to know the largest distance between
+        your A-anchor and any of the other anchors.
+      </p>
+      <p>
+        The farthest other anchor is often the D-anchor.
+      </p>
+      <p>
+        Anyways, call the farthest distance <i>A_max</i>.
+        The A-lines are doubled, so you need 2 x <i>A_max</i>.
+      </p>
+      <p>
+        There's also one part of the A-lines that's always suspended between the A-anchor and the D-anchor.
+        Let's call this length <i>AD</i>.
+        This part of the line is not doubled.
+      </p>
+      <p>
+        Also, add 40 cm for line internal to the ceiling unit, wrappings around bearings, and for termination knots.
+        So we get:
+      </p>
+      <p>
+        A lines length = 2 x <i>A_max</i> + <i>AD</i> + 40 cm.
+      </p>
+      <p>
+        If you plan on using backing, try tying an Albright knot first, and make sure your knot gets easily through
+        your tilted line deflector.
+        If it does, I recommend you make the innermost <i>AD</i> length or less of your line into a backing line.
+      </p>
     <h3 id="Mounting">Mounting</h3>
       <p>
         This part hasn't changed between HP3 and HP4, so I'm linking to old HP3 documentation for now:
@@ -559,6 +669,55 @@
       <p>
         Make sure anchors are rigid. Also, make sure your lines form nice <a href="https://en.wikipedia.org/wiki/Parallelogram">Parallelograms</a> (two pairs of parallel sides).
       </p>
+    <h4 id="Line_Routing">Line Routing</h4>
+    <figure>
+      <div class='embed-container'>
+        <iframe src='https://www.youtube.com/embed/QUyifkpk6KY'
+          frameborder='0'
+          allowfullscreen='true'>
+        </iframe>
+      </div>
+    </figure>
+    <p>
+      The video above is slightly out of date.
+      Instead of each ABC line tying together like shown in the line routing video, they are terminated at the snail.
+    </p>
+    <p>
+      Also, the routing of the D-lines are not detailed in the video.
+      Route them like this:
+    </p>
+    <p>
+      <figure>
+        <a href="./media/routing_1.png" target="_blank">
+          <img src="./media/routing_1_small.png" alt="" width="500" height="381">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="./media/routing_1.png" target="_blank">
+          <img src="./media/routing_1_small.png" alt="" width="500" height="497">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+      <figure>
+        <a href="./media/routing_1.png" target="_blank">
+          <img src="./media/routing_1_small.png" alt="" width="500" height="466">
+        </a>
+        <figcaption>
+        </figcaption>
+      </figure>
+    </p>
+    <p>
+      The three renderings above all show the corner closest to the B-motor on the ceiling unit.
+      Mirror the setup at the opposite corner (closest to C-motor).
+      The corner between the ODrives is a little bit easier because lines can be kept closer to vertical there but it also follows the same pattern.
+    </p>
+    <p>
+      The pair of lines farthest from the center are close to vertical.
+      The pair of lines closer to the middle are slightly tilted, to enter the second bearing in the line verticalizer.
+    </p>
     <h4 id="line_termination">Line Termination</h4>
       <p>
         I use the <a href="https://en.wikipedia.org/wiki/Figure-eight_knot">eight shaped stop knot</a> to attach the line to the spool, like this:
@@ -595,6 +754,19 @@
         and no knot or tangle can form on the back side of the clamp, and prevent the safety mechanism from releasing the line.
       </p>
       <p>
+        <figure>
+          <video width="500" height="889" controls="controls">
+            <source src="media/snail_line_release.mp4" type="video/mp4"/>
+             <!--source src="movie.ogg" type="video/ogg"-->
+             Your browser does not support the video tag.
+          </video>
+          <figcaption>
+            Video showing the line release mechanism in action.
+          </figcaption>
+        </figure>
+      </p>
+
+      <p>
         The D-lines are terminated in the ceiling unit.
         I terminate them with a wood screw, like this:
       </p>
@@ -605,6 +777,14 @@
         <figcaption>
         </figcaption>
       </figure>
+      <p>
+        However, if the effector is very light on my particular machine, I sometimes use triple instead of quadruple D-lines.
+        This lets me terminate the D-lines on the effector instead.
+      </p>
+      <p>
+        If you plan on doing the same, make sure to change your <code>config.g</code> accordingly.
+            The line saying <code>M666 U2:2:2:4</code> needs to be changed to <code>M666 U2:2:2:3</code>.
+      </p>
 
     <h4>Optional Hoisting System</h4>
       <p>
