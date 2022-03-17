@@ -487,37 +487,39 @@
     </p>
     <h4>The ODrive (v3) Boards</h4>
     <p>
-      Stock ODrivefirmware works for us out of the box.
-      However, I'm stuck at the 0.5.1 version of ODrivefirmware.
+      Use the <a href="https://odriverobotics.com/shop/usb-isolator">USB isolator</a> between your laptop and your ODrive.
     </p>
     <p>
-      Download the 0.5.1 hex file for your ODrive board <a href="https://github.com/odriverobotics/ODrive/releases/tag/fw-v0.5.1">here</a>.
+      These instructions are for ODrivefirmware v0.5.5 (lastest release at time of writing, Sep 21, 2022).
+      New boards bought after Sep 21, 2022 should come with v0.5.5 pre-flashed.
     </p>
     <p>
-      How to flash the hex-file to the ODrive board is copied from the
-      <a href="https://docs.odriverobotics.com/v/latest/odrivetool.html#flashing-custom-firmware">ODrive docs</a>.
-      If the following doesn't work, take a look at the official ODrive docs instead.
+      Install <code>odrivetool</code> v0.6.3: If you're on Ubuntu, something like this should work:
     </p>
     <p>
-      Flash the hex file to your ODrive board with the following command in the terminal:
+      <code>$ sudo apt install python3 python3-pip<br />$ sudo pip3 install odrive==0.6.3</code>
     </p>
     <p>
-      <code>$ odrivetool dfu &lt;path/to/your/&gt;ODriveFirmware_vX.X-XXV.hex</code>
+      Otherwise refer to ODrive docs on how to install <code>odrivetool</code> v0.6.3 <a href="https://docs.odriverobotics.com/v/0.5.5/getting-started.html#install-odrivetool">here</a>.
     </p>
     <p>
-      If it gets stuck at "<code>Putting device XXXXXXXXXXXX into DFU mode...</code>",
-      it can help to stop it with Ctrl+C and simply try again.
+      If your board has an old (&lt;0.5.5) firmware version, upgrade it with
     </p>
     <p>
-      If it gets stuck every time,
-      pull the power plug, flip the switch from RUN to DFU, and try again.
-      Just remember to flip it back to RUN afterwards.
+      <code>$ odrivetool dfu</code>
     </p>
     <p>
-      Next step is to do a config restore.
+      If it gets stuck at "Putting device XXXXXXXXXXXX into DFU mode...", it can help to stop it with Ctrl+C and simply try again.
     </p>
     <p>
-      <code>$ odrivetool restore-config ~/repos/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
+      If it gets stuck every time, pull the power plug, flip the switch on the ODrive board from RUN to DFU, and try again. Just remember to flip it back to RUN afterwards.
+    </p>
+    <p>
+      To configure your AB board (connected to the A- and B-motors),
+      do a config restore of the AB config found in the Hangprinter repo:
+    </p>
+    <p>
+      <code>$ odrivetool restore-config &lt;/path/to&gt;/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
     </p>
     <p>
       This will set most configuration values about right.
@@ -531,18 +533,27 @@
       <code>odrv0.config.brake_resistance = your_measured_value</code>
     </p>
     <p>
-      Also, you need to do a full calibration sequence of both axes. Copy these lines into odrivetool one-by-one
+      Also, you need to do a full calibration sequence of both axes. Copy these lines into <code>odrivetool</code> one-by-one
       and hit Enter in between each.
     </p>
     <p>
       <code style="font-size:13px">
+        odrv0.axis0.requested_state = AXIS_STATE_IDLE<br />
+        odrv0.axis1.requested_state = AXIS_STATE_IDLE<br />
+        odrv0.save_configuration()<br />
         odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
         odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
+        odrv0.axis0.motor.config.pre_calibrated = True<br />
+        odrv0.axis1.motor.config.pre_calibrated = True<br />
         odrv0.axis0.encoder.config.pre_calibrated = True<br />
         odrv0.axis1.encoder.config.pre_calibrated = True<br />
+        odrv0.axis0.requested_state = AXIS_STATE_IDLE<br />
+        odrv0.axis1.requested_state = AXIS_STATE_IDLE<br />
         odrv0.save_configuration()<br />
-        odrv0.reboot()<br />
       </code>
+    </p>
+    <p>
+      Repeat the process for the CD board (the ODrive connected to the C- and D-motors).
     </p>
     <p>
       If everything went well and your motors woke up with a silent rotation before entering closed loop position mode,
