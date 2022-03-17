@@ -488,28 +488,10 @@
     <h4>The ODrive (v3) Boards</h4>
     <p>
       Stock ODrivefirmware works for us out of the box.
-      However, I'm stuck at the 0.5.1 version of ODrivefirmware.
+      I'm using 0.5.4 which is currently the newest release.
     </p>
     <p>
-      Download the 0.5.1 hex file for your ODrive board <a href="https://github.com/odriverobotics/ODrive/releases/tag/fw-v0.5.1">here</a>.
-    </p>
-    <p>
-      How to flash the hex-file to the ODrive board is copied from the
-      <a href="https://docs.odriverobotics.com/v/latest/odrivetool.html#flashing-custom-firmware">ODrive docs</a>.
-      If the following doesn't work, take a look at the official ODrive docs instead.
-    </p>
-    <p>
-      Flash the hex file to your ODrive board with the following command in the terminal:
-    </p>
-    <p>
-      <code>$ odrivetool dfu &lt;path/to/your/&gt;ODriveFirmware_vX.X-XXV.hex</code>
-    </p>
-    <p>
-      If it gets stuck at "<code>Putting device XXXXXXXXXXXX into DFU mode...</code>",
-      pull the power plug, flip the switch from RUN to DFU, and try again.
-    </p>
-    <p>
-      If successful, power down, flip back to RUN, and do a config restore
+      To copy my setup as fast as possible, do a config restore
     </p>
     <p>
       <code>$ odrivetool restore-config ~/repos/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
@@ -536,7 +518,7 @@
         odrv0.axis0.encoder.config.pre_calibrated = True<br />
         odrv0.axis1.encoder.config.pre_calibrated = True<br />
         odrv0.save_configuration()<br />
-        odrv0.reboot()<br />
+        odrv0.reboot() # only needed if you use an older firmware<br />
       </code>
     </p>
     <p>
