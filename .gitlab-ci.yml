@@ -1,5 +1,10 @@
-# This file is a template, and might need editing before it works on your project.
-# Full project: https://gitlab.com/pages/plain-html
+# Only create pipeline if Gitlab user tobben triggered it
+workflow:
+  rules:
+    - if: $GITLAB_USER_LOGIN == "tobben"
+
+# Below here is a template
+# https://gitlab.com/pages/plain-html
 pages:
   stage: deploy
   script:
