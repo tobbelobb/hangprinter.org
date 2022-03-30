@@ -221,10 +221,13 @@
       The simple spool design keeps price and part count low, and reliability high.
       However, the spool buildup is currently not perfectly measured and compensated.
     </li>
-    <li><b>Unknown Line Tension</b>. Hangprinter currently doesn't measure tension in the lines. This data is required to make a perfect flex compensation model, and to make more reliable motor config tuning and fault detection.</li>
+    <li><b>Low Accuracy Line Tension Measurements</b>. Hangprinter currently measures line tension by asking the ODrives about size of electrical currents.
+      This does not map perfectly to line tension, and gives us an error of +-10N.
+      Better data is required to make a perfect flex compensation model, and to make more reliable motor config tuning and fault detection.</li>
     <li><b>Small Dev Team</b>. The lion's share of development is done by a single person. This puts a rather low max cap on dev velocity. </li>
-    <li><b>Limited Documentation</b>. Hangprinter v4 has been under heavy development for over a year (as of July 2021), and documentation is consequently behind.
-    Use the Project's social channels actively, and ask your questions explicitly, as the doc-situation gradually improves. </li>
+    <li><b>Limited Documentation</b>. Hangprinter v4 has been under heavy development for over a year (as of March 2022), and documentation is behind.
+    Use the Project's social channels actively, and ask your questions explicitly, as the docs continues to improve.
+    Also <a href="../gitlab-contribution-guide">please help writing docs</a>.</li>
   </ul>
   Needless to say, I'm constantly working on, and prioritizing between, the various weak spots of the Project.
 </p>
