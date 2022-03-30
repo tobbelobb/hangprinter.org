@@ -57,10 +57,14 @@
     </div>
     <div id="MainContent">
       <a href="https://gitlab.com/tobben/hangprinter-org/edit/master/doc/v4/index.html">📝Edit on Gitlab</a>
-    <h3>Status Of This Document</h3>
+    <h3>Status and Prerequisites Of This Document</h3>
+      <p>
+        Before reading this documentation, get a rough overview of <a href="https://torbjornludvigsen.com/blog/2022/#hangprinter_project_78">HP4's features</a>.
+      </p>
       <p>
         This documentation might still have gaping holes here and there.
-        There's a <a href="../../gitlab-contribution-guide">contribution guide</a> to help you edit this documentation page if you're new to Gitlab.
+        Please help improving it by following the
+        <a href="../../gitlab-contribution-guide">contribution guide</a>.
       </p>
       <p>
         If you're building a v4, say hi and connect with other builders in the <a href="https://discord.gg/KAV7x3hgRX">discord channel</a>.
@@ -104,7 +108,7 @@
         </figcaption>
       </figure>
       <p>
-        To help positioning parts on the ceiling unit,
+        If you want help with positioning parts on the ceiling unit in the most compact and standard way possible,
         2d print out the <a href="https://gitlab.com/tobben/hangprinter/-/raw/version_4/layout_a4.pdf?inline=false">layout_a4.pdf</a>
         and use it as a template.
       </p>
@@ -131,7 +135,7 @@
         Hot tips for circuit board placement:
         <ul>
           <li>Use the spacers shipped with the ODrives also for the Duet3.</li>
-          <li>The Raspberry Pi uses spacers that are more than twice as long, which may be 3d printed (see <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/stl/pi_mount.stl">pi_mount</a> stl in the repo).</li>
+          <li>The Raspberry Pi uses 3d printed spacers that are more than twice as long: <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/stl/pi_mount.stl">pi_mount</a>.</li>
           <li>Make sure that the Duet3's USB port and SD slot are not covered by a 1XD card.</li>
           <li>Make sure the Pi's HDMI1 port is not covered by the Duet3.</li>
         </ul>
@@ -168,6 +172,9 @@
           <figcaption>
           </figcaption>
         </figure>
+        <p>
+          For the newest version of motor brackets (as of Mar 30, 2022), this step has become a tad less fiddly, with more space added between motor and encoder.
+        </p>
 
       <h4 id="sand_edge">Areas That Must Be Smooth</h4>
       <p>
@@ -261,8 +268,8 @@
     <h3 id="Wiring">Wiring</h3>
       <p>
         Warning: The motor wires must be connected in the exact order shown below.
-        Otherwise torque mode will run backwards and create chaos.
-        Also, auto-calibration won't work because signs will be reversed.
+        Otherwise torque mode would run backwards and create chaos.
+        Also, auto-calibration wouldn't work because signs would be reversed.
       </p>
       <figure>
         <a href="./media/motor_wire_order.png" target="_blank">
@@ -270,13 +277,13 @@
         </a>
         <figcaption>
           Note the order of motor wires.
-          Because of a limitation in RepRapFirmware for the time being (Jan 2022), we must
+          Because of a limitation in RepRapFirmware for the time being (March 2022), we must
           connect the motor wires in exactly this order.
         </figcaption>
       </figure>
       <h4 id="risk_of_step_dir_noise">Risk of Signal Noise On Step/Dir</h4>
       <p>
-        Another Warning: The step/dir inputs of the ODrives are not opto-decoupled.
+        Another Warning: The step/dir inputs of the ODrive v3s are not opto-decoupled.
         This means we will have some signal noise in the all-important step/dir signal wires.
       </p>
       <p>
@@ -389,13 +396,13 @@
       There is Hangprinter v4 support in official RepRapFirmware <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.3</a> and onwards.
     </p>
     <p>
-      However, at the time of writing this (Feb 17, 2022), it's recommended to use the latest release candidate:
-      <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.4.0rc1</a> because it brings some important improvements.
+      At the time of writing this (March 30, 2022), it's recommended to use the latest official release:
+      <a href="https://github.com/Duet3D/RepRapFirmware/releases">Release 3.4</a>.
     </p>
     <p>
-      In addition, I (tobben) always publish my latest RepRapFirmware build here:
+      In addition to ReprapFirmware's official releases, beta releases and so on, I (tobben) always publish my latest RepRapFirmware build here:
       <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/Duet3Firmware_MB6HC.bin">link</a>.
-      My personal builds are only meant to be used during debugging or other exceptional circumstances.
+      My personal builds are only meant to be used during debugging, beta testing of new features, or in other exceptional circumstances.
     </p>
     <h4>The Raspberry Pi Board</h4>
     <p>
@@ -444,12 +451,9 @@
       <code>$ ssh pi@duet3.local</code>
     </p>
     <p>
-      We're waiting for the ReprapFirmware 3.4 official release (not rc, not beta).
-      Check <a href="https://github.com/Duet3D/RepRapFirmware/tags">here</a> to see if it has arrived yet.
-    </p>
-    <p>
-      If 3.4 (not rc, not beta) hasn't arrived yet, it's recommended to be configure your Raspberry Pi to use
+      If you use a non-official release of ReprapFirmware (a beta, a release candidate, or a tobben-build), it's recommended to enable
       the <a href="https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3#Section_Software_Installation">unstable software repository</a>.
+      Most users should use not use the unstable software repository.
       <!--In case you already have the DuetPi operating system on your Raspberry, and want to change from the stable to the unstable repository,
       use these commands</a>.
        https://github.com/Duet3D/DuetSoftwareFramework/wiki/SBC-Setup-Guide#unstable-package-feed
@@ -469,7 +473,7 @@
       If you're going to set up the computer vision system (hp-mark), there will be some more Raspberry Pi related things to set up later.
     </p>
     <p>
-      Use a web browser and type <code>duet3.local</code> in the address bar.
+      Use a web browser and type <code>http://duet3.local/</code> in the address bar.
       The Duet Web Interface should show up.
     </p>
     <p>
@@ -484,8 +488,7 @@
     <h4>The ODrive (v3) Boards</h4>
     <p>
       Stock ODrivefirmware works for us out of the box.
-      However, I'm stuck at the 0.5.1 version of ODrivefirmware, because the (optional) anti-cogging feature is broken in later releases.
-      Anti-cogging is used to make torque mode more smooth.
+      However, I'm stuck at the 0.5.1 version of ODrivefirmware.
     </p>
     <p>
       Download the 0.5.1 hex file for your ODrive board <a href="https://github.com/odriverobotics/ODrive/releases/tag/fw-v0.5.1">here</a>.
@@ -658,7 +661,12 @@
       </p>
     <h3 id="Mounting">Mounting</h3>
       <p>
-        This part hasn't changed between HP3 and HP4, so I'm linking to old HP3 documentation for now:
+        This part hasn't changed between HP3 and HP4, except the optional hoisting system, which is described <a href="#hoisting">later in this document</a>.
+        A beefed up version of the hoisting system could let you avoid having to use a ladder, if you want to take the ceiling unit down again later.
+      </p>
+      <p>
+        All other HP4 and HP3 principles are the same, so
+        I'm linking to old HP3 documentation for now:
       </p>
       <ul>
         <li><a href="https://www.youtube.com/watch?v=iOwjbu2UMlQ&feature=youtu.be&t=3h54m43s">HP3 Build With tobben & Thomas Sanladerer (link directly into mounting)</a></li>
@@ -781,9 +789,9 @@
       <p>
         If you plan on doing the same, make sure to change your <code>config.g</code> accordingly.
             The line saying <code>M666 U2:2:2:4</code> needs to be changed to <code>M666 U2:2:2:3</code>.
+        Also, you'll have to make a similar 4-&gt;3 change inside <code>simulation.py</code> when you do your auto-calibration later.
       </p>
-
-    <h4>Optional Hoisting System</h4>
+    <h4 id="hoisting">Optional Hoisting System</h4>
       <p>
         Screwing the ceiling unit onto the ceiling can be a bit challenging.
         I therefore added a hoisting system to my own HP4.
@@ -817,7 +825,7 @@
     <h4>Replicating What's Going On In That Video</h4>
       <p>
         Ok, this will be a bit messy.
-        hp-mark is still very much in beta, and requires the user to be comfortable doing a few things via the Unix terminal.
+        hp-mark is still in beta, and requires the user to be comfortable doing a few things via the Unix terminal.
         Our main goal is to be able to run the script called <a href="https://gitlab.com/tobben/hp-mark/-/blob/master/use/get_auto_calibration_data_automatically.sh">get_auto_calibration_data_automatically.sh</a>.
       </p>
       <p>
@@ -826,7 +834,7 @@
         <ul>
           <li>A camera with LED lights around it,</li>
           <li>A Raspberry Pi who controls the camera and the LEDs,</li>
-          <li>Six retro-reflective markers,</li>
+          <li>Twelve retro-reflective markers,</li>
           <li>A computer program called hpm</li>
           <li>A main computer who gets images from the Raspberry Pi, and uses hpm to analyze the images.</li>
         </ul>
@@ -961,25 +969,44 @@ Will execute:<br />
 [5.22761, -28.5536, 6.5542];<br />
         </code>
       </p>
+      <p>
+        At the time of writing (March 30, 2022), there are two under-documented but highly useful features in hp-mark.
+      </p>
+      <p>
+        One is the <code>--bed-reference</code> feature.
+        It let's you had a set of six markers on the print bed, analogous to the six you already have on the effector.
+        Measure their positions, and include them in <code>my-marker-params.xml</code>, just like you did with the effector markers.
+        They give you much more stable measurements in case your camera has moved slightly since your last <code>--camera-calibration</code>.
+      </p>
+      <p>
+        The other useful feature is called <code>--try-hard</code>.
+        It makes measurements a bit slower, but more stable.
+      </p>
+      <p>
+        Do <code>../hpm/hpm/hpm --help</code> for definitive up-to-date info about your executable's features.
+      </p>
       <h4>Double Check Torque Mode</h4>
       <p>
-        The get_auto_calibration_data_automatically.sh script will not only use your camera.
-        It will also put your motors in torque mode.
-        It assumes the
-        <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Torque_mode">Torque_mode macro</a>
-        has been installed into your macro folder on the Duet3.
+        The get_auto_calibration_data_automatically.sh script will use your camera to take measurements, and wait for you to move your
+        effector around between measurements.
+        For moving your effector my hand, it's very useful to have the motors in torque mode.
+        You'll probably want to have the
+        <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Torque">Torque_mode macros</a>
+        installed into your macro folder on the Duet3.
       </p>
       <p>
-        Play with the torque mode script in the web interface before running the full calibration script.
+        Play with the torque mode scripts in the web interface before running the full calibration script.
         For example, in the web interface, go to the console and to
         set motor A in torque mode, with 0.02 Nm of torque.
-        Feel the spool gently with your and and confirm that the motor tries to pull line inwards onto the spool
+        Feel the spool gently with your and confirm that the motor tries to pull line inwards onto the spool
       </p>
       <code>
-        M98 P"/macros/Torque_mode" A0.02
+        M98 P"/macros/Torque/Torque_mode_all" A0.02
       </code>
       <p>
         Repeat for all motors ABCD.
+        (In ReprapFirmware 3.5, the unit of the argument A&lt;arg&gt; will change from Nm to just N.
+        It will print the Nm applied into the WebGui console.)
       </p>
       <h4>Getting To The Actual Calibration</h4>
       <p>
@@ -987,7 +1014,7 @@ Will execute:<br />
       </p>
       <p>
         <code>$ cd path/to/hp-mark/use<br />
-          $ ./get_auto_calibration_data_automatically.sh --show result</code>
+          $ ./get_auto_calibration_data_automatically.sh --show result --bed-reference --try-hard</code>
       </p>
       <p>
         The <code>--show result</code> option will make hpm stop and show you each measurement when it's done, and wait for you to press
@@ -1002,7 +1029,7 @@ Will execute:<br />
         </figcaption>
       </figure>
       <p>
-        After collecting 18 data points (don't worry if a few were unsuccessful or printed a warning), it prints out the data it has collected
+        After collecting 25 data points (don't worry if a few were unsuccessful or printed a warning), it prints out the data it has collected
         in a format that copy/paste friendly for the next script we're going to use: <a href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/hp_mark_adjusted/simulation.py">simulation.py</a>.
       </p>
       <p>
