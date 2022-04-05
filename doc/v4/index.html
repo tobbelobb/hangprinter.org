@@ -506,10 +506,15 @@
     </p>
     <p>
       If it gets stuck at "<code>Putting device XXXXXXXXXXXX into DFU mode...</code>",
-      pull the power plug, flip the switch from RUN to DFU, and try again.
+      it can help to stop it with Ctrl+C and simply try again.
     </p>
     <p>
-      If successful, power down, flip back to RUN, and do a config restore
+      If it gets stuck every time,
+      pull the power plug, flip the switch from RUN to DFU, and try again.
+      Just remember to flip it back to RUN afterwards.
+    </p>
+    <p>
+      Next step is to do a config restore.
     </p>
     <p>
       <code>$ odrivetool restore-config ~/repos/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
