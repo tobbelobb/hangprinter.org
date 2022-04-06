@@ -186,7 +186,7 @@
 <p>
   <b>Q:</b> Can you put a 3d scanner on it? <br />
   <b>A:</b> Probably yes.
-  I haven't tried because I don't now of practical ways to use Hangprinter as a 3d scanner.
+  I haven't tried because I don't know of practical ways to use Hangprinter as a 3d scanner.
   My main concern is about lines touching the unknown object.
 </p>
 
@@ -325,11 +325,21 @@ Longer answer:
 Four really beefy steppers with SmartStepper would do as good a job as the four BLDCs at a slightly lower price tag, for a small and light Hangprinter.
 The Hangprinter application lies right between the sweet spot for steppers and the sweet spot for BLDC application.
 The bigger and heavier your Hangprinter is, the more BLDC starts to make sense.
+However, the following conditions make BLDC a better fit for us:
 </p>
 <p>
-I often hear the importance of travel speed being plaid down.
-Personally, after some long prints, and tens of kilometres of travel moves, I'm willing to pay for fast travels.
-It shortens print time, but also improves print quality a lot, since it limits ooze problems.
+  <ul>
+    <li>We use the motors in torque mode a lot</li>
+    <li>We want to scale up to large forces and speeds</li>
+    <li>We need encoder readings for auto calibration</li>
+    <li>We want to use a CAN bus for all data traffic, allowing controller and motors+drivers to be very far apart</li>
+    <li>We want force measurements through motor current readings to be available</li>
+  </ul>
+</p>
+<p>
+In principle, we could fulfill all those needs with steppers and some fancy stepper drivers.
+I tried to stick to steppers by using Mechaduino stepper drivers and later SmartStepper drivers.
+However, they were hard to set up and very unreliable compared to the ODrives.
 </p>
 
 <p>
