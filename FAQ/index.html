@@ -120,7 +120,7 @@
   <b>A:</b> Sure, you can use any motor and driver setup. The ODrives are connected to the Duet via a CAN bus which gives torque mode and encoder readings, which gives a lot of everyday convenience as well as auto calibration of anchor locations.
   They also have many nice features like anti-cogging and input filtering that might get important depending on your use case. <br />
   <b>Sub Q:</b>  ... using some other board than the Duet3? <br />
-  <b>A:</b> Yes. Reprapfirmware has up to date Hangprinter support for all Duet boards. There's also an unsupported ReprapFirmware version that let's you use Duet2 Wifi and UART to talk with old ODrivefirmware versions.
+  <b>A:</b> Yes. Reprapfirmware has up to date Hangprinter support for all Duet boards. There's also an unsupported Reprapfirmware version that let's you use Duet2 Wifi and UART to talk with old ODrivefirmware versions.
   At the time of writing only Duet3 has the CAN support, but a cheaper Duet with CAN is in the pipeline.
   Marlin also has Hangprinter support which was in active use up until 2018.
   Marlin's current state is a bit unknown to me (tobben, Oct, 2021).<br />
@@ -266,7 +266,7 @@
 
 <p>
   <b>Q:</b> How do you slice for Hangprinter? <br />
-  <b>A:</b> Similar to other 3d printers. For some slicing config suggestions, look at <a href="https://gitlab.com/tobben/prusaslicer-configs">tobbens PrusaSlicer configs</a>.
+  <b>A:</b> Similar to other 3d printers. For some slicing config suggestions, look at <a href="https://gitlab.com/tobben/prusaslicer-configs">tobben's Prusaslicer configs</a>.
 </p>
 
 <p>
@@ -296,7 +296,7 @@
   <b>A:</b> Check out the example config.g in the repo. It should be somewhere under firmware/RepRapFirmware/Duet3 or similar. </p>
 
 <p>
-  <b>Q:</b> How do I find correct bulidup factor (M666 Q-parameter)? <br />
+  <b>Q:</b> How do I find correct buildup factor (M666 Q-parameter)? <br />
   <b>A:</b>
 The buildup factor determines how much firmware should try to compensate for line buildup on the spools.
 Theoretical, but a bit naive buildup factor calculation (assumes cylindrical, straight line):
@@ -322,7 +322,7 @@ I'm planning and hoping that auto-calibration-simulation-for-hangprinter becomes
 </p>
 <p>
 Longer answer:
-Four really beefy steppers with SmartStepper would do as good a job as the four BLDCs at a slightly lower price tag, for a small and light Hangprinter.
+Four really beefy steppers with Smartstepper would do as good a job as the four BLDCs at a slightly lower price tag, for a small and light Hangprinter.
 The Hangprinter application lies right between the sweet spot for steppers and the sweet spot for BLDC application.
 The bigger and heavier your Hangprinter is, the more BLDC starts to make sense.
 However, the following conditions make BLDC a better fit for us:
@@ -338,7 +338,7 @@ However, the following conditions make BLDC a better fit for us:
 </p>
 <p>
 In principle, we could fulfill all those needs with steppers and some fancy stepper drivers.
-I tried to stick to steppers by using Mechaduino stepper drivers and later SmartStepper drivers.
+I tried to stick to steppers by using Mechaduino stepper drivers and later Smartstepper drivers.
 However, they were hard to set up and very unreliable compared to the ODrives.
 </p>
 
@@ -354,11 +354,11 @@ However, they were hard to set up and very unreliable compared to the ODrives.
 </p>
 
 <p>
-  <b>Q:</b> Is torque mode neccesary? <br />
+  <b>Q:</b> Is torque mode necessary? <br />
   <b>A:</b> Torque mode saves in a lot of manual effort during daily use of the Hangprinter.
   With that said, it's totally possible to tighten lines with the <a href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/macros/Individual_motor_control">Individual_motor_control</a> macro.
   Advanced: If you want a new position to be calculated after the individual motor move, you could also use G1 H2-moves directly.
-  Look in the macro or <a href="https://duet3d.dozuki.com/Wiki/G1">ReprapFirmware's gcode docs</a> for details about how G1 H2 is used.
+  Look in the macro or <a href="https://duet3d.dozuki.com/Wiki/G1">Reprapfirmware's gcode docs</a> for details about how G1 H2 is used.
 </p>
 
 
@@ -379,7 +379,7 @@ However, they were hard to set up and very unreliable compared to the ODrives.
   </ul>
   Cons:
   <ul>
-    <li>Limits acceleration severly. The machine will be very slow compared to Hangprinter.</li>
+    <li>Limits acceleration severely. The machine will be very slow compared to Hangprinter.</li>
     <li>Doesn't constrain upwards motion. The print head will be pushed around by various tiny forces during print, and will not be able to maintain good accuracy or precision.</li>
   </ul>
 </p>
