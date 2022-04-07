@@ -487,11 +487,12 @@
     </p>
     <h4>The ODrive (v3) Boards</h4>
     <p>
-      Stock ODrivefirmware works for us out of the box.
-      I'm using 0.5.4 which is currently the newest release.
+      These instructions are for v0.5.5 of the stock ODrivefirmware,
+      which is still unreleased at the time of writing (Apr 7, 2022).
     </p>
     <p>
-      To copy my setup as fast as possible, do a config restore
+      To copy my setup as fast as possible into your AB board (connected to the A- and B-motors),
+      do a config restore of the AB config:
     </p>
     <p>
       <code>$ odrivetool restore-config ~/repos/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
@@ -515,11 +516,15 @@
       <code style="font-size:13px">
         odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
         odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
+        odrv0.axis0.motor.config.pre_calibrated = True<br />
+        odrv0.axis1.motor.config.pre_calibrated = True<br />
         odrv0.axis0.encoder.config.pre_calibrated = True<br />
         odrv0.axis1.encoder.config.pre_calibrated = True<br />
         odrv0.save_configuration()<br />
-        odrv0.reboot() # only needed if you use an older firmware<br />
       </code>
+    </p>
+    <p>
+      Repeat the process for the CD board (the ODrive connected to the C- and D-motors).
     </p>
     <p>
       If everything went well and your motors woke up with a silent rotation before entering closed loop position mode,
