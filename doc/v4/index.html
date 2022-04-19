@@ -514,12 +514,13 @@
     </p>
     <p>
       <code style="font-size:13px">
-        odrv0.axis0.requested_state = AXIS_STATE_MOTOR_CALIBRATION<br />
-        odrv0.axis1.requested_state = AXIS_STATE_MOTOR_CALIBRATION<br />
-        odrv0.axis0.motor.config.pre_calibrated = True<br />
-        odrv0.axis1.motor.config.pre_calibrated = True<br />
+        odrv0.axis0.requested_state = AXIS_STATE_IDLE<br />
+        odrv0.axis1.requested_state = AXIS_STATE_IDLE<br />
+        odrv0.save_configuration()<br />
         odrv0.axis0.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
         odrv0.axis1.requested_state = AXIS_STATE_FULL_CALIBRATION_SEQUENCE<br />
+        odrv0.axis0.motor.config.pre_calibrated = True<br />
+        odrv0.axis1.motor.config.pre_calibrated = True<br />
         odrv0.axis0.encoder.config.pre_calibrated = True<br />
         odrv0.axis1.encoder.config.pre_calibrated = True<br />
         odrv0.axis0.requested_state = AXIS_STATE_IDLE<br />
