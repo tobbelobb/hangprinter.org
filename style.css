@@ -52,7 +52,6 @@ h1 {
     font-size: 45px;
     margin: 0;
     font-weight: 500;
-    /* font-weight: 600; */
     letter-spacing: -0.02em;
 }
 h2 {
@@ -71,22 +70,22 @@ h3 {
     color: var(--contrast);
     margin: 0;
     letter-spacing: -0.01em;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 h4 {
     font-family: Manrope;
     font-weight: 700;
     font-size: 14px;
-    margin-top: 15px;
-    margin-bottom: 2px;
+    margin-top: 25px;
+    margin-bottom: 0px;
 }
 
 h5 {
     font-family: Manrope;
     font-weight: 600;
     font-size: 14px;
-    margin-top: 15px;
-    margin-bottom: 2px;
+    margin-top: 25px;
+    margin-bottom: 0px;
 }
 
 p,
@@ -97,6 +96,10 @@ figcaption {
     line-height: 24px;
     font-weight: 500;
     word-break: break-word;
+}
+
+.codeblock {
+    padding-left: 12px;
 }
 
 a {
@@ -122,7 +125,6 @@ figure .embed-container {
 
 figcaption {
     width: 100%;
-    margin-bottom: 50px;
     margin-top: 10px;
 }
 
@@ -135,7 +137,7 @@ figcaption {
     font-weight: 500;
     /* width: 80%; */
     line-height: 25px;
-    margin: 25px 0;
+    margin: 15px 0;
     padding: 0 0 0 30px;
 }
 
@@ -177,7 +179,7 @@ figcaption {
     /* margin-bottom: 1cm; */
 }
 
-@media screen and (max-height: 760px) {
+@media screen and (max-width: 600px) {
     #FrontPageMain {
         padding: 20px;
     }
@@ -185,6 +187,7 @@ figcaption {
 
 #MainContent.half-width {
     width: 50%;
+    max-width: 800px;
     padding: 0;
     box-sizing: border-box;
     margin: 0 auto;
@@ -303,19 +306,18 @@ iframe {
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: flex-end;
-    gap: 45px;
+    align-items: center;
+    gap: calc(100% - 250px);
     justify-content: center;
     flex-wrap: wrap;
+    height: 80%;
+    margin-left: 10px;
 }
 
 #FrontPageMain .content p {
-    /* width: 475px; */
     font-size: 45px;
     line-height: normal;
     letter-spacing: -0.02em;
-    /* max-width: 100%; */
-    /* margin-bottom: 15px; */
     margin: 0;
 }
 
@@ -703,17 +705,6 @@ iframe {
     font-weight: 650;
     margin-bottom: 0;
     top: -100px;
-}
-
-h3[id]::before,
-.date[id]::before,
-.q::before,
-.sub-q::before {
-    content: "";
-    display: block;
-    height: 85px;
-    margin-top: -85px;
-    visibility: hidden;
 }
 
 .q + ul {
@@ -1312,6 +1303,13 @@ figcaption {
         width: fit-content;
     }
 
+    #FrontPageMain .content {
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        flex-direction: column;
+        text-align: center;
+    }
     .text-block .text-col {
         width: 100%;
     }
@@ -1695,50 +1693,4 @@ figcaption {
     #SiteName {
         margin-bottom: 30px;
     }
-
-    /* FOOTER */
-
-    /* footer {
-        margin: 0;
-        width: 100vw;
-        height: fit-content;
-        box-sizing: border-box;
-        overflow: hidden;
-        border-radius: 10px 10px 0 0;
-        padding: 40px 40px 80px 40px;
-    }
-
-    footer .logo {
-        width: 66px;
-        top: 225px;
-        left: 40px;
-    }
-
-    footer .copyright {
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        width: fit-content;
-    }
-
-    footer .link-container {
-        transform: none;
-        flex-wrap: wrap;
-        width: 100%;
-        row-gap: 50px;
-    }
-
-    footer .link-container .link-column {
-        width: 45%;
-        font-size: 11px;
-        gap: 14px;
-    }
-
-    footer .link-container .link-column:last-of-type {
-        transform: translateX(calc(100% + 20px));
-    }
-
-    #there-you-go {
-        height: 0px;
-    } */
 }

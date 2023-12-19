@@ -28,7 +28,7 @@
   <title>Hangprinter|HP4 Manual</title>
 </head>
 
-<body style=width:100%;>
+<body style="width:100%;">
   <div class="masthead">
     <h3 class="masthead-brand">
       <a href="/">
@@ -157,6 +157,7 @@
     </p>
     <p>
       As for the circuit boards and the power supply, place them out in a configuration similar to this:
+    </p>
     <figure>
       <a href="./media/pcb_and_psu_placement.jpeg" target="_blank">
         <img src="./media/pcb_and_psu_placement_small.jpeg" alt="" width="500" height="343">
@@ -173,9 +174,9 @@
       <figcaption>
       </figcaption>
     </figure>
-    </p>
     <p>
       Hot tips for circuit board placement:
+    </p>
     <ul>
       <li>Use the spacers shipped with the ODrives also for the Duet3.</li>
       <li>The Raspberry Pi uses 3d printed spacers that are more than twice as long: <a
@@ -183,7 +184,6 @@
       <li>Make sure that the Duet3's USB port and SD slot are not covered by a 1XD card.</li>
       <li>Make sure the Pi's HDMI1 port is not covered by the Duet3.</li>
     </ul>
-    </p>
     <h4 id="motor_brackets">Motor Brackets</h4>
     <p>
       It can be tricky to get the nuts into the right places on the motor brackets.
@@ -200,12 +200,9 @@
         <img src="./media/sand_edge_small.JPG" alt="" width="500" height="281">
       </a>
       <figcaption>
+      Also sand the GT2 spool gear's inside, since it will also rub against the line.
       </figcaption>
     </figure>
-    <p>
-      Also sand the GT2 spool gear's inside, since it will also rub against the line.
-    </p>
-
     <h4 id="rotate_straight">Make Sure Spools Rotate Without Wobble</h4>
     <p>
       First of all, press a bearing into each spool, and rotate each spool separately on your 8mm spool core rod.
@@ -353,12 +350,12 @@
     </p>
     <p>
       For all other wiring see
+    </p>
     <ul>
       <li><a href="https://docs.duet3d.com/en/User_manual/Overview/Getting_started_Duet_3_MB6HC">Duet 3 docs</a>,</li>
       <li><a href="https://docs.duet3d.com/en/Duet3D_hardware/Duet_3_family/Duet_3_Expansion_1XD">1XD expansion board docs</a>,</li>
       <li><a href="https://docs.odriverobotics.com/v/0.5.6/getting-started.html">ODrive docs</a>.</li>
     </ul>
-    </p>
     <h4>The Two CAN Buses</h4>
     <p>
       The Duet3 has two CAN buses coming out of its RJ11 (6P4C) contact.
@@ -368,7 +365,6 @@
       The two centermost conductors in the 6P4C contact carry the main CAN bus.
       It transfers step/dir signals from the Duet3 to the 1XDs.
     </p>
-    <p>
     <figure>
       <a href="./media/1XD_addresses.jpeg" target="_blank">
         <img src="./media/1XD_addresses_small.jpeg" alt="" width="500" height="281">
@@ -387,13 +383,11 @@
         Board 40 should have termination jumpers on. The other 1XD boards should not.
       </figcaption>
     </figure>
-    </p>
     <p>
       The rightmost and leftmost pins are not in use in 6P4C contacts.
       So we have two remaining conductors that are not used by the main CAN bus.
       The two remaining conductors carry the ODrives' CAN bus.
     </p>
-    <p>
     <figure>
       <a href="./media/signal_wire_guy2.jpeg" target="_blank">
         <img src="./media/signal_wire_guy2_small.jpeg" alt="" width="500" height="281">
@@ -402,7 +396,6 @@
         The jumper wires carry the ODrives' CAN signal from the telephone cable into the ODrive.
       </figcaption>
     </figure>
-    </p>
     <p>
       The ODrives' CAN bus also goes inside the white wire, at least on my machine.
       It goes from the Duet3, through board 43, branches off into one ODrive, the other branch continues through board
@@ -411,6 +404,7 @@
     </p>
     <p>
       With the ODrive CAN bus wired up, make sure you set the termination resistors correctly:
+    </p>
     <figure>
       <a href="./media/term_R_ODrives.jpeg" target="_blank">
         <img src="./media/term_R_ODrives_small.jpeg" alt="" width="500" height="281">
@@ -419,7 +413,6 @@
         There are little switches inside the red circles, that flip CAN termination resistors on and off.
       </figcaption>
     </figure>
-    </p>
     <h3 id="Firmwares_and_Software_Configuration">Firmwares and Software Configuration</h3>
     <h4>The Duet3 Board</h4>
     <p>
@@ -453,7 +446,7 @@
       <code>wpa_supplicant.conf</code>.
       Fill the file with your network details, similar to this:
     </p>
-    <p>
+    <p class="codeblock">
       <code>
           update_config=1<br />
           ctrl_interface=/var/run/wpa_supplicant<br />
@@ -489,7 +482,7 @@
     <p>
       Ssh into your Raspberry Pi, like this
     </p>
-    <p>
+    <p class="codeblock">
       <code>$ ssh pi@duet3.local</code>
     </p>
     <p>
@@ -509,7 +502,7 @@
       Whether you enabled the unstable software repository or not, you can now upgrade the software on the Raspberry Pi
       and the Duet3 board simultaneously, like this
     </p>
-    <p>
+    <p class="codeblock">
       <code>$ sudo apt update &amp;&amp; sudo apt upgrade</code>
     </p>
     <p>
@@ -545,7 +538,7 @@
     <p>
       Install <code>odrivetool</code> v0.6.3: If you're on Ubuntu, something like this should work:
     </p>
-    <p>
+    <p class="codeblock">
       <code>$ sudo apt install python3 python3-pip<br />$ sudo pip3 install odrive==0.6.3</code>
     </p>
     <p>
@@ -555,7 +548,7 @@
     <p>
       If your board has an old (&lt;0.5.5) firmware version, upgrade it with
     </p>
-    <p>
+    <p class="codeblock">
       <code>$ odrivetool dfu</code>
     </p>
     <p>
@@ -570,7 +563,7 @@
       To configure your AB board (connected to the A- and B-motors),
       do a config restore of the AB config found in the Hangprinter repo:
     </p>
-    <p>
+    <p class="codeblock">
       <code>$ odrivetool restore-config &lt;/path/to&gt;/hangprinter/firmware/ODrive/odrive-config-AB.json</code>
     </p>
     <p>
@@ -581,7 +574,7 @@
       You must measure the correct value with a multimeter over your break resistor.
       Open up <code>odrivetool</code> and set
     </p>
-    <p>
+    <p class="codeblock">
       <code>odrv0.config.brake_resistance = your_measured_value</code>
     </p>
     <p>
@@ -589,8 +582,8 @@
       one-by-one
       and hit Enter in between each.
     </p>
-    <p>
-      <code style="font-size:13px">
+    <p class="codeblock">
+      <code>
         odrv0.axis0.requested_state = AXIS_STATE_IDLE<br />
         odrv0.axis1.requested_state = AXIS_STATE_IDLE<br />
         odrv0.save_configuration()<br />
@@ -766,7 +759,6 @@
       Also, the routing of the D-lines are not detailed in the video.
       Route them like this:
     </p>
-    <p>
     <figure>
       <a href="./media/routing_1.png" target="_blank">
         <img src="./media/routing_1_small.png" alt="" width="500" height="381">
@@ -788,7 +780,6 @@
       <figcaption>
       </figcaption>
     </figure>
-    </p>
     <p>
       The three renderings above all show the corner closest to the B-motor on the ceiling unit.
       Mirror the setup at the opposite corner (closest to C-motor).
@@ -826,19 +817,16 @@
         <img src="./media/line_attachment_snaily_snail_small.JPG" alt="" width="500" height="281">
       </a>
       <figcaption>
+        The clamp is a safety mechanism.
+        In case of a sudden high force in the line (if someone trips in a line), the clamp is supposed to release the
+        line.
+        It's therefore important that the line protruding on the back side of the clamp is short.
+        It's also important that all braiding is combed out near the end of the line so that the line can be clamped down
+        flat,
+        and no knot or tangle can form on the back side of the clamp, and prevent the safety mechanism from releasing the
+        line.
       </figcaption>
     </figure>
-    <p>
-      The clamp is a safety mechanism.
-      In case of a sudden high force in the line (if someone trips in a line), the clamp is supposed to release the
-      line.
-      It's therefore important that the line protruding on the back side of the clamp is short.
-      It's also important that all braiding is combed out near the end of the line so that the line can be clamped down
-      flat,
-      and no knot or tangle can form on the back side of the clamp, and prevent the safety mechanism from releasing the
-      line.
-    </p>
-    <p>
     <figure>
       <video width="500" height="889" controls="controls">
         <source src="media/snail_line_release.mp4" type="video/mp4" />
@@ -849,8 +837,6 @@
         Video showing the line release mechanism in action.
       </figcaption>
     </figure>
-    </p>
-
     <p>
       The D-lines are terminated in the ceiling unit.
       I terminate them with a wood screw, like this:
@@ -905,7 +891,6 @@
         </iframe>
       </div>
     </figure>
-
     <h4>Replicating What's Going On In That Video</h4>
     <p>
       Ok, this will be a bit messy.
@@ -916,6 +901,7 @@
     <p>
       The computer vision system is called hp-mark.
       It consists of
+    </p>
     <ul>
       <li>A camera with LED lights around it,</li>
       <li>A Raspberry Pi who controls the camera and the LEDs,</li>
@@ -923,10 +909,11 @@
       <li>A computer program called hpm</li>
       <li>A main computer who gets images from the Raspberry Pi, and uses hpm to analyze the images.</li>
     </ul>
-    See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>,
-    and in particular the <code>README.md</code> and the <code>doc</code> directory for more guidance on how to set up
-    hp-mark.
-    The rest of this section will describe how to use hp-mark correctly with Hangprinter v4.
+    <p>
+      See the <a href="https://gitlab.com/tobben/hp-mark">hp-mark repo</a>,
+      and in particular the <code>README.md</code> and the <code>doc</code> directory for more guidance on how to set up
+      hp-mark.
+      The rest of this section will describe how to use hp-mark correctly with Hangprinter v4.
     </p>
     <p>
       The get_auto_calibration_data_automatically.sh script is executed on the main computer.
@@ -950,7 +937,7 @@
         href="https://www.arducam.com/docs/cameras-for-raspberry-pi/native-raspberry-pi-cameras/lens-shading-calibration/">tinted</a>.
       To get the one I use (matching my Arducam lo-distortion 45 deg lens), do
     </p>
-    <p>
+    <p class="codeblock">
       <code>
           $ ssh pi@rpi<br />
           $ mkdir -p repos<br />
@@ -958,17 +945,17 @@
           $ git clone https://github.com/ArduCAM/NativePiCamera.git<br />
           $ cd NativePiCamera/bin<br />
           $ chmod u+x raspistill_CS_lens<br />
-        </code>
+      </code>
     </p>
     <p>
       The duet3 official image is one comes with the camera disabled by default.
       To enable it do
     </p>
-    <p>
+    <p class="codeblock">
       <code>
           $ sudo raspi-config<br />
           $ [Interface Options] -&gt; [Camera] -&gt; [Enable] -&gt; [Reboot yes]
-        </code>
+      </code>
     </p>
     <p>
       We also have some LED rings around the lens (I have 20. Don's use more than 20, since the Rpi's 5V pin can't
@@ -982,7 +969,7 @@
       <figcaption>
       </figcaption>
     </figure>
-    <h4>If <code>rpi</code> and <code>duet3</code> Are One And the Same Board In Your Setup</h4>
+    <h4>If rpi and duet3 Are One And the Same Board In Your Setup</h4>
     <p>
       The Duet3 doesn't use any of pins 4, 6, or 12, although its connector covers them up.
       To work around the connector, you can created a distance between Rpi and the connector with nine short jumper
@@ -995,8 +982,6 @@
       <figcaption>
       </figcaption>
     </figure>
-    <p>
-    </p>
     <figure>
       <a href="./media/Duetpins2.png" target="_blank">
         <img src="./media/Duetpins2.png" alt="" width="498" height="123">
@@ -1014,7 +999,7 @@
     <p>
       Here's how you get code that lights up the LEDs:
     </p>
-    <p>
+    <p class="codeblock">
       <code>
           $ ssh pi@rpi<br />
           $ mkdir -p repos<br />
@@ -1022,17 +1007,17 @@
           $ git clone https://gitlab.com/tobben/rpi_ws281x.git<br />
           $ sudo apt install python3-pip<br />
           $ sudo pip3 install rpi_ws281x<br />
-        </code>
+      </code>
     </p>
     <h4>Test If Camera Usage Works</h4>
     <p>
       On your main computer, try to take an image and analyze it:
     </p>
-    <p>
+    <p class="codeblock">
       <code>
           $ cd &lt;path-to&gt;/hp-mark/use<br />
           $ ./use_ssh.sh --show result
-        </code>
+      </code>
     </p>
     <p>
       If everything worked, the LEDs should have flashed, an image should be taken, downloaded, analyzed by your hpm
@@ -1049,7 +1034,7 @@
     <p>
       The console output should be similar to this:
     </p>
-    <p>
+    <p class="codeblock">
       <code>
           $ ./use_ssh.sh --show result<br />
 /home/pi/repos/hp-mark/use<br />
@@ -1060,7 +1045,7 @@ DiUBh.jpg 100% 4512KB   4.9MB/s   00:00<br />
 Will execute:<br />
 ../hpm/hpm/hpm ../hpm/hpm/example-cam-params/loDistCamParams2.xml ../hpm/hpm/example-marker-params/my-marker-params.xml ./images/DiUBh.jpg --show result<br />
 [5.22761, -28.5536, 6.5542];<br />
-        </code>
+      </code>
     </p>
     <p>
       At the time of writing (March 30, 2022), there are two under-documented but highly useful features in hp-mark.
@@ -1097,9 +1082,11 @@ Will execute:<br />
       set motor A in torque mode, with 0.02 Nm of torque.
       Feel the spool gently with your and confirm that the motor tries to pull line inwards onto the spool
     </p>
-    <code>
-        M98 P"/macros/Torque/Torque_mode_all" A0.02
+    <p class="codeblock">
+      <code>
+          M98 P"/macros/Torque/Torque_mode_all" A0.02
       </code>
+    </p>
     <p>
       Repeat for all motors ABCD.
       (In ReprapFirmware 3.5, the unit of the argument A&lt;arg&gt; will change from Nm to just N.
@@ -1110,9 +1097,10 @@ Will execute:<br />
       With camera and torque mode macro in place, if all the stars align, it should be possible for you to collect the
       calibration data like this:
     </p>
-    <p>
+    <p class="codeblock">
       <code>$ cd path/to/hp-mark/use<br />
-          $ ./get_auto_calibration_data_automatically.sh --show result --bed-reference --try-hard</code>
+            $ ./get_auto_calibration_data_automatically.sh --show result --bed-reference --try-hard
+      </code>
     </p>
     <p>
       The <code>--show result</code> option will make hpm stop and show you each measurement when it's done, and wait
@@ -1134,11 +1122,11 @@ Will execute:<br />
         href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/hp_mark_adjusted/simulation.py">simulation.py</a>.
     </p>
     <p>
-      The output of simulation.py needs to be adjusted by yet another script, called just <a
-        href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/blob/hp_mark_adjusted/harmonize/script.m">script.m</a>.
+      For detailed documentation on how to use the script, see its
+      <a href="https://gitlab.com/tobben/auto-calibration-simulation-for-hangprinter/-/tree/hp_mark_adjusted">repo</a>.
     </p>
     <p>
-      If again, all stars align, you can re-run simulation.py as described inside script.m, and you'll end up with a
+      Hopefully it will output a
       perfect set of M669 and M666 commands, to copy/paste into your <a
         href="https://gitlab.com/tobben/hangprinter/-/blob/version_4/firmware/RepRapFirmware/Duet3/config.g">config.g</a>.
     </p>
