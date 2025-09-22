@@ -25,9 +25,9 @@
   <meta name="msapplication-TileColor" content="#00aba9">
   <meta name="theme-color" content="#ffffff">
   <title>Hangprinter</title>
-  <script type="module" crossorigin src="/assets/index.html-C0Rlyt6y.js"></script>
+  <script type="module" crossorigin src="/assets/index.html-DKq5DS93.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/script-fCxeV1YU.js">
-  <link rel="stylesheet" crossorigin href="/assets/index-CklIh7b4.css">
+  <link rel="stylesheet" crossorigin href="/assets/style-atGD9qgi.css">
 </head>
 
 <body>
@@ -131,11 +131,17 @@
               <button id="panModeBtn" type="button" class="sim-secondary sim-zoom-btn" aria-pressed="false">Pan</button>
             </div>
             <div id="speedControls" class="sim-speed" role="group" aria-label="Playback speed">
-              <button id="speedHalfBtn" type="button" class="sim-secondary sim-speed-btn" aria-pressed="false">0.5x</button>
-              <button id="speed1xBtn" type="button" class="sim-secondary sim-speed-btn" aria-pressed="true">1x</button>
-              <button id="speed2xBtn" type="button" class="sim-secondary sim-speed-btn" aria-pressed="false">2x</button>
+              <button id="speedSlowerBtn" type="button" class="sim-secondary sim-speed-btn" aria-label="Set playback to half speed">
+                <span aria-hidden="true" class="sim-speed-icon">&gt;&gt;</span>
+                <span class="sim-speed-text">0.5x</span>
+              </button>
+              <button id="speedFasterBtn" type="button" class="sim-secondary sim-speed-btn" aria-label="Double the playback speed">
+                <span aria-hidden="true" class="sim-speed-icon">&gt;&gt;</span>
+                <span class="sim-speed-text">2x</span>
+              </button>
             </div>
           </div>
+          <div id="speedStatus" class="sim-speed-status sim-hidden" role="status" aria-live="polite"></div>
         </div>
       </div>
     </div>
