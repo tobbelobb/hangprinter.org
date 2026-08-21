@@ -2,6 +2,9 @@ export const FileFormat = {
   GCODE: 'gcode',
   MCU_TEXT: 'mcu-text',
   MCU_SERIAL: 'mcu-serial',
+  USD_STAGE: 'usd-stage',
+  RRF_CAN: 'rrf-can',
+  RRF_CAN_BINARY: 'rrf-can-binary',
 };
 
 const EXTENSION_MAP = new Map([
@@ -10,6 +13,9 @@ const EXTENSION_MAP = new Map([
   ['.txt', FileFormat.MCU_TEXT],
   ['.log', FileFormat.MCU_TEXT],
   ['.serial', FileFormat.MCU_SERIAL],
+  ['.usda', FileFormat.USD_STAGE],
+  ['.csv', FileFormat.RRF_CAN],
+  ['.can', FileFormat.RRF_CAN_BINARY],
 ]);
 
 export function detectFileFormat(name) {
@@ -29,6 +35,10 @@ export function detectFileFormat(name) {
   return null;
 }
 
-export function isMcuFormat(format) {
+export function isKlipperFormat(format) {
   return format === FileFormat.MCU_TEXT || format === FileFormat.MCU_SERIAL;
+}
+
+export function isRrfFormat(format) {
+  return format === FileFormat.RRF_CAN || format === FileFormat.RRF_CAN_BINARY;
 }
